@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SearchFilter from '../../components/SearchFilter.astro';
+import PlatformList from '../../components/PlatformList.astro';
+import GradeNavigation from '../../components/GradeNavigation.astro';
+import { getAllGrades, isValidGrade } from '../../utils/grades';
+import { getPlatformsForGrade } from '../../utils/platforms';
+
+export async function getStaticPaths() {
+	const grades = getAllGrades();
+	return grades.map(grade => ({
+		params: { id: grade.toString() }
+	}));
+}
+
+const { id } = Astro.params;
+const grade = parseInt(id);
+
+if (!isValidGrade(grade)) {
+	return Astro.redirect('/404');
+}
+
+const platforms = await getPlatformsForGrade(grade);
+const publishers = [...new Set(platforms.map(p => p.data.publisher))].filter(Boolean);
+---
+
+<Layout title={`${grade}. årgang - Digitale Læremidler`}>
+	<div class="mb-6">
+		<a href="/" class="text-primary hover:underline">&larr; Tilbage til oversigt</a>
+	</div>
+	
+	<h2 class="text-2xl font-bold text-gray-900 mb-6">{grade}. årgang - Tilgængelige Platforme</h2>
+	
+	<GradeNavigation currentGrade={grade} />
+	
+	<div class="mb-8">
+		<SearchFilter publishers={publishers} />
+	</div>
+
+	<div id="platforms-container">
+		<PlatformList platforms={platforms} currentGrade={grade} />
+	</div>
+</Layout>
+

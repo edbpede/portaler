@@ -1,0 +1,14 @@
+{
+	"name": "CampEngelsk (udskoling)",
+	"publisher": "Alinea",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://campengelskudskoling.alinea.dk",
+	"subject": "engelsk",
+	"isActive": true,
+	"description": "Digital læringsplatform til engelsk for 7. klasse.",
+	"longDescription": "Digital træningsportal til engelsk for 7.-9. klasse med fokus på sproglig opmærksomhed, lytning, læsning og grammatik. Tilbyder et motiverende læringsmiljø med systematisk træning af engelskfærdigheder."
+}

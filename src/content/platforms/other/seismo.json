@@ -1,0 +1,10 @@
+{
+	"name": "Seismo.dk",
+	"publisher": "Andre",
+	"grades": [],
+	"url": "https://seismo.dk",
+	"subject": "natur-teknologi",
+	"isActive": true,
+	"description": "Platform for jordskælv og seismologi",
+	"longDescription": "Platform for jordskælv og seismologi"
+}

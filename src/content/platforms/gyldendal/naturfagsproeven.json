@@ -1,0 +1,14 @@
+{
+	"name": "Naturfagsprøven (7-9)",
+	"publisher": "Gyldendal",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://naturfagsproeven.gyldendal.dk",
+	"subject": "natur-teknologi",
+	"isActive": true,
+	"description": "Digital portal til naturfagsprøven med fællesfaglige fokusområder, øvelser og selvrettende prøver i biologi, fysik/kemi og geografi.",
+	"longDescription": "Digital portal til naturfagsprøven med fællesfaglige fokusområder, øvelser og selvrettende prøver i biologi, fysik/kemi og geografi. Indeholder guides til problemstillinger, arbejdsspørgsmål og tjek-opgaver til forløbene."
+}

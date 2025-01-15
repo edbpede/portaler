@@ -1,0 +1,14 @@
+{
+	"name": "Webprøver matematik",
+	"publisher": "Gyldendal",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://webproever.gyldendal.dk",
+	"subject": "matematik",
+	"isActive": true,
+	"description": "Digital prøveplatform med selvrettende opgaver der træner eleverne i matematiske færdigheder og problemløsning.",
+	"longDescription": "Digital prøveplatform med selvrettende opgaver der træner eleverne i matematiske færdigheder og problemløsning. Indeholder prøvelignende opgaver der forbereder eleverne til de digitale afgangsprøver i matematik."
+}

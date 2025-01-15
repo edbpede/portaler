@@ -4,6 +4,11 @@ dist/
 # generated types
 .astro/
 
+# dirs
+docs/
+.docs/
+.vscode/
+
 # dependencies
 node_modules/
 
@@ -25,5 +30,6 @@ pnpm-debug.log*
 
 # IDE Stuff
 .aiderules
-.doc
-.docs
+.clinerules
+.windsurfrules
+

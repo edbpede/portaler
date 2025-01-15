@@ -1,0 +1,12 @@
+{
+	"name": "Boost 4 (ibog)",
+	"publisher": "Gyldendal",
+	"grades": [
+		4
+	],
+	"url": "https://i-bog.gyldendal.dk/boost4",
+	"subject": "engelsk",
+	"isActive": true,
+	"description": "Digital tekstbog til engelsk i 4. klasse.",
+	"longDescription": "Digital tekstbog til engelsk i 4. klasse der bygger videre på Boost 3. Indeholder tekster, billeder og aktiviteter der udvikler elevernes sproglige og kulturelle kompetencer gennem varierede læringsformer."
+}

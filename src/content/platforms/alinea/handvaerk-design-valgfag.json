@@ -1,0 +1,14 @@
+{
+	"name": "Håndværk og designportalen (valgfag)",
+	"publisher": "Alinea",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://xn--hndvrkogdesign-libt.alinea.dk/valgfag",
+	"subject": "handvaerk-design",
+	"isActive": true,
+	"description": "Digital læringsplatform til valgfaget håndværk og design med fokus på kreative færdigheder.",
+	"longDescription": "Digital læringsportal til valgfaget håndværk og design med fokus på kreative færdigheder. Indeholder differentierede forløb og aktiviteter der udvikler elevernes praktiske og designmæssige kompetencer."
+}

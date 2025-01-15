@@ -1,0 +1,207 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import Tooltip from './Tooltip.astro';
+
+type Platform = CollectionEntry<'platforms'>;
+type Publisher = 'Gyldendal' | 'Alinea' | 'Dansk LF' | 'JH Software' | 'Andre';
+
+interface Props {
+	platform: Platform;
+	currentGrade?: number;
+}
+
+const { platform, currentGrade } = Astro.props;
+const { name, publisher, grades, url, description, longDescription } = platform.data;
+
+const publisherColors: Record<Publisher | 'default', string> = {
+	'Gyldendal': 'bg-accent-light text-primary',
+	'Alinea': 'bg-rose-light text-rose-dark',
+	'Dansk LF': 'bg-blue-light text-blue-dark',
+	'JH Software': 'bg-emerald-light text-emerald-dark',
+	'Andre': 'bg-neutral-light text-secondary',
+	'default': 'bg-neutral-light text-secondary'
+};
+
+const publisherColor = publisherColors[publisher as Publisher] || publisherColors.default;
+
+const publisherIcons: Record<Publisher, { src: string; height: number }> = {
+	'Gyldendal': { src: '/gyldendal_icon.svg', height: 16 },
+	'Alinea': { src: '/alinea_icon.svg', height: 6 },
+	'Dansk LF': { src: '', height: 0 },
+	'JH Software': { src: '', height: 0 },
+	'Andre': { src: '', height: 0 }
+};
+
+// Subject icons mapping (same as SubjectGroup)
+const subjectIcons: Record<string, { name: string; color: string }> = {
+	'Billedkunst': { name: 'ph:paint-brush-fill', color: 'text-pink-500' },
+	'Biologi': { name: 'ph:dna-fill', color: 'text-teal-500' },
+	'Dansk': { name: 'ph:book-bookmark-fill', color: 'text-rose-300' },
+	'Engelsk': { name: 'ph:flag-banner-fill', color: 'text-red-500' },
+	'Fysik/kemi': { name: 'ph:atom-fill', color: 'text-violet-500' },
+	'Geografi': { name: 'ph:globe-hemisphere-west-fill', color: 'text-indigo-500' },
+	'Håndværk og design': { name: 'ph:hammer-fill', color: 'text-orange-500' },
+	'Historie': { name: 'ph:scroll-fill', color: 'text-amber-500' },
+	'Kristendomskundskab': { name: 'ph:cross-fill', color: 'text-sky-500' },
+	'Madkundskab': { name: 'ph:cooking-pot-fill', color: 'text-rose-500' },
+	'Matematik': { name: 'ph:calculator-fill', color: 'text-purple-500' },
+	'Natur/teknologi': { name: 'ph:leaf-fill', color: 'text-emerald-500' },
+	'Samfundsfag': { name: 'ph:buildings-fill', color: 'text-cyan-500' },
+	'Tysk': { name: 'ph:flag-banner-fill', color: 'text-yellow-600' },
+	'Andre': { name: 'ph:squares-four-fill', color: 'text-gray-500' }
+};
+
+// Platform-specific color variants
+const platformColors: Record<string, string> = {
+	'Mayeriet': 'text-rose-300',
+	'Fandango': 'text-rose-300',
+	'DSA': 'text-violet-400',
+	'Boost': 'text-red-400',
+	'Multi': 'text-purple-400',
+	'Kontext': 'text-purple-600'
+};
+
+// Map platform keywords to subjects
+const platformToSubject: Record<string, string> = {
+	'dansk': 'Dansk',
+	'læs': 'Dansk',
+	'ord': 'Dansk',
+	'webprøver': 'Dansk',
+	'fandango': 'Dansk',
+	'mayeriet': 'Dansk',
+	'engelsk': 'Engelsk',
+	'boost': 'Engelsk',
+	'matematik': 'Matematik',
+	'kontext': 'Matematik',
+	'multi': 'Matematik',
+	'biologi': 'Biologi',
+	'natur': 'Natur/teknologi',
+	'fysik': 'Fysik/kemi',
+	'kemi': 'Fysik/kemi',
+	'geografi': 'Geografi',
+	'lande': 'Geografi',
+	'historie': 'Historie',
+	'kristendom': 'Kristendomskundskab',
+	'religion': 'Kristendomskundskab',
+	'madkundskab': 'Madkundskab',
+	'håndværk': 'Håndværk og design',
+	'billedkunst': 'Billedkunst',
+	'samfundsfag': 'Samfundsfag',
+	'tysk': 'Tysk',
+	'dsa': 'Dansk',
+};
+
+function getPlatformIcon(name: string): { name: string; color: string } {
+	const nameLower = name.toLowerCase();
+	
+	// Special case for animals
+	if (nameLower.includes('dyr')) {
+		return { name: 'ph:paw-print-fill', color: 'text-amber-500' };
+	}
+
+	// Find matching subject based on platform name
+	let matchedSubject = '';
+	for (const [keyword, subject] of Object.entries(platformToSubject)) {
+		if (nameLower.includes(keyword)) {
+			matchedSubject = subject;
+			break;
+		}
+	}
+
+	if (matchedSubject && subjectIcons[matchedSubject]) {
+		const icon = subjectIcons[matchedSubject];
+		
+		// Check for platform-specific color
+		for (const [platform, color] of Object.entries(platformColors)) {
+			if (nameLower.includes(platform.toLowerCase())) {
+				return { name: icon.name, color };
+			}
+		}
+
+		// Use subject icon with slightly different shade
+		if (icon.color.includes('500')) {
+			return { name: icon.name, color: icon.color.replace('500', '400') };
+		} else if (icon.color.includes('400')) {
+			return { name: icon.name, color: icon.color.replace('400', '500') };
+		}
+		return icon;
+	}
+
+	// Default
+	return { name: 'ph:app-window-fill', color: 'text-gray-500' };
+}
+
+const platformIcon = getPlatformIcon(name);
+const publisherIcon = publisherIcons[publisher as Publisher];
+const hasPublisherIcon = publisherIcon && publisherIcon.src !== '';
+
+---
+
+<a 
+	href={url} 
+	target="_blank" 
+	rel="noopener noreferrer" 
+	class={`platform-card block transition-all duration-300 hover:scale-[1.02] hover:shadow-md h-[240px] flex flex-col p-4 bg-white rounded-lg ${url ? 'cursor-pointer' : 'cursor-default pointer-events-none'}`} 
+	data-platform-card
+>
+	<div class="flex flex-wrap justify-between items-start gap-2 min-h-[48px]">
+		<div class="flex items-start gap-2 flex-1 min-w-0 max-w-[calc(100%-90px)]">
+			<div class="w-5 flex-shrink-0 mt-[3px]">
+				<Icon 
+					name={platformIcon.name} 
+					class={`w-5 h-5 ${platformIcon.color}`} 
+				/>
+			</div>
+			<h3 class="text-lg font-semibold text-primary hover:text-accent-dark transition-colors line-clamp-2 min-w-0">{name}</h3>
+		</div>
+		{publisher && (
+			<span class={`px-2 py-1 text-sm font-medium rounded-full ${publisherColor} flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap self-start`} data-publisher={publisher}>
+				<span class="truncate max-w-[50px] sm:max-w-[80px]">{publisher}</span>
+				{hasPublisherIcon && (
+					<Image 
+						src={publisherIcon.src}
+						alt={`${publisher} icon`}
+						height={publisherIcon.height}
+						width={24}
+						class={`w-auto inline-block min-w-[14px] object-contain ${
+							publisher === 'Alinea' 
+								? 'h-2 max-h-[6px]' 
+								: 'h-3.5 max-h-[16px]'
+						}`}
+					/>
+				)}
+			</span>
+		)}
+	</div>
+	
+	{description && (
+		<div class="flex-grow">
+			<Tooltip content={longDescription}>
+				<p class="text-sm text-gray-600 mt-3 line-clamp-2">{description}</p>
+			</Tooltip>
+		</div>
+	)}
+
+	
+	{grades.length > 0 && (
+		<div class="flex flex-wrap gap-2 mt-4 overflow-y-auto max-h-[100px] scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+			{grades.map((grade: number) => (
+				<span class={`px-2 py-1 text-xs rounded-full flex-shrink-0 ${
+					currentGrade === grade 
+						? 'bg-accent-light text-primary font-medium' 
+						: 'bg-neutral-light text-secondary'
+				}`}>
+					{grade}. årgang
+				</span>
+			))}
+		</div>
+	)}
+</a>
+
+<style>
+	.platform-card {
+		position: relative;
+	}
+</style>

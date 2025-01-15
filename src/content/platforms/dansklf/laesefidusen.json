@@ -1,0 +1,13 @@
+{
+	"name": "Læsefidusen",
+	"publisher": "Dansk LF",
+	"grades": [
+		1,
+		2
+	],
+	"url": "https://dansklf.dk/serie-og-systemer/laesefidusen",
+	"subject": "dansk",
+	"isActive": true,
+	"description": "Omfattende dansksystem til 0. klasse.",
+	"longDescription": "Omfattende dansksystem til 0.-2. klasse med fokus på balanceret læse- og skriveundervisning. Systemet understøtter differentieret undervisning gennem arbejde med litteratursamtale, ordkendskab og sprogforståelse."
+}

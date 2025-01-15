@@ -1,0 +1,10 @@
+{
+	"name": "Ordbogen.com",
+	"publisher": "Andre",
+	"grades": [],
+	"url": "https://ordbogen.com",
+	"subject": "dansk",
+	"isActive": true,
+	"description": "Online ordbog og sprogværktøj",
+	"longDescription": "Online ordbog og sprogværktøj"
+}

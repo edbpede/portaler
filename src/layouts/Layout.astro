@@ -1,22 +1,88 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { 
+	title,
+	description = "Oversigt over digitale læremidler og platforme til folkeskolen"
+} = Astro.props;
+
+// Critical resources to preload
+const criticalResources = [
+	{ path: '/str_logo_icon.svg', type: 'image/svg+xml' },
+	{ path: '/edbpede.svg', type: 'image/svg+xml' }
+];
+
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="da">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/str_logo_icon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Performance optimizations -->
+		{criticalResources.map(resource => (
+			<link rel="preload" href={resource.path} as="image" type={resource.type} fetchpriority="high" />
+		))}
+		
+		<!-- Optimized font loading -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+			rel="stylesheet" 
+			media="print" 
+			onload="this.media='all'" 
+		/>
+		
+		<!-- SEO Tags -->
+		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Additional meta tags -->
+		<meta name="theme-color" content="#4A90E2" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={Astro.url.href} />
+		
+		<!-- DNS Prefetch -->
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen bg-gradient-to-br from-neutral-lightest via-accent-light to-neutral-light flex flex-col">
+		<header class="bg-white/80 backdrop-blur-sm shadow-sm border-b border-neutral">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+				<div class="flex items-center gap-3">
+					<a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+						<img 
+							src="/str_logo_icon.svg" 
+							alt="STR Logo" 
+							class="w-8 h-8"
+							width="32"
+							height="32"
+						/>
+						<h1 class="text-2xl font-bold text-primary">Digitale Læremidler</h1>
+					</a>
+				</div>
+			</div>
+		</header>
+		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

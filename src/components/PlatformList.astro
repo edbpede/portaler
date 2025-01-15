@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SubjectGroup from './SubjectGroup.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+	platforms: CollectionEntry<'platforms'>[];
+	currentGrade?: number;
+}
+
+const { platforms, currentGrade } = Astro.props;
+
+// Get all subjects for proper display names
+const subjects = await getCollection('subjects');
+const subjectMap = new Map(subjects.map(subject => [subject.data.name, subject.data.displayName]));
+
+// Group platforms by subject
+function groupPlatformsBySubject(platforms: CollectionEntry<'platforms'>[]) {
+	const grouped = new Map<string, CollectionEntry<'platforms'>[]>();
+	grouped.set('Andre', []); // Default group
+
+	platforms.forEach(platform => {
+		const subjectName = platform.data.subject;
+		const displayName = subjectMap.get(subjectName) || 'Andre';
+		
+		if (!grouped.has(displayName)) {
+			grouped.set(displayName, []);
+		}
+		grouped.get(displayName)?.push(platform);
+	});
+
+	return grouped;
+}
+
+const groupedPlatforms = groupPlatformsBySubject(platforms);
+
+// Sort subjects alphabetically, but keep 'Andre' at the end
+const sortedSubjects = Array.from(groupedPlatforms.keys()).sort((a, b) => {
+	if (a === 'Andre') return 1;
+	if (b === 'Andre') return -1;
+	return a.localeCompare(b, 'da');
+});
+---
+
+<div class="space-y-8">
+	{sortedSubjects.map(subject => (
+		groupedPlatforms.get(subject)?.length ? (
+			<SubjectGroup
+				subject={subject}
+				platforms={groupedPlatforms.get(subject) || []}
+				currentGrade={currentGrade}
+			/>
+		) : null
+	))}
+</div>

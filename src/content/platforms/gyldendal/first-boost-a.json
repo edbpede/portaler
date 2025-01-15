@@ -1,0 +1,13 @@
+{
+	"name": "First Boost A (ibog)",
+	"publisher": "Gyldendal",
+	"grades": [
+		0,
+		1
+	],
+	"url": "https://i-bog.gyldendal.dk/1ec8c64f-3df4-4976-a681-ee98bf11a318",
+	"subject": "engelsk",
+	"isActive": true,
+	"description": "Digital læringsplatform til 0. klasse.",
+	"longDescription": "Digital engelsksystem til 0.-1. klasse baseret på spiralprincippet og Total Physical Response metoden. Fokuserer på mundtlig sprogindlæring gennem bevægelse, dans, leg og sang med interaktive elementer til tavleundervisning."
+}

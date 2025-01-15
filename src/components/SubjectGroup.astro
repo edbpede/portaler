@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PlatformCard from './PlatformCard.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	subject: string;
+	platforms: CollectionEntry<'platforms'>[];
+	currentGrade?: number;
+}
+
+const { subject, platforms: unsortedPlatforms, currentGrade } = Astro.props;
+
+// Sort platforms alphabetically by name
+const platforms = [...unsortedPlatforms].sort((a, b) => 
+	a.data.name.localeCompare(b.data.name, 'da')
+);
+
+const subjectIcons: Record<string, { name: string; color: string }> = {
+	'Billedkunst': { name: 'ph:paint-brush-fill', color: 'text-pink-500' },
+	'Biologi': { name: 'ph:dna-fill', color: 'text-teal-500' },
+	'Dansk': { name: 'ph:book-bookmark-fill', color: 'text-rose-600' },
+	'Engelsk': { name: 'ph:flag-banner-fill', color: 'text-red-500' },
+	'Fysik/kemi': { name: 'ph:atom-fill', color: 'text-violet-500' },
+	'Geografi': { name: 'ph:globe-hemisphere-west-fill', color: 'text-indigo-500' },
+	'Håndværk og design': { name: 'ph:hammer-fill', color: 'text-orange-500' },
+	'Historie': { name: 'ph:scroll-fill', color: 'text-amber-500' },
+	'Kristendomskundskab': { name: 'ph:cross-fill', color: 'text-sky-500' },
+	'Madkundskab': { name: 'ph:cooking-pot-fill', color: 'text-rose-500' },
+	'Matematik': { name: 'ph:calculator-fill', color: 'text-purple-500' },
+	'Natur/teknologi': { name: 'ph:leaf-fill', color: 'text-emerald-500' },
+	'Religion': { name: 'ph:cross-fill', color: 'text-sky-500' },
+	'Samfundsfag': { name: 'ph:buildings-fill', color: 'text-cyan-500' },
+	'Tysk': { name: 'ph:flag-banner-fill', color: 'text-yellow-600' },
+	'Andre': { name: 'ph:squares-four-fill', color: 'text-gray-500' }
+};
+
+const icon = subjectIcons[subject] || { name: 'ph:folder-fill', color: 'text-gray-500' };
+---
+
+<div class="bg-white rounded-lg shadow-sm p-6 subject-group animate-fade-in">
+	<h3 class="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+		<div class="w-6 flex-shrink-0">
+			<Icon name={icon.name} class={`w-6 h-6 ${icon.color}`} />
+		</div>
+		<span>{subject}</span>
+	</h3>
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		{platforms.map((platform, index) => (
+			<div class={`stagger-item stagger-visible delay-${(index % 5) + 1}`}>
+				<PlatformCard
+					platform={platform}
+					currentGrade={currentGrade}
+				/>
+			</div>
+		))}
+	</div>
+</div>

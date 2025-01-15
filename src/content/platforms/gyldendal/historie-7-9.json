@@ -1,0 +1,14 @@
+{
+	"name": "Historie (7-9)",
+	"publisher": "Gyldendal",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://historie.gyldendal.dk",
+	"subject": "historie",
+	"isActive": true,
+	"description": "Digital historieportal til udskolingen med komplette undervisningsforløb, kildekursus og prøveforberedende materiale.",
+	"longDescription": "Digital historieportal til udskolingen med komplette undervisningsforløb, kildekursus og prøveforberedende materiale. Indeholder kanonpunkter, tidslinjer og interaktive aktiviteter der forbereder eleverne til afgangsprøven."
+}

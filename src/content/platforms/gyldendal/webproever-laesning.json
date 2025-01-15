@@ -1,0 +1,14 @@
+{
+	"name": "Webprøver læsning og retskrivning",
+	"publisher": "Gyldendal",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://webproever.gyldendal.dk",
+	"subject": "dansk",
+	"isActive": true,
+	"description": "Digital læringsplatform til træning i læseforståelse og tekstanalyse.",
+	"longDescription": "Digital prøveplatform til træning i læseforståelse og tekstanalyse. Tilbyder et bredt udvalg af opgavetyper der forbereder eleverne til de nationale test og afgangsprøver i dansk læsning."
+}

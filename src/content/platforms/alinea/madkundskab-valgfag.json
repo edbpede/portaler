@@ -1,0 +1,14 @@
+{
+	"name": "Madkundskabsportalen (valgfag)",
+	"publisher": "Alinea",
+	"grades": [
+		7,
+		8,
+		9
+	],
+	"url": "https://madkundskab.fagportal.alinea.dk/valgfag",
+	"subject": "madkundskab",
+	"isActive": true,
+	"description": "Digital læringsplatform til valgfaget madkundskab med fokus på prøveforberedelse og fællesskab omkring mad.",
+	"longDescription": "Digital læringsportal til valgfaget madkundskab med fokus på prøveforberedelse og fællesskab omkring mad. Indeholder forløb om prøveforberedelse, fællesspisning og madkultur med praktiske øvelser."
+}

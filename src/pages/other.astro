@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PlatformList from '../components/PlatformList.astro';
+import { getAllPlatforms, filterActivePlatforms } from '../utils/platforms';
+
+const platforms = await getAllPlatforms();
+const otherPlatforms = filterActivePlatforms(platforms).filter(platform => !platform.data.grades?.length);
+---
+
+<Layout title="Andre Platforme">
+	<main class="container mx-auto px-4 py-8">
+		<h1 class="text-3xl font-bold text-gray-900 mb-8">Andre Platforme</h1>
+		<PlatformList platforms={otherPlatforms} currentGrade={-1} />
+	</main>
+</Layout>

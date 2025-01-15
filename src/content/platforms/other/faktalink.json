@@ -1,0 +1,10 @@
+{
+	"name": "Faktalink",
+	"publisher": "Andre",
+	"grades": [],
+	"url": "https://faktalink.dk",
+	"subject": "dansk",
+	"isActive": true,
+	"description": "Online opslagsværk med faktuelle artikler",
+	"longDescription": "Online opslagsværk med faktuelle artikler"
+}

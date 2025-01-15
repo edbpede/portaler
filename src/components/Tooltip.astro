@@ -1,0 +1,65 @@
+---
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/light.css';
+
+interface Props {
+	content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="tooltip-wrapper">
+	<div class="tooltip-trigger">
+		<slot />
+	</div>
+	<div id="tooltip-content" style="display: none">{content}</div>
+</div>
+
+<style>
+	:global(.tippy-box) {
+		border-radius: 0.75rem;
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	}
+	:global(.tippy-box[data-theme~='light']) {
+		padding: 0;
+		border: 1px solid rgb(229 231 235);
+	}
+	:global(.tippy-content) {
+		padding: 0;
+	}
+	:global(.tippy-arrow) {
+		color: rgb(229 231 235);
+	}
+	:global(.tippy-box[data-theme~='light'] .tippy-arrow::before) {
+		border-bottom-color: rgb(229 231 235);
+	}
+</style>
+
+<script>
+	import tippy from 'tippy.js';
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const tooltips = document.querySelectorAll('.tooltip-wrapper');
+		
+		tooltips.forEach(wrapper => {
+			const trigger = wrapper.querySelector('.tooltip-trigger');
+			const content = wrapper.querySelector('#tooltip-content');
+			
+			if (trigger && content) {
+				tippy(trigger, {
+					content: `<div class="p-2.5 text-sm text-gray-700 whitespace-pre-wrap max-w-[300px]">${content.textContent}</div>`,
+					allowHTML: true,
+					theme: 'light',
+					placement: 'bottom',
+					animation: 'fade',
+					duration: 200,
+					delay: [200, 0],
+					interactive: true,
+					appendTo: document.body
+				});
+			}
+		});
+	});
+</script>
+
