@@ -1,3 +1,0 @@
-# Basic Astro Space
-
-WIP
