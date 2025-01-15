@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const grades = [
+	{ id: 0, name: '0. årgang' },
+	{ id: 1, name: '1. årgang' },
+	{ id: 2, name: '2. årgang' },
+	{ id: 3, name: '3. årgang' },
+	{ id: 4, name: '4. årgang' },
+	{ id: 5, name: '5. årgang' },
+	{ id: 6, name: '6. årgang' },
+	{ id: 7, name: '7. årgang' },
+	{ id: 8, name: '8. årgang' },
+	{ id: 9, name: '9. årgang' },
+	{ id: 10, name: '10. årgang' }
+];
+---
+
+<Layout title="Digitale Læremidler - Oversigt">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		{
+			grades.map((grade) => (
+				<a
+					href={`/portaler/grade/${grade.id}`}
+					class="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+				>
+					<h2 class="text-xl font-semibold text-gray-900">{grade.name}</h2>
+					<p class="mt-2 text-gray-600">Se alle tilgængelige digitale læremidler</p>
+				</a>
+			))
+		}
+	</div>
+	<div class="mt-12">
+		<h2 class="text-xl font-semibold text-gray-900 mb-6">Andre Platforme</h2>
+		<a
+			href="/portaler/other"
+			class="block p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+		>
+			<h3 class="text-lg font-semibold text-gray-900">Andre relevante platforme og læremidler</h3>
+			<p class="mt-2 text-gray-600">Se øvrige digitale ressourcer</p>
+		</a>
+	</div>
+</Layout>

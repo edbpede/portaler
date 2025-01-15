@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SearchFilter from '../../components/SearchFilter.astro';
+import SubjectGroups from '../../components/SubjectGroups.astro';
+import { getPlatformsForGrade, platforms } from '../../data/platforms';
+
+export function getStaticPaths() {
+    return [
+        {params: {id: '0'}}, {params: {id: '1'}}, {params: {id: '2'}},
+        {params: {id: '3'}}, {params: {id: '4'}}, {params: {id: '5'}},
+        {params: {id: '6'}}, {params: {id: '7'}}, {params: {id: '8'}},
+        {params: {id: '9'}}, {params: {id: '10'}}
+    ];
+}
+
+const { id } = Astro.params;
+const grade = parseInt(id);
+const gradePlatforms = getPlatformsForGrade(grade);
+const publishers = [...new Set(platforms.map(p => p.publisher).filter(p => p))];
+---
+
+<Layout title={`${grade}. årgang - Digitale Læremidler`}>
+    <div class="mb-6">
+        <a href="/portaler" class="text-primary hover:underline">&larr; Tilbage til oversigt</a>
+    </div>
+    
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">{grade}. årgang - Tilgængelige Platforme</h2>
+    
+    <SearchFilter publishers={publishers} />
+    
+    <SubjectGroups platforms={gradePlatforms} currentGrade={grade} />
+</Layout>

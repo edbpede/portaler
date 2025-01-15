@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { 
+	title,
+	description = "Oversigt over digitale læremidler og platforme til folkeskolen"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="da">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Tags -->
+		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Preload fonts -->
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
+		
+		<!-- Additional meta tags -->
+		<meta name="theme-color" content="#ffffff" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={Astro.url.href} />
+	</head>
+	<body class="min-h-screen bg-gray-50">
+		<header class="bg-white shadow-sm">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+				<h1 class="text-2xl font-bold text-gray-900">Digitale Læremidler</h1>
+			</div>
+		</header>
+		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<slot />
+		</main>
+	</body>
+</html>

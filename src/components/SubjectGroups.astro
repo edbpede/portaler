@@ -1,0 +1,67 @@
+---
+import type { Platform } from '../data/platforms';
+import PlatformCard from './PlatformCard.astro';
+
+interface Props {
+	platforms: Platform[];
+	currentGrade: number;
+}
+
+const { platforms, currentGrade } = Astro.props;
+
+// Define subject categories and their patterns
+const subjectCategories = {
+	'Dansk': /(dansk|læs|skriv|ord|fandango|bookbites)/i,
+	'Matematik': /(matematik|tal)/i,
+	'Engelsk': /(engelsk|first|boost)/i,
+	'Naturfag': /(natur|biologi|fysik|kemi|geografi)/i,
+	'Historie': /(historie|samfundsfag|religion)/i,
+	'Sprog': /(tysk|fransk|ordbog)/i
+};
+
+// Group platforms by subject
+const groupedPlatforms = new Map<string, Platform[]>();
+groupedPlatforms.set('Andre', []); // Default group
+
+platforms.forEach(platform => {
+	let matched = false;
+	for (const [subject, pattern] of Object.entries(subjectCategories)) {
+		if (pattern.test(platform.name.toLowerCase())) {
+			if (!groupedPlatforms.has(subject)) {
+				groupedPlatforms.set(subject, []);
+			}
+			groupedPlatforms.get(subject)?.push(platform);
+			matched = true;
+			break;
+		}
+	}
+	if (!matched) {
+		groupedPlatforms.get('Andre')?.push(platform);
+	}
+});
+
+// Remove empty groups
+for (const [subject, platforms] of groupedPlatforms) {
+	if (platforms.length === 0) {
+		groupedPlatforms.delete(subject);
+	}
+}
+---
+
+<div class="space-y-8">
+	{[...groupedPlatforms].map(([subject, platforms]) => (
+		<div class="bg-white rounded-lg shadow-sm p-6 subject-group">
+			<h3 class="text-xl font-semibold text-gray-900 mb-4">{subject}</h3>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+				{platforms.map(platform => (
+					<PlatformCard
+						name={platform.name}
+						publisher={platform.publisher}
+						grades={platform.grades}
+						currentGrade={currentGrade}
+					/>
+				))}
+			</div>
+		</div>
+	))}
+</div>
