@@ -233,10 +233,10 @@ jobs:
           if [ ! -d "$PUBLISHER_DIR" ]; then
             echo "Publisher directory does not exist. Creating: $PUBLISHER_DIR"
             mkdir -p "$PUBLISHER_DIR"
-            echo "::set-output name=created::true"
+            echo "created=true" >> $GITHUB_OUTPUT
           else
             echo "Publisher directory already exists: $PUBLISHER_DIR"
-            echo "::set-output name=created::false"
+            echo "created=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create platform file
