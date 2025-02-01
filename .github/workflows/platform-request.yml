@@ -142,51 +142,53 @@ jobs:
           echo "Platform Data:"
           echo "${{ steps.parse-issue.outputs.platform-data }}"
 
-      - name: Create Branch
+      - name: Create platform file
+        run: |
+          echo "Creating directory structure..."
+          mkdir -p src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
+
+          # Convert platform name to kebab-case for filename
+          PLATFORM_NAME=$(echo "${{ fromJson(steps.parse-issue.outputs.platform-data).name }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//')
+          
+          echo "Writing platform data to file..."
+          echo '${{ steps.parse-issue.outputs.platform-data }}' > src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}/${PLATFORM_NAME}.json
+
+          echo "Platform file created successfully"
+          ls -la src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
+
+      - name: Configure git
         run: |
           echo "Configuring git..."
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
+
           echo "Creating new branch..."
           git checkout -b platform/add-${{ github.event.issue.number }}
-          
+
           echo "Branch created successfully"
 
-      - name: Create Platform File
-        run: |
-          echo "Creating directory structure..."
-          mkdir -p src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
-          
-          echo "Writing platform data to file..."
-          echo '${{ steps.parse-issue.outputs.platform-data }}' > src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}/${{ github.event.issue.number }}.json
-          
-          echo "Platform file created successfully"
-          ls -la src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
-
-      - name: Commit Changes
+      - name: Commit changes
         run: |
           echo "Adding changes to git..."
           git add .
-          
+
           echo "Committing changes..."
-          git commit -m "feat(platform): tilføj ${{ steps.parse-issue.outputs.platform-name }}"
-          
+          git commit -m "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
+
           echo "Changes committed successfully"
 
       - name: Create Pull Request
-        id: create-pr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "✨ Tilføj platform: ${{ steps.parse-issue.outputs.platform-name }}"
+          title: "✨ Tilføj platform: ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
           body: |
             ## Ny platform tilføjet
 
             Denne PR er automatisk genereret fra issue #${{ github.event.issue.number }}.
 
             ### Platform detaljer
-            - **Navn**: ${{ steps.parse-issue.outputs.platform-name }}
+            - **Navn**: ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}
             - **Udgiver**: ${{ steps.parse-issue.outputs.publisher-dir }}
             - **Issue**: #${{ github.event.issue.number }}
 
@@ -205,9 +207,12 @@ jobs:
           labels: |
             platform
             automated-pr
+          base: main
           branch: platform/add-${{ github.event.issue.number }}
-          commit-message: "feat(platform): tilføj ${{ steps.parse-issue.outputs.platform-name }}"
+          commit-message: "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
           delete-branch: true
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
 
       - name: Show PR Result
         if: steps.create-pr.outputs.pull-request-number
