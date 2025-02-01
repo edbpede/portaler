@@ -135,12 +135,12 @@ jobs:
             
             console.log('Successfully set all outputs');
 
-      - name: Show Parsed Data
+      - name: Debug Platform Data
         run: |
-          echo "Platform Name: ${{ steps.parse-issue.outputs.platform-name }}"
-          echo "Publisher Directory: ${{ steps.parse-issue.outputs.publisher-dir }}"
+          echo "Platform Name: '${{ fromJson(steps.parse-issue.outputs.platform-data).name }}'"
+          echo "Publisher Directory: '${{ steps.parse-issue.outputs.publisher-dir }}'"
           echo "Platform Data:"
-          echo "${{ steps.parse-issue.outputs.platform-data }}"
+          echo '${{ steps.parse-issue.outputs.platform-data }}'
 
       - name: Create platform file
         run: |
