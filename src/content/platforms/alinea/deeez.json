@@ -1,0 +1,14 @@
+{
+  "name": "Deeez",
+  "publisher": "Alinea",
+  "url": "https://deez.alinea.dk",
+  "subject": "engelsk",
+  "description": "Dasdad",
+  "longDescription": "Weawdasddd awwww",
+  "grades": [
+    1,
+    2,
+    3
+  ],
+  "isActive": true
+}
