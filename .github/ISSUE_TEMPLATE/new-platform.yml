@@ -9,41 +9,45 @@ body:
   - type: markdown
     attributes:
       value: |
-        Tak fordi du vil tilføje en ny platform til Portaler!
-        Udfyld venligst nedenstående information omhyggeligt.
+        # 🎉 Tak for din interesse i at tilføje en ny platform!
+        
+        Vi vil gerne gøre det så nemt som muligt at tilføje nye platforme til Portaler. 
+        Udfyld venligst nedenstående information så detaljeret som muligt.
+        
+        ---
 
   - type: input
     id: platform-name
     attributes:
-      label: Platformnavn
-      description: Navnet på den digitale læringsplatform
-      placeholder: "f.eks. Dansk (0-2)"
+      label: "📚 Platformnavn"
+      description: "Hvad hedder den digitale læringsplatform?"
+      placeholder: "F.eks. Dansk (0-2) eller Matematik Grundbog"
     validations:
       required: true
 
   - type: input
     id: publisher
     attributes:
-      label: Udgiver
-      description: Navnet på platformens udgiver/virksomhed
-      placeholder: "f.eks. Gyldendal eller Alinea"
+      label: "🏢 Udgiver"
+      description: "Hvem udgiver platformen?"
+      placeholder: "F.eks. Gyldendal eller Alinea"
     validations:
       required: true
 
   - type: input
     id: url
     attributes:
-      label: Platform URL
-      description: Platformens primære URL
-      placeholder: "f.eks. https://dansk0-2.gyldendal.dk"
+      label: "🔗 Platform URL"
+      description: "Hvad er platformens webadresse?"
+      placeholder: "F.eks. https://dansk0-2.gyldendal.dk"
     validations:
       required: true
 
   - type: dropdown
     id: subject
     attributes:
-      label: Fag
-      description: Vælg det primære fagområde
+      label: "📖 Fag"
+      description: "Hvilket fag hører platformen til?"
       options:
         - dansk
         - matematik
@@ -65,40 +69,65 @@ body:
     validations:
       required: true
 
+  - type: markdown
+    attributes:
+      value: |
+        ### 📚 Klassetrin
+        Vælg de klassetrin som platformen er relevant for:
+
   - type: checkboxes
     id: grades
     attributes:
-      label: Klassetrin
-      description: Vælg alle relevante klassetrin
+      label: "Vælg klassetrin"
       options:
-        - label: "0. klasse (0)"
-        - label: "1. klasse (1)"
-        - label: "2. klasse (2)"
-        - label: "3. klasse (3)"
-        - label: "4. klasse (4)"
-        - label: "5. klasse (5)"
-        - label: "6. klasse (6)"
-        - label: "7. klasse (7)"
-        - label: "8. klasse (8)"
-        - label: "9. klasse (9)"
-        - label: "10. klasse (10)"
-    validations:
-      required: true
+        - label: "🎓 0. klasse"
+          required: false
+        - label: "🎓 1. klasse"
+          required: false
+        - label: "🎓 2. klasse"
+          required: false
+        - label: "🎓 3. klasse"
+          required: false
+        - label: "🎓 4. klasse"
+          required: false
+        - label: "🎓 5. klasse"
+          required: false
+        - label: "🎓 6. klasse"
+          required: false
+        - label: "🎓 7. klasse"
+          required: false
+        - label: "🎓 8. klasse"
+          required: false
+        - label: "🎓 9. klasse"
+          required: false
+        - label: "🎓 10. klasse"
+          required: false
 
   - type: textarea
     id: description
     attributes:
-      label: Kort beskrivelse
-      description: Giv en kort, præcis beskrivelse af platformen (1-2 sætninger)
-      placeholder: "f.eks. Digital læringsplatform til dansk fra 0.-2. klasse."
+      label: "📝 Kort beskrivelse"
+      description: "Giv en kort, præcis beskrivelse af platformen (1-2 sætninger)"
+      placeholder: "F.eks.: Digital læringsplatform til dansk fra 0.-2. klasse med fokus på læseforståelse og skriftlig fremstilling."
     validations:
       required: true
 
   - type: textarea
     id: long-description
     attributes:
-      label: Detaljeret beskrivelse
-      description: Giv en detaljeret beskrivelse af platformen, herunder funktioner, anvendelsesmuligheder og andet relevant indhold
-      placeholder: "Beskriv platformens funktioner, indholdsområder, særlige egenskaber osv..."
+      label: "📋 Detaljeret beskrivelse"
+      description: "Beskriv platformens funktioner, anvendelsesmuligheder og indhold mere detaljeret"
+      placeholder: |
+        F.eks.:
+        - Hvilke specifikke læringsmål understøtter platformen?
+        - Hvilke særlige funktioner eller værktøjer indeholder den?
+        - Hvordan kan den bruges i undervisningen?
+        - Er der særlige fordele eller unikke aspekter ved platformen?
     validations:
       required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ✨ Tak for din tid! Vi gennemgår din anmodning hurtigst muligt.

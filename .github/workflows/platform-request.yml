@@ -75,8 +75,20 @@ jobs:
               console.log(`Looking for field: ${field}`);
               const line = lines.find(l => l.includes(`### ${field}`));
               if (!line) {
-                console.log(`Field not found: ${field}`);
-                return '';
+                // Try finding by emoji label if header not found
+                const emojiLine = lines.find(l => l.includes(`📚 ${field}`) || 
+                                                 l.includes(`🏢 ${field}`) || 
+                                                 l.includes(`🔗 ${field}`) || 
+                                                 l.includes(`📖 ${field}`) || 
+                                                 l.includes(`📝 ${field}`) || 
+                                                 l.includes(`📋 ${field}`));
+                if (!emojiLine) {
+                  console.log(`Field not found: ${field}`);
+                  return '';
+                }
+                const value = lines[lines.indexOf(emojiLine) + 2].trim();
+                console.log(`Found value for ${field} with emoji:`, value);
+                return value;
               }
               const value = lines[lines.indexOf(line) + 2].trim();
               console.log(`Found value for ${field}:`, value);
@@ -85,13 +97,14 @@ jobs:
             
             const getGrades = () => {
               console.log('Parsing grades section...');
-              const gradeSection = body.split('### Klassetrin')[1].split('###')[0];
+              const gradeSection = body.split('### 📚 Klassetrin')[1].split('###')[0];
               console.log('Grade section:', gradeSection);
               
               const grades = [];
               gradeSection.split('\n').forEach(line => {
                 if (line.includes('[x]')) {
-                  const match = line.match(/\((\d+)\)/);
+                  // Extract grade number from the new format "🎓 X. klasse"
+                  const match = line.match(/🎓\s*(\d+)\./);
                   if (match) {
                     const grade = parseInt(match[1], 10);
                     console.log(`Found selected grade: ${grade}`);
