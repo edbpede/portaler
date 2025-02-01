@@ -156,16 +156,18 @@ jobs:
           echo "Platform file created successfully"
           ls -la src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
 
-      - name: Configure git
+      - name: Configure git and create branch
         run: |
           echo "Configuring git..."
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          echo "Creating new branch..."
-          git checkout -b platform/add-${{ github.event.issue.number }}
+          BRANCH_NAME="platform/add-${{ github.event.issue.number }}"
+          echo "Creating new branch $BRANCH_NAME..."
+          git checkout -b "$BRANCH_NAME"
 
           echo "Branch created successfully"
+          git branch --show-current
 
       - name: Commit changes
         run: |
@@ -175,7 +177,8 @@ jobs:
           echo "Committing changes..."
           git commit -m "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
 
-          echo "Changes committed successfully"
+          echo "Pushing changes..."
+          git push origin "platform/add-${{ github.event.issue.number }}"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
@@ -209,9 +212,8 @@ jobs:
             automated-pr
           base: main
           branch: platform/add-${{ github.event.issue.number }}
-          commit-message: "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
           delete-branch: true
-          committer: GitHub <noreply@github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
 
       - name: Show PR Result
