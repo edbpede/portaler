@@ -1,0 +1,103 @@
+name: Tilføj ny platform
+description: Anmod om at tilføje en ny platform til Portaler
+title: "Tilføj platform: "
+labels: ["platform-request"]
+assignees: ["edbpede"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tak fordi du vil tilføje en ny platform til Portaler!
+        Udfyld venligst nedenstående information omhyggeligt.
+
+  - type: input
+    id: platform-name
+    attributes:
+      label: Platformnavn
+      description: Navnet på den digitale læringsplatform
+      placeholder: "f.eks. Dansk (0-2)"
+    validations:
+      required: true
+
+  - type: input
+    id: publisher
+    attributes:
+      label: Udgiver
+      description: Navnet på platformens udgiver/virksomhed
+      placeholder: "f.eks. Gyldendal eller Alinea"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Platform URL
+      description: Platformens primære URL
+      placeholder: "f.eks. https://dansk0-2.gyldendal.dk"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: subject
+    attributes:
+      label: Fag
+      description: Vælg det primære fagområde
+      options:
+        - dansk
+        - matematik
+        - engelsk
+        - tysk
+        - fransk
+        - historie
+        - samfundsfag
+        - kristendom
+        - natur-teknologi
+        - geografi
+        - biologi
+        - fysik-kemi
+        - idræt
+        - musik
+        - billedkunst
+        - håndværk-design
+        - madkundskab
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: grades
+    attributes:
+      label: Klassetrin
+      description: Vælg alle relevante klassetrin
+      options:
+        - label: "0. klasse"
+        - label: "1. klasse"
+        - label: "2. klasse"
+        - label: "3. klasse"
+        - label: "4. klasse"
+        - label: "5. klasse"
+        - label: "6. klasse"
+        - label: "7. klasse"
+        - label: "8. klasse"
+        - label: "9. klasse"
+        - label: "10. klasse"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Kort beskrivelse
+      description: Giv en kort, præcis beskrivelse af platformen (1-2 sætninger)
+      placeholder: "f.eks. Digital læringsplatform til dansk fra 0.-2. klasse."
+    validations:
+      required: true
+
+  - type: textarea
+    id: long-description
+    attributes:
+      label: Detaljeret beskrivelse
+      description: Giv en detaljeret beskrivelse af platformen, herunder funktioner, anvendelsesmuligheder og andet relevant indhold
+      placeholder: "Beskriv platformens funktioner, indholdsområder, særlige egenskaber osv..."
+    validations:
+      required: true

@@ -54,7 +54,8 @@ src/
   "url": "https://platform-url.com",
   "subject": "subject-name",
   "isActive": true,
-  "description": "Brief platform description"
+  "description": "Brief platform description",
+  "longDescription": "Detailed description of the platform, including features, use cases, and other relevant information"
 }
 ```
 
@@ -91,6 +92,7 @@ The project uses Astro's Content Collections for type-safe content management:
   - subject: string (required)
   - isActive: boolean (defaults to true)
   - description: string (optional)
+  - longDescription: string (optional)
 
 ### Subjects Collection
 

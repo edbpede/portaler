@@ -1,0 +1,131 @@
+name: Process New Platform Request
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-platform:
+    if: |
+      github.event.issue.user.login == 'edbpede' &&
+      github.event.issue.user.email == '144238562+edbpede@users.noreply.github.com' &&
+      contains(github.event.issue.labels.*.name, 'platform-request')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse Issue Form
+        id: parse-issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body;
+            const lines = body.split('\n');
+            
+            // Parse form data
+            const getData = (field) => {
+              const line = lines.find(l => l.includes(`### ${field}`));
+              return line ? lines[lines.indexOf(line) + 2].trim() : '';
+            };
+            
+            const getGrades = () => {
+              const gradeSection = body.split('### Klassetrin')[1].split('###')[0];
+              const grades = [];
+              gradeSection.split('\n').forEach((line, index) => {
+                if (line.includes('[x]')) {
+                  grades.push(index - 2); // Adjust for header lines
+                }
+              });
+              return grades;
+            };
+            
+            const platformData = {
+              name: getData('Platformnavn'),
+              publisher: getData('Udgiver'),
+              url: getData('Platform URL'),
+              subject: getData('Fag'),
+              description: getData('Kort beskrivelse'),
+              longDescription: getData('Detaljeret beskrivelse'),
+              grades: getGrades(),
+              isActive: true
+            };
+            
+            // Sanitize publisher name for directory
+            const publisherDir = platformData.publisher
+              .toLowerCase()
+              .replace(/[^a-z0-9]/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '');
+            
+            // Create JSON content
+            const jsonContent = JSON.stringify(platformData, null, 2);
+            
+            core.setOutput('publisher-dir', publisherDir);
+            core.setOutput('platform-data', jsonContent);
+            core.setOutput('platform-name', platformData.name);
+
+      - name: Create Branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b platform/add-${{ github.event.issue.number }}
+
+      - name: Create Platform File
+        run: |
+          mkdir -p src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
+          echo '${{ steps.parse-issue.outputs.platform-data }}' > src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}/${{ github.event.issue.number }}.json
+
+      - name: Commit Changes
+        run: |
+          git add .
+          git commit -m "feat(platform): add ${{ steps.parse-issue.outputs.platform-name }}"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "✨ Tilføj platform: ${{ steps.parse-issue.outputs.platform-name }}"
+          body: |
+            ## Ny platform tilføjet
+
+            Denne PR er automatisk genereret fra issue #${{ github.event.issue.number }}.
+
+            ### Platform detaljer
+            - **Navn**: ${{ steps.parse-issue.outputs.platform-name }}
+            - **Udgiver**: ${{ steps.parse-issue.outputs.publisher-dir }}
+            - **Issue**: #${{ github.event.issue.number }}
+
+            ### Tjekliste
+            - [ ] Platform data er korrekt formateret
+            - [ ] URL er gyldig og tilgængelig
+            - [ ] Klassetrin er korrekte
+            - [ ] Fagkategorisering er korrekt
+
+            ### Forhåndsvisning
+            ```json
+            ${{ steps.parse-issue.outputs.platform-data }}
+            ```
+
+            Lukker #${{ github.event.issue.number }}
+          labels: |
+            platform
+            automated-pr
+          branch: platform/add-${{ github.event.issue.number }}
+          commit-message: "feat(platform): tilføj ${{ steps.parse-issue.outputs.platform-name }}"
+          delete-branch: true
+
+      - name: Add Comment to Issue
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Tak for din indsendelse af en ny platform! 🎉
+            
+            Jeg har oprettet en pull request for at tilføje denne platform. Du kan gennemgå den her: ${{ steps.create-pr.outputs.pull-request-url }}
+            
+            PR'en vil automatisk blive lukket, når den er merged.
