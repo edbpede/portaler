@@ -1,0 +1,14 @@
+{
+  "name": "Wowww",
+  "publisher": "Alinea",
+  "url": "https://wowness.alinea.dk",
+  "subject": "engelsk",
+  "description": "Test",
+  "longDescription": "Testttttttttttt wwwww",
+  "grades": [
+    1,
+    2,
+    3
+  ],
+  "isActive": true
+}
