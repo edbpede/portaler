@@ -8,7 +8,6 @@ jobs:
   create-platform:
     if: |
       github.event.issue.user.login == 'edbpede' &&
-      github.event.issue.user.email == '144238562+edbpede@users.noreply.github.com' &&
       contains(github.event.issue.labels.*.name, 'platform-request')
     runs-on: ubuntu-latest
     permissions:
@@ -17,33 +16,61 @@ jobs:
       issues: write
 
     steps:
+      - name: Debug Event Info
+        run: |
+          echo "Issue Creator: ${{ github.event.issue.user.login }}"
+          echo "Issue Labels: ${{ toJSON(github.event.issue.labels.*.name) }}"
+          echo "Issue Title: ${{ github.event.issue.title }}"
+          echo "Issue Number: ${{ github.event.issue.number }}"
+
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Parse Issue Form
         id: parse-issue
         uses: actions/github-script@v7
         with:
           script: |
+            console.log('Starting to parse issue form...');
             const body = context.payload.issue.body;
+            console.log('Issue body:', body);
+            
             const lines = body.split('\n');
             
-            // Parse form data
             const getData = (field) => {
+              console.log(`Looking for field: ${field}`);
               const line = lines.find(l => l.includes(`### ${field}`));
-              return line ? lines[lines.indexOf(line) + 2].trim() : '';
+              if (!line) {
+                console.log(`Field not found: ${field}`);
+                return '';
+              }
+              const value = lines[lines.indexOf(line) + 2].trim();
+              console.log(`Found value for ${field}:`, value);
+              return value;
             };
             
             const getGrades = () => {
+              console.log('Parsing grades section...');
               const gradeSection = body.split('### Klassetrin')[1].split('###')[0];
+              console.log('Grade section:', gradeSection);
+              
               const grades = [];
-              gradeSection.split('\n').forEach((line, index) => {
+              gradeSection.split('\n').forEach(line => {
                 if (line.includes('[x]')) {
-                  grades.push(index - 2); // Adjust for header lines
+                  const match = line.match(/\((\d+)\)/);
+                  if (match) {
+                    const grade = parseInt(match[1], 10);
+                    console.log(`Found selected grade: ${grade}`);
+                    grades.push(grade);
+                  }
                 }
               });
+              console.log('Final grades array:', grades);
               return grades;
             };
             
+            console.log('Building platform data object...');
             const platformData = {
               name: getData('Platformnavn'),
               publisher: getData('Udgiver'),
@@ -55,6 +82,8 @@ jobs:
               isActive: true
             };
             
+            console.log('Platform data:', platformData);
+            
             // Sanitize publisher name for directory
             const publisherDir = platformData.publisher
               .toLowerCase()
@@ -62,30 +91,58 @@ jobs:
               .replace(/-+/g, '-')
               .replace(/^-|-$/g, '');
             
+            console.log('Sanitized publisher directory:', publisherDir);
+            
             // Create JSON content
             const jsonContent = JSON.stringify(platformData, null, 2);
             
             core.setOutput('publisher-dir', publisherDir);
             core.setOutput('platform-data', jsonContent);
             core.setOutput('platform-name', platformData.name);
+            
+            console.log('Successfully set all outputs');
+
+      - name: Show Parsed Data
+        run: |
+          echo "Platform Name: ${{ steps.parse-issue.outputs.platform-name }}"
+          echo "Publisher Directory: ${{ steps.parse-issue.outputs.publisher-dir }}"
+          echo "Platform Data:"
+          echo "${{ steps.parse-issue.outputs.platform-data }}"
 
       - name: Create Branch
         run: |
+          echo "Configuring git..."
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          echo "Creating new branch..."
           git checkout -b platform/add-${{ github.event.issue.number }}
+          
+          echo "Branch created successfully"
 
       - name: Create Platform File
         run: |
+          echo "Creating directory structure..."
           mkdir -p src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
+          
+          echo "Writing platform data to file..."
           echo '${{ steps.parse-issue.outputs.platform-data }}' > src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}/${{ github.event.issue.number }}.json
+          
+          echo "Platform file created successfully"
+          ls -la src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
 
       - name: Commit Changes
         run: |
+          echo "Adding changes to git..."
           git add .
-          git commit -m "feat(platform): add ${{ steps.parse-issue.outputs.platform-name }}"
+          
+          echo "Committing changes..."
+          git commit -m "feat(platform): tilføj ${{ steps.parse-issue.outputs.platform-name }}"
+          
+          echo "Changes committed successfully"
 
       - name: Create Pull Request
+        id: create-pr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -118,6 +175,13 @@ jobs:
           branch: platform/add-${{ github.event.issue.number }}
           commit-message: "feat(platform): tilføj ${{ steps.parse-issue.outputs.platform-name }}"
           delete-branch: true
+
+      - name: Show PR Result
+        if: steps.create-pr.outputs.pull-request-number
+        run: |
+          echo "Pull Request created successfully!"
+          echo "PR Number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          echo "PR URL: ${{ steps.create-pr.outputs.pull-request-url }}"
 
       - name: Add Comment to Issue
         uses: peter-evans/create-or-update-comment@v3

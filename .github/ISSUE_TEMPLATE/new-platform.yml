@@ -70,17 +70,17 @@ body:
       label: Klassetrin
       description: Vælg alle relevante klassetrin
       options:
-        - label: "0. klasse"
-        - label: "1. klasse"
-        - label: "2. klasse"
-        - label: "3. klasse"
-        - label: "4. klasse"
-        - label: "5. klasse"
-        - label: "6. klasse"
-        - label: "7. klasse"
-        - label: "8. klasse"
-        - label: "9. klasse"
-        - label: "10. klasse"
+        - label: "0. klasse (0)"
+        - label: "1. klasse (1)"
+        - label: "2. klasse (2)"
+        - label: "3. klasse (3)"
+        - label: "4. klasse (4)"
+        - label: "5. klasse (5)"
+        - label: "6. klasse (6)"
+        - label: "7. klasse (7)"
+        - label: "8. klasse (8)"
+        - label: "9. klasse (9)"
+        - label: "10. klasse (10)"
     validations:
       required: true
 
