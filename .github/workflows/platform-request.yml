@@ -5,24 +5,7 @@ on:
     types: [opened]
 
 jobs:
-  debug-trigger:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Debug Event
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: |
-          echo "Event name: ${{ github.event_name }}"
-          echo "Action: ${{ github.event.action }}"
-          echo "Issue creator: ${{ github.event.issue.user.login }}"
-          echo "Issue labels: ${{ toJSON(github.event.issue.labels) }}"
-          echo "Issue title: ${{ github.event.issue.title }}"
-          echo "Issue body preview: ${GITHUB_EVENT_PATH}"
-          echo "Full context:"
-          echo "$GITHUB_CONTEXT"
-
   check-conditions:
-    needs: debug-trigger
     runs-on: ubuntu-latest
     steps:
       - name: Check Username
@@ -174,7 +157,90 @@ jobs:
           echo "Platform Data:"
           echo '${{ steps.parse-issue.outputs.platform-data }}'
 
+      - name: Check for duplicates
+        id: check-duplicates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            const platformData = JSON.parse('${{ steps.parse-issue.outputs.platform-data }}');
+            const newName = platformData.name.toLowerCase();
+            const newUrl = platformData.url.toLowerCase();
+            
+            // Function to recursively get all JSON files
+            function getAllJsonFiles(dir) {
+              let results = [];
+              const items = fs.readdirSync(dir);
+              
+              for (const item of items) {
+                const fullPath = path.join(dir, item);
+                const stat = fs.statSync(fullPath);
+                
+                if (stat.isDirectory()) {
+                  results = results.concat(getAllJsonFiles(fullPath));
+                } else if (item.endsWith('.json')) {
+                  results.push(fullPath);
+                }
+              }
+              
+              return results;
+            }
+            
+            // Check all platform JSON files
+            const platformsDir = 'src/content/platforms';
+            const jsonFiles = getAllJsonFiles(platformsDir);
+            let duplicateFound = false;
+            let errorMessage = '';
+            
+            for (const file of jsonFiles) {
+              const content = fs.readFileSync(file, 'utf8');
+              const platform = JSON.parse(content);
+              
+              if (platform.name.toLowerCase() === newName) {
+                duplicateFound = true;
+                errorMessage = `Platform with name "${platformData.name}" already exists in ${file}`;
+                break;
+              }
+              
+              if (platform.url.toLowerCase() === newUrl) {
+                duplicateFound = true;
+                errorMessage = `Platform with URL "${platformData.url}" already exists in ${file}`;
+                break;
+              }
+            }
+            
+            if (duplicateFound) {
+              core.setFailed(errorMessage);
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `❌ Error: ${errorMessage}\n\nPlease check the existing platforms and submit a new request with a unique name and URL.`
+              });
+              return false;
+            }
+            
+            return true;
+
+      - name: Verify publisher directory
+        id: verify-publisher
+        if: success()
+        run: |
+          PUBLISHER_DIR="src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}"
+          
+          if [ ! -d "$PUBLISHER_DIR" ]; then
+            echo "Publisher directory does not exist. Creating: $PUBLISHER_DIR"
+            mkdir -p "$PUBLISHER_DIR"
+            echo "::set-output name=created::true"
+          else
+            echo "Publisher directory already exists: $PUBLISHER_DIR"
+            echo "::set-output name=created::false"
+          fi
+
       - name: Create platform file
+        if: steps.verify-publisher.outputs.created == 'true' || steps.verify-publisher.outputs.created == 'false'
         run: |
           echo "Creating directory structure..."
           mkdir -p src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
