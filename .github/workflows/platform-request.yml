@@ -167,8 +167,8 @@ jobs:
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
           
           echo "Creating new branch $BRANCH_NAME from main..."
-          git fetch origin main:main
-          git checkout -b "$BRANCH_NAME" main
+          git fetch origin main
+          git checkout -b "$BRANCH_NAME" origin/main
 
           echo "Branch created successfully"
           git branch --show-current
