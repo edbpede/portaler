@@ -97,13 +97,31 @@ jobs:
             
             const getGrades = () => {
               console.log('Parsing grades section...');
-              const gradeSection = body.split('### 📚 Klassetrin')[1].split('###')[0];
+              
+              // Find the grades section
+              let gradeSection = '';
+              let inGradeSection = false;
+              
+              for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.includes('### Vælg klassetrin')) {
+                  inGradeSection = true;
+                  continue;
+                }
+                if (inGradeSection) {
+                  if (line.startsWith('###')) {
+                    break;
+                  }
+                  gradeSection += line + '\n';
+                }
+              }
+              
               console.log('Grade section:', gradeSection);
               
               const grades = [];
               gradeSection.split('\n').forEach(line => {
                 if (line.includes('[x]')) {
-                  // Extract grade number from the new format "🎓 X. klasse"
+                  // Extract grade number from the format "🎓 X. klasse"
                   const match = line.match(/🎓\s*(\d+)\./);
                   if (match) {
                     const grade = parseInt(match[1], 10);
@@ -112,6 +130,7 @@ jobs:
                   }
                 }
               });
+              
               console.log('Final grades array:', grades);
               return grades;
             };
