@@ -157,12 +157,15 @@ jobs:
           ls -la src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}
 
       - name: Configure git and create branch
+        id: branch-config
         run: |
           echo "Configuring git..."
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           BRANCH_NAME="platform/add-${{ github.event.issue.number }}"
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          
           echo "Creating new branch $BRANCH_NAME from main..."
           git checkout main
           git checkout -b "$BRANCH_NAME"
@@ -191,7 +194,7 @@ jobs:
           git diff main
 
           echo "Pushing changes..."
-          git push -u origin "$BRANCH_NAME"
+          git push -u origin "${{ steps.branch-config.outputs.branch_name }}"
 
       - name: Create Pull Request
         id: create-pr
@@ -225,7 +228,7 @@ jobs:
             platform
             automated-pr
           base: main
-          branch: platform/add-${{ github.event.issue.number }}
+          branch: ${{ steps.branch-config.outputs.branch_name }}
           delete-branch: true
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
@@ -236,7 +239,7 @@ jobs:
           echo "Pull Request Operation: ${{ steps.create-pr.outputs.pull-request-operation }}"
           echo "Pull Request Number: ${{ steps.create-pr.outputs.pull-request-number }}"
           echo "Pull Request URL: ${{ steps.create-pr.outputs.pull-request-url }}"
-          echo "Branch Name: platform/add-${{ github.event.issue.number }}"
+          echo "Branch Name: ${{ steps.branch-config.outputs.branch_name }}"
           echo "Current git status:"
           git status
           echo "Git log:"
