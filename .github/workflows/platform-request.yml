@@ -5,7 +5,40 @@ on:
     types: [opened]
 
 jobs:
+  debug-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Event
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo "Issue creator: ${{ github.event.issue.user.login }}"
+          echo "Issue labels: ${{ toJSON(github.event.issue.labels) }}"
+          echo "Issue title: ${{ github.event.issue.title }}"
+          echo "Issue body preview: ${GITHUB_EVENT_PATH}"
+          echo "Full context:"
+          echo "$GITHUB_CONTEXT"
+
+  check-conditions:
+    needs: debug-trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Username
+        run: |
+          echo "Expected username: edbpede"
+          echo "Actual username: ${{ github.event.issue.user.login }}"
+          echo "Username matches: ${{ github.event.issue.user.login == 'edbpede' }}"
+
+      - name: Check Labels
+        run: |
+          echo "Labels on issue:"
+          echo "${{ toJSON(github.event.issue.labels) }}"
+          echo "Has platform-request label: ${{ contains(github.event.issue.labels.*.name, 'platform-request') }}"
+
   create-platform:
+    needs: check-conditions
     if: |
       github.event.issue.user.login == 'edbpede' &&
       contains(github.event.issue.labels.*.name, 'platform-request')

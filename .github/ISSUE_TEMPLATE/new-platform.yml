@@ -1,7 +1,8 @@
 name: Tilføj ny platform
 description: Anmod om at tilføje en ny platform til Portaler
 title: "Tilføj platform: "
-labels: ["platform-request"]
+labels:
+  - platform-request
 assignees: ["edbpede"]
 
 body:
