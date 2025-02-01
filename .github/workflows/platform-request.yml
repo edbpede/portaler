@@ -323,4 +323,4 @@ jobs:
             
             Jeg har oprettet en pull request for at tilføje denne platform. Du kan gennemgå den her: ${{ steps.create-pr.outputs.pull-request-url }}
             
-            PR'en vil automatisk blive lukket, når den er merged.
+            Denne issue vil automatisk blive lukket, når PR'en er merged.
