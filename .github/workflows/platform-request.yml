@@ -163,7 +163,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           BRANCH_NAME="platform/add-${{ github.event.issue.number }}"
-          echo "Creating new branch $BRANCH_NAME..."
+          echo "Creating new branch $BRANCH_NAME from main..."
+          git checkout main
           git checkout -b "$BRANCH_NAME"
 
           echo "Branch created successfully"
@@ -171,16 +172,29 @@ jobs:
 
       - name: Commit changes
         run: |
+          echo "Current git status:"
+          git status
+
           echo "Adding changes to git..."
-          git add .
+          git add src/content/platforms/
+
+          echo "Git status after add:"
+          git status
 
           echo "Committing changes..."
           git commit -m "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
 
+          echo "Git status after commit:"
+          git status
+
+          echo "Git diff with main:"
+          git diff main
+
           echo "Pushing changes..."
-          git push origin "platform/add-${{ github.event.issue.number }}"
+          git push -u origin "$BRANCH_NAME"
 
       - name: Create Pull Request
+        id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch-token: ${{ secrets.GITHUB_TOKEN }}
@@ -216,6 +230,18 @@ jobs:
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
 
+      - name: Debug PR Creation
+        if: always()
+        run: |
+          echo "Pull Request Operation: ${{ steps.create-pr.outputs.pull-request-operation }}"
+          echo "Pull Request Number: ${{ steps.create-pr.outputs.pull-request-number }}"
+          echo "Pull Request URL: ${{ steps.create-pr.outputs.pull-request-url }}"
+          echo "Branch Name: platform/add-${{ github.event.issue.number }}"
+          echo "Current git status:"
+          git status
+          echo "Git log:"
+          git log --oneline -n 5
+
       - name: Show PR Result
         if: steps.create-pr.outputs.pull-request-number
         run: |
@@ -224,7 +250,7 @@ jobs:
           echo "PR URL: ${{ steps.create-pr.outputs.pull-request-url }}"
 
       - name: Add Comment to Issue
-        uses: peter-evans/create-or-update-comment@v3
+        uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
