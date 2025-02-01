@@ -167,13 +167,14 @@ jobs:
           echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
           
           echo "Creating new branch $BRANCH_NAME from main..."
-          git checkout main
-          git checkout -b "$BRANCH_NAME"
+          git fetch origin main:main
+          git checkout -b "$BRANCH_NAME" main
 
           echo "Branch created successfully"
           git branch --show-current
 
       - name: Commit changes
+        id: commit
         run: |
           echo "Current git status:"
           git status
@@ -194,13 +195,15 @@ jobs:
           git diff main
 
           echo "Pushing changes..."
-          git push -u origin "${{ steps.branch-config.outputs.branch_name }}"
+          git push origin "${{ steps.branch-config.outputs.branch_name }}"
 
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
           title: "✨ Tilføj platform: ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
           body: |
             ## Ny platform tilføjet
@@ -233,8 +236,7 @@ jobs:
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
 
-      - name: Debug PR Creation
-        if: always()
+      - name: Debug Pull Request Creation
         run: |
           echo "Pull Request Operation: ${{ steps.create-pr.outputs.pull-request-operation }}"
           echo "Pull Request Number: ${{ steps.create-pr.outputs.pull-request-number }}"
@@ -243,7 +245,7 @@ jobs:
           echo "Current git status:"
           git status
           echo "Git log:"
-          git log --oneline -n 5
+          git log -n 3
 
       - name: Show PR Result
         if: steps.create-pr.outputs.pull-request-number
