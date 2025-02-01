@@ -160,6 +160,8 @@ jobs:
       - name: Check for duplicates
         id: check-duplicates
         uses: actions/github-script@v7
+        env:
+          PLATFORM_DATA: ${{ steps.parse-issue.outputs.platform-data }}
         with:
           script: |
             const fs = require('fs');
@@ -237,8 +239,6 @@ jobs:
             }
             
             return true;
-          env:
-            PLATFORM_DATA: ${{ steps.parse-issue.outputs.platform-data }}
 
       - name: Verify publisher directory
         id: verify-publisher
