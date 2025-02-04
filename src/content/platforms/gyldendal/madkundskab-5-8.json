@@ -1,15 +1,10 @@
 {
-	"name": "Madkundskab (5-8)",
-	"publisher": "Gyldendal",
-	"grades": [
-		5,
-		6,
-		7,
-		8
-	],
-	"url": "https://madkundskab.gyldendal.dk",
-	"subject": "madkundskab",
-	"isActive": true,
-	"description": "Digital madkundskabsportal til 5.-8. klasse.",
-	"longDescription": "Digital madkundskabsportal til 5.-8. klasse med fokus på madlavning, sundhed og bæredygtighed. Indeholder undervisningsforløb, kokkeskole med basale køkkenteknikker, råvarekendskab og en digital kogebog med opskrifter."
+  "name": "Madkundskab (5-8)",
+  "publisher": "Gyldendal",
+  "grades": [5, 6, 7, 8],
+  "url": "https://madkundskab.gyldendal.dk",
+  "subject": "madkundskab",
+  "isActive": true,
+  "description": "Digital madkundskabsportal til 5.-8. klasse.",
+  "longDescription": "Digital madkundskabsportal til 5.-8. klasse med fokus på madlavning, sundhed og bæredygtighed. Indeholder undervisningsforløb, kokkeskole med basale køkkenteknikker, råvarekendskab og en digital kogebog med opskrifter."
 }

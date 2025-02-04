@@ -1,10 +1,10 @@
 {
-	"name": "Bookbites",
-	"publisher": "Andre",
-	"grades": [],
-	"url": "https://bookbites.com",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Digital læsning og lydbøger",
-	"longDescription": "Digital læsning og lydbøger"
+  "name": "Bookbites",
+  "publisher": "Andre",
+  "grades": [],
+  "url": "https://bookbites.com",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Digital læsning og lydbøger",
+  "longDescription": "Digital læsning og lydbøger"
 }

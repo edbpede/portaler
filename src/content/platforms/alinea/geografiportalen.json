@@ -1,14 +1,10 @@
 {
-	"name": "Geografiportalen",
-	"publisher": "Alinea",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://geografi.fagportal.alinea.dk",
-	"subject": "geografi",
-	"isActive": true,
-	"description": "Digital læringsplatform til geografi for 7.-9. klasse.",
-	"longDescription": "Digital læringsportal til geografi for 7.-9. klasse med fokus på differentieret undervisning. Tilbyder motiverende forløb og opgavetyper der dækker alle fagets områder, herunder temaer som vand, grundvand og miljø."
+  "name": "Geografiportalen",
+  "publisher": "Alinea",
+  "grades": [7, 8, 9],
+  "url": "https://geografi.fagportal.alinea.dk",
+  "subject": "geografi",
+  "isActive": true,
+  "description": "Digital læringsplatform til geografi for 7.-9. klasse.",
+  "longDescription": "Digital læringsportal til geografi for 7.-9. klasse med fokus på differentieret undervisning. Tilbyder motiverende forløb og opgavetyper der dækker alle fagets områder, herunder temaer som vand, grundvand og miljø."
 }

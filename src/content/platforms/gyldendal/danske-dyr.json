@@ -1,18 +1,10 @@
 {
-	"name": "Danske dyr (0-6)",
-	"publisher": "Gyldendal",
-	"grades": [
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6
-	],
-	"url": "https://danske-dyr.dk",
-	"subject": "natur-teknologi",
-	"isActive": true,
-	"description": "Digital læringsportal med fokus på danske dyrearter og deres levesteder.",
-	"longDescription": "Digital læringsportal med fokus på danske dyrearter og deres levesteder. Indeholder undervisningsforløb der kombinerer naturfaglig viden med praktiske aktiviteter og observationer af dyr i den danske natur."
+  "name": "Danske dyr (0-6)",
+  "publisher": "Gyldendal",
+  "grades": [0, 1, 2, 3, 4, 5, 6],
+  "url": "https://danske-dyr.dk",
+  "subject": "natur-teknologi",
+  "isActive": true,
+  "description": "Digital læringsportal med fokus på danske dyrearter og deres levesteder.",
+  "longDescription": "Digital læringsportal med fokus på danske dyrearter og deres levesteder. Indeholder undervisningsforløb der kombinerer naturfaglig viden med praktiske aktiviteter og observationer af dyr i den danske natur."
 }

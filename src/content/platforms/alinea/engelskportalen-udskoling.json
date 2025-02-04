@@ -1,14 +1,10 @@
 {
-	"name": "Engelskportalen (udskoling)",
-	"publisher": "Alinea",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://engelsk.fagportal.alinea.dk/udskoling",
-	"subject": "engelsk",
-	"isActive": true,
-	"description": "Digital læringsplatform til engelsk for 7.-9. klasse.",
-	"longDescription": "Digital læringsportal til engelsk for 7.-9. klasse med fokus på prøveforberedelse. Tilbyder inspirerende forløb, aktiviteter og tekster der forbereder eleverne til de afsluttende prøver med differentierede opgaver."
+  "name": "Engelskportalen (udskoling)",
+  "publisher": "Alinea",
+  "grades": [7, 8, 9],
+  "url": "https://engelsk.fagportal.alinea.dk/udskoling",
+  "subject": "engelsk",
+  "isActive": true,
+  "description": "Digital læringsplatform til engelsk for 7.-9. klasse.",
+  "longDescription": "Digital læringsportal til engelsk for 7.-9. klasse med fokus på prøveforberedelse. Tilbyder inspirerende forløb, aktiviteter og tekster der forbereder eleverne til de afsluttende prøver med differentierede opgaver."
 }

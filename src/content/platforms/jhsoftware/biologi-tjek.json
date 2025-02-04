@@ -1,14 +1,10 @@
 {
-	"name": "Biologi Tjek",
-	"publisher": "JH Software",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://biologitjek.dk",
-	"subject": "biologi",
-	"isActive": true,
-	"description": "Biologi øvelser og tests for udskoling",
-	"longDescription": "Biologi øvelser og tests for udskoling"
+  "name": "Biologi Tjek",
+  "publisher": "JH Software",
+  "grades": [7, 8, 9],
+  "url": "https://biologitjek.dk",
+  "subject": "biologi",
+  "isActive": true,
+  "description": "Biologi øvelser og tests for udskoling",
+  "longDescription": "Biologi øvelser og tests for udskoling"
 }

@@ -1,10 +1,10 @@
 {
-	"name": "Børneavisen fysisk",
-	"publisher": "Andre",
-	"grades": [],
-	"url": "https://borneavisen.dk",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Fysisk avis for børn",
-	"longDescription": "Fysisk avis for børn"
+  "name": "Børneavisen fysisk",
+  "publisher": "Andre",
+  "grades": [],
+  "url": "https://borneavisen.dk",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Fysisk avis for børn",
+  "longDescription": "Fysisk avis for børn"
 }

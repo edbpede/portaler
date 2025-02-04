@@ -1,14 +1,10 @@
 {
-	"name": "Religion (7-10)",
-	"publisher": "Gyldendal",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://religion.gyldendal.dk",
-	"subject": "religion",
-	"isActive": true,
-	"description": "Digital læringsplatform til kristendomskundskab og religion for 7.-10. klasse.",
-	"longDescription": "Digital læringsportal til kristendomskundskab og religion for 7.-10. klasse med fokus på religionsforståelse og kulturmøder. Indeholder interaktive forløb om verdensreligioner, etik og filosofi med kildekritiske øvelser og prøveforberedende materiale."
+  "name": "Religion (7-10)",
+  "publisher": "Gyldendal",
+  "grades": [7, 8, 9],
+  "url": "https://religion.gyldendal.dk",
+  "subject": "religion",
+  "isActive": true,
+  "description": "Digital læringsplatform til kristendomskundskab og religion for 7.-10. klasse.",
+  "longDescription": "Digital læringsportal til kristendomskundskab og religion for 7.-10. klasse med fokus på religionsforståelse og kulturmøder. Indeholder interaktive forløb om verdensreligioner, etik og filosofi med kildekritiske øvelser og prøveforberedende materiale."
 }

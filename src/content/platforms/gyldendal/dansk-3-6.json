@@ -1,15 +1,10 @@
 {
-	"name": "Dansk (3-6)",
-	"publisher": "Gyldendal",
-	"grades": [
-		3,
-		4,
-		5,
-		6
-	],
-	"url": "https://dansk3-6.gyldendal.dk",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Digital læringsplatform til dansk på mellemtrinnet med over 75 undervisningsforløb.",
-	"longDescription": "Digital fagportal til dansk på mellemtrinnet med over 75 undervisningsforløb. Fokuserer på fagets kernekompetencer gennem varierede aktiviteter, herunder digital dannelse og medieforståelse."
+  "name": "Dansk (3-6)",
+  "publisher": "Gyldendal",
+  "grades": [3, 4, 5, 6],
+  "url": "https://dansk3-6.gyldendal.dk",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Digital læringsplatform til dansk på mellemtrinnet med over 75 undervisningsforløb.",
+  "longDescription": "Digital fagportal til dansk på mellemtrinnet med over 75 undervisningsforløb. Fokuserer på fagets kernekompetencer gennem varierede aktiviteter, herunder digital dannelse og medieforståelse."
 }

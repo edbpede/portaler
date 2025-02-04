@@ -1,14 +1,10 @@
 {
-	"name": "Engelskportalen (mellemtrin)",
-	"publisher": "Alinea",
-	"grades": [
-		4,
-		5,
-		6
-	],
-	"url": "https://engelsk.fagportal.alinea.dk/mellemtrin",
-	"subject": "engelsk",
-	"isActive": true,
-	"description": "Digital læringsplatform til engelsk for 4.-6. klasse.",
-	"longDescription": "Digital læringsportal til engelsk for 4.-6. klasse med fokus på at udvikle elevernes kommunikative kompetencer. Indeholder forløb, aktiviteter og tekster der støtter eleverne i at udtrykke egne synspunkter på engelsk."
+  "name": "Engelskportalen (mellemtrin)",
+  "publisher": "Alinea",
+  "grades": [4, 5, 6],
+  "url": "https://engelsk.fagportal.alinea.dk/mellemtrin",
+  "subject": "engelsk",
+  "isActive": true,
+  "description": "Digital læringsplatform til engelsk for 4.-6. klasse.",
+  "longDescription": "Digital læringsportal til engelsk for 4.-6. klasse med fokus på at udvikle elevernes kommunikative kompetencer. Indeholder forløb, aktiviteter og tekster der støtter eleverne i at udtrykke egne synspunkter på engelsk."
 }

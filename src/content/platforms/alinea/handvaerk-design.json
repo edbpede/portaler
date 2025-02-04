@@ -1,18 +1,10 @@
 {
-	"name": "Håndværk og designportalen",
-	"publisher": "Alinea",
-	"grades": [
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9
-	],
-	"url": "https://xn--hndvrkogdesign-libt.alinea.dk",
-	"subject": "handvaerk-design",
-	"isActive": true,
-	"description": "Digital læringsplatform til håndværk og design for 3.-6. klasse.",
-	"longDescription": "Digital læringsportal til håndværk og design for 3.-6. klasse med fokus på kreativ og praktisk læring. Tilbyder differentierede forløb der dækker alle fagets områder, herunder design, materialer og håndværksteknikker."
+  "name": "Håndværk og designportalen",
+  "publisher": "Alinea",
+  "grades": [3, 4, 5, 6, 7, 8, 9],
+  "url": "https://xn--hndvrkogdesign-libt.alinea.dk",
+  "subject": "handvaerk-design",
+  "isActive": true,
+  "description": "Digital læringsplatform til håndværk og design for 3.-6. klasse.",
+  "longDescription": "Digital læringsportal til håndværk og design for 3.-6. klasse med fokus på kreativ og praktisk læring. Tilbyder differentierede forløb der dækker alle fagets områder, herunder design, materialer og håndværksteknikker."
 }

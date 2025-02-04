@@ -1,14 +1,10 @@
 {
-	"name": "Billedkunstportalen (valgfag)",
-	"publisher": "Alinea",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://billedkunst.fagportal.alinea.dk/valgfag",
-	"subject": "billedkunst",
-	"isActive": true,
-	"description": "Digital læringsplatform til valgfaget billedkunst i 7.-9. klasse.",
-	"longDescription": "Digital læringsportal til valgfaget billedkunst i 7.-9. klasse med fokus på prøveforberedelse, praktiske opgaver og kunstforståelse. Indeholder forløb om politisk kunst, stencilteknik og prøveforberedende materiale."
+  "name": "Billedkunstportalen (valgfag)",
+  "publisher": "Alinea",
+  "grades": [7, 8, 9],
+  "url": "https://billedkunst.fagportal.alinea.dk/valgfag",
+  "subject": "billedkunst",
+  "isActive": true,
+  "description": "Digital læringsplatform til valgfaget billedkunst i 7.-9. klasse.",
+  "longDescription": "Digital læringsportal til valgfaget billedkunst i 7.-9. klasse med fokus på prøveforberedelse, praktiske opgaver og kunstforståelse. Indeholder forløb om politisk kunst, stencilteknik og prøveforberedende materiale."
 }

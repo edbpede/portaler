@@ -1,14 +1,10 @@
 {
-	"name": "Geografi Tjek",
-	"publisher": "JH Software",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://geografitjek.dk",
-	"subject": "geografi",
-	"isActive": true,
-	"description": "Geografi øvelser og tests for udskoling",
-	"longDescription": "Geografi øvelser og tests for udskoling"
+  "name": "Geografi Tjek",
+  "publisher": "JH Software",
+  "grades": [7, 8, 9],
+  "url": "https://geografitjek.dk",
+  "subject": "geografi",
+  "isActive": true,
+  "description": "Geografi øvelser og tests for udskoling",
+  "longDescription": "Geografi øvelser og tests for udskoling"
 }

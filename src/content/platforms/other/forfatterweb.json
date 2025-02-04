@@ -1,10 +1,10 @@
 {
-	"name": "Forfatterweb",
-	"publisher": "Andre",
-	"grades": [],
-	"url": "https://forfatterweb.dk",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Online forfatterbiografier og litteraturanalyser",
-	"longDescription": "Online forfatterbiografier og litteraturanalyser"
+  "name": "Forfatterweb",
+  "publisher": "Andre",
+  "grades": [],
+  "url": "https://forfatterweb.dk",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Online forfatterbiografier og litteraturanalyser",
+  "longDescription": "Online forfatterbiografier og litteraturanalyser"
 }

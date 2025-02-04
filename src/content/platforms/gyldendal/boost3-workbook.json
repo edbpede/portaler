@@ -1,12 +1,10 @@
 {
-	"name": "Boost 3 (ibog) workbook",
-	"publisher": "Gyldendal",
-	"grades": [
-		3
-	],
-	"url": "https://i-bog.gyldendal.dk/boost3workbook",
-	"subject": "engelsk",
-	"isActive": true,
-	"description": "Digital arbejdsbog til engelsk i 3. klasse.",
-	"longDescription": "Digital arbejdsbog til engelsk i 3. klasse med fokus på kommunikative kompetencer. Del af Boost-systemet der arbejder målrettet med at udvikle elevernes sprogbrug i meningsfulde sammenhænge."
+  "name": "Boost 3 (ibog) workbook",
+  "publisher": "Gyldendal",
+  "grades": [3],
+  "url": "https://i-bog.gyldendal.dk/boost3workbook",
+  "subject": "engelsk",
+  "isActive": true,
+  "description": "Digital arbejdsbog til engelsk i 3. klasse.",
+  "longDescription": "Digital arbejdsbog til engelsk i 3. klasse med fokus på kommunikative kompetencer. Del af Boost-systemet der arbejder målrettet med at udvikle elevernes sprogbrug i meningsfulde sammenhænge."
 }

@@ -1,10 +1,10 @@
 {
-	"name": "Buggi",
-	"publisher": "Andre",
-	"grades": [],
-	"url": "https://buggi.dk",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Digital læringsplatform",
-	"longDescription": "Digital læringsplatform"
+  "name": "Buggi",
+  "publisher": "Andre",
+  "grades": [],
+  "url": "https://buggi.dk",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Digital læringsplatform",
+  "longDescription": "Digital læringsplatform"
 }

@@ -1,14 +1,10 @@
 {
-	"name": "Madkundskabsportalen (mellemtrin)",
-	"publisher": "Alinea",
-	"grades": [
-		4,
-		5,
-		6
-	],
-	"url": "https://madkundskab.fagportal.alinea.dk/mellemtrin",
-	"subject": "madkundskab",
-	"isActive": true,
-	"description": "Digital læringsplatform til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft.",
-	"longDescription": "Digital læringsportal til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft. Indeholder differentierede forløb og aktiviteter der udvikler elevernes praktiske færdigheder og madforståelse."
+  "name": "Madkundskabsportalen (mellemtrin)",
+  "publisher": "Alinea",
+  "grades": [4, 5, 6],
+  "url": "https://madkundskab.fagportal.alinea.dk/mellemtrin",
+  "subject": "madkundskab",
+  "isActive": true,
+  "description": "Digital læringsplatform til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft.",
+  "longDescription": "Digital læringsportal til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft. Indeholder differentierede forløb og aktiviteter der udvikler elevernes praktiske færdigheder og madforståelse."
 }

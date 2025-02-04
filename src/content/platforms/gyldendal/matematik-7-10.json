@@ -1,14 +1,10 @@
 {
-	"name": "Matematik (7-10)",
-	"publisher": "Gyldendal",
-	"grades": [
-		7,
-		8,
-		9
-	],
-	"url": "https://matematik.gyldendal.dk",
-	"subject": "matematik",
-	"isActive": true,
-	"description": "Digital matematikportal til udskolingen med opdaterede, brugervenlige forløb.",
-	"longDescription": "Digital matematikportal til udskolingen med opdaterede, brugervenlige forløb. Tilbyder interaktive opgaver med skrivefelter, motiverende introduktioner og mulighed for at dele besvarelser, alt sammen tilpasset de faglige mål for udskolingen."
+  "name": "Matematik (7-10)",
+  "publisher": "Gyldendal",
+  "grades": [7, 8, 9],
+  "url": "https://matematik.gyldendal.dk",
+  "subject": "matematik",
+  "isActive": true,
+  "description": "Digital matematikportal til udskolingen med opdaterede, brugervenlige forløb.",
+  "longDescription": "Digital matematikportal til udskolingen med opdaterede, brugervenlige forløb. Tilbyder interaktive opgaver med skrivefelter, motiverende introduktioner og mulighed for at dele besvarelser, alt sammen tilpasset de faglige mål for udskolingen."
 }

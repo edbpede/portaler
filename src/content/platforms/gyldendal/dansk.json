@@ -1,14 +1,10 @@
 {
-	"name": "Dansk (0-2)",
-	"publisher": "Gyldendal",
-	"grades": [
-		0,
-		1,
-		2
-	],
-	"url": "https://dansk0-2.gyldendal.dk",
-	"subject": "dansk",
-	"isActive": true,
-	"description": "Digital læringsplatform til dansk fra 0.-2. klasse. klasse.",
-	"longDescription": "Digital fagportal til dansk fra 0.-2. klasse med inspirerende læringsforløb baseret på danskfagets indhold og didaktik. Tilbyder forløb, aktiviteter og tekster der understøtter elevernes faglige udvikling på alle klassetrin."
+  "name": "Dansk (0-2)",
+  "publisher": "Gyldendal",
+  "grades": [0, 1, 2],
+  "url": "https://dansk0-2.gyldendal.dk",
+  "subject": "dansk",
+  "isActive": true,
+  "description": "Digital læringsplatform til dansk fra 0.-2. klasse. klasse.",
+  "longDescription": "Digital fagportal til dansk fra 0.-2. klasse med inspirerende læringsforløb baseret på danskfagets indhold og didaktik. Tilbyder forløb, aktiviteter og tekster der understøtter elevernes faglige udvikling på alle klassetrin."
 }

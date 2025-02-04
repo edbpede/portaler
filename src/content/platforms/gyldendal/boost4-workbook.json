@@ -1,12 +1,10 @@
 {
-	"name": "Boost 4 (ibog) workbook",
-	"publisher": "Gyldendal",
-	"grades": [
-		4
-	],
-	"url": "https://i-bog.gyldendal.dk/boost4workbook",
-	"subject": "engelsk",
-	"isActive": true,
-	"description": "Digital arbejdsbog til engelsk i 4. klasse.",
-	"longDescription": "Digital arbejdsbog til engelsk i 4. klasse der understøtter elevernes sproglige udvikling. Indeholder interaktive øvelser og opgaver der styrker elevernes engelskkundskaber gennem praktisk anvendelse."
+  "name": "Boost 4 (ibog) workbook",
+  "publisher": "Gyldendal",
+  "grades": [4],
+  "url": "https://i-bog.gyldendal.dk/boost4workbook",
+  "subject": "engelsk",
+  "isActive": true,
+  "description": "Digital arbejdsbog til engelsk i 4. klasse.",
+  "longDescription": "Digital arbejdsbog til engelsk i 4. klasse der understøtter elevernes sproglige udvikling. Indeholder interaktive øvelser og opgaver der styrker elevernes engelskkundskaber gennem praktisk anvendelse."
 }

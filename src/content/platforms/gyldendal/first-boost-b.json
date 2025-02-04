@@ -1,12 +1,10 @@
 {
-	"name": "First Boost B (ibog)",
-	"publisher": "Gyldendal",
-	"grades": [
-		0
-	],
-	"url": "https://i-bog.gyldendal.dk/86c2f8c1-7b76-4ac1-8d35-0f1652702708",
-	"subject": "engelsk",
-	"isActive": true,
-	"description": "Digital læringsplatform til 2. klasse.",
-	"longDescription": "Digital engelsksystem til 2. klasse der bygger videre på First Boost A. Indeholder interaktive ressourcer til tavleundervisning med flashcards, indtalte dialoger og lytteopgaver der understøtter elevernes sproglige progression."
+  "name": "First Boost B (ibog)",
+  "publisher": "Gyldendal",
+  "grades": [2],
+  "url": "https://i-bog.gyldendal.dk/86c2f8c1-7b76-4ac1-8d35-0f1652702708",
+  "subject": "engelsk",
+  "isActive": true,
+  "description": "Digital læringsplatform til 2. klasse.",
+  "longDescription": "Digital engelsksystem til 2. klasse der bygger videre på First Boost A. Indeholder interaktive ressourcer til tavleundervisning med flashcards, indtalte dialoger og lytteopgaver der understøtter elevernes sproglige progression."
 }

@@ -1,14 +1,10 @@
 {
-	"name": "Matematik (4-6)",
-	"publisher": "Gyldendal",
-	"grades": [
-		4,
-		5,
-		6
-	],
-	"url": "https://matematik4-6.gyldendal.dk",
-	"subject": "matematik",
-	"isActive": true,
-	"description": "Digital matematikportal til mellemtrinnet med over 30 strukturerede forløb der dækker alle færdigheds- og vidensmål.",
-	"longDescription": "Digital matematikportal til mellemtrinnet med over 30 strukturerede forløb der dækker alle færdigheds- og vidensmål. Indeholder teori, aktiviteter og problembaserede opgaver der lever op til Fælles Mål."
+  "name": "Matematik (4-6)",
+  "publisher": "Gyldendal",
+  "grades": [4, 5, 6],
+  "url": "https://matematik4-6.gyldendal.dk",
+  "subject": "matematik",
+  "isActive": true,
+  "description": "Digital matematikportal til mellemtrinnet med over 30 strukturerede forløb der dækker alle færdigheds- og vidensmål.",
+  "longDescription": "Digital matematikportal til mellemtrinnet med over 30 strukturerede forløb der dækker alle færdigheds- og vidensmål. Indeholder teori, aktiviteter og problembaserede opgaver der lever op til Fælles Mål."
 }
