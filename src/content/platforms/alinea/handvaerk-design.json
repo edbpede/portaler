@@ -1,8 +1,8 @@
 {
   "name": "Håndværk og designportalen",
   "publisher": "Alinea",
-  "grades": [3, 4, 5, 6, 7, 8, 9],
-  "url": "https://xn--hndvrkogdesign-libt.alinea.dk",
+  "grades": [3, 4, 5, 6],
+  "url": "https://haandvaerkogdesign.fagportal.alinea.dk/mellemtrin",
   "subject": "handvaerk-design",
   "isActive": true,
   "description": "Digital læringsplatform til håndværk og design for 3.-6. klasse.",

@@ -1,7 +1,7 @@
 {
   "name": "Natur og teknologi (indskoling)",
   "publisher": "Alinea",
-  "grades": [3],
+  "grades": [1, 2, 3],
   "url": "https://naturteknologi.fagportal.alinea.dk/indskoling",
   "subject": "natur-teknologi",
   "isActive": true,
