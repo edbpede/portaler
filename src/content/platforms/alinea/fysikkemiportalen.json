@@ -2,7 +2,7 @@
   "name": "FysikKemiportalen",
   "publisher": "Alinea",
   "grades": [7, 8, 9],
-  "url": "https://fysikkemi.alinea.dk",
+  "url": "https://fysikkemi.fagportal.alinea.dk",
   "subject": "fysik-kemi",
   "isActive": true,
   "description": "Digital læringsplatform til fysik/kemi for 7.-9. klasse.",
