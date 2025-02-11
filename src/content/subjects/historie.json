@@ -1,6 +1,10 @@
 {
 	"name": "historie",
 	"displayName": "Historie",
-	"order": 9,
-	"isActive": true
+	"order": 8,
+	"isActive": true,
+	"icon": {
+		"name": "ph:scroll-fill",
+		"color": "text-amber-500"
+	}
 }

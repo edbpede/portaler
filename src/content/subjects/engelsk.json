@@ -2,5 +2,9 @@
 	"name": "engelsk",
 	"displayName": "Engelsk",
 	"order": 3,
-	"isActive": true
+	"isActive": true,
+	"icon": {
+		"name": "ph:flag-banner-fill",
+		"color": "text-red-500"
+	}
 }

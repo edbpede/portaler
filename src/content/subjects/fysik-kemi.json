@@ -1,6 +1,10 @@
 {
 	"name": "fysik-kemi",
 	"displayName": "Fysik/kemi",
-	"order": 6,
-	"isActive": true
+	"order": 5,
+	"isActive": true,
+	"icon": {
+		"name": "ph:atom-fill",
+		"color": "text-violet-500"
+	}
 }

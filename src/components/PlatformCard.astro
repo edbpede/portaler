@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import Tooltip from './Tooltip.astro';
+import { getCollection } from 'astro:content';
 
 type Platform = CollectionEntry<'platforms'>;
 type Publisher = 'Gyldendal' | 'Alinea' | 'Dansk LF' | 'JH Software' | 'Andre';
@@ -13,7 +14,17 @@ interface Props {
 }
 
 const { platform, currentGrade } = Astro.props;
-const { name, publisher, grades, url, description, longDescription } = platform.data;
+const { name, publisher, grades, url, description, longDescription, subject, customIcon } = platform.data;
+
+// Get all subjects for icon lookup
+const subjects = await getCollection('subjects');
+const subjectMap = new Map(subjects.map(s => [s.data.name, s.data]));
+
+// Validate that the subject exists
+const subjectData = subjectMap.get(subject);
+if (!subjectData) {
+	console.error(`Platform "${name}" references non-existent subject "${subject}"`);
+}
 
 const publisherColors: Record<Publisher | 'default', string> = {
 	'Gyldendal': 'bg-accent-light text-primary',
@@ -34,25 +45,6 @@ const publisherIcons: Record<Publisher, { src: string; height: number }> = {
 	'Andre': { src: '', height: 0 }
 };
 
-// Subject icons mapping (same as SubjectGroup)
-const subjectIcons: Record<string, { name: string; color: string }> = {
-	'Billedkunst': { name: 'ph:paint-brush-fill', color: 'text-pink-500' },
-	'Biologi': { name: 'ph:dna-fill', color: 'text-teal-500' },
-	'Dansk': { name: 'ph:book-bookmark-fill', color: 'text-rose-300' },
-	'Engelsk': { name: 'ph:flag-banner-fill', color: 'text-red-500' },
-	'Fysik/kemi': { name: 'ph:atom-fill', color: 'text-violet-500' },
-	'Geografi': { name: 'ph:globe-hemisphere-west-fill', color: 'text-indigo-500' },
-	'Håndværk og design': { name: 'ph:hammer-fill', color: 'text-orange-500' },
-	'Historie': { name: 'ph:scroll-fill', color: 'text-amber-500' },
-	'Kristendomskundskab': { name: 'ph:cross-fill', color: 'text-sky-500' },
-	'Madkundskab': { name: 'ph:cooking-pot-fill', color: 'text-rose-500' },
-	'Matematik': { name: 'ph:calculator-fill', color: 'text-purple-500' },
-	'Natur/teknologi': { name: 'ph:leaf-fill', color: 'text-emerald-500' },
-	'Samfundsfag': { name: 'ph:buildings-fill', color: 'text-cyan-500' },
-	'Tysk': { name: 'ph:flag-banner-fill', color: 'text-yellow-600' },
-	'Andre': { name: 'ph:squares-four-fill', color: 'text-gray-500' }
-};
-
 // Platform-specific color variants
 const platformColors: Record<string, string> = {
 	'Mayeriet': 'text-rose-300',
@@ -63,77 +55,56 @@ const platformColors: Record<string, string> = {
 	'Kontext': 'text-purple-600'
 };
 
-// Map platform keywords to subjects
-const platformToSubject: Record<string, string> = {
-	'dansk': 'Dansk',
-	'læs': 'Dansk',
-	'ord': 'Dansk',
-	'webprøver': 'Dansk',
-	'fandango': 'Dansk',
-	'mayeriet': 'Dansk',
-	'engelsk': 'Engelsk',
-	'boost': 'Engelsk',
-	'matematik': 'Matematik',
-	'kontext': 'Matematik',
-	'multi': 'Matematik',
-	'biologi': 'Biologi',
-	'natur': 'Natur/teknologi',
-	'fysik': 'Fysik/kemi',
-	'kemi': 'Fysik/kemi',
-	'geografi': 'Geografi',
-	'lande': 'Geografi',
-	'historie': 'Historie',
-	'kristendom': 'Kristendomskundskab',
-	'religion': 'Kristendomskundskab',
-	'madkundskab': 'Madkundskab',
-	'håndværk': 'Håndværk og design',
-	'billedkunst': 'Billedkunst',
-	'samfundsfag': 'Samfundsfag',
-	'tysk': 'Tysk',
-	'dsa': 'Dansk',
-};
-
-function getPlatformIcon(name: string): { name: string; color: string } {
-	const nameLower = name.toLowerCase();
-	
-	// Special case for animals
-	if (nameLower.includes('dyr')) {
-		return { name: 'ph:paw-print-fill', color: 'text-amber-500' };
-	}
-
-	// Find matching subject based on platform name
-	let matchedSubject = '';
-	for (const [keyword, subject] of Object.entries(platformToSubject)) {
-		if (nameLower.includes(keyword)) {
-			matchedSubject = subject;
-			break;
-		}
-	}
-
-	if (matchedSubject && subjectIcons[matchedSubject]) {
-		const icon = subjectIcons[matchedSubject];
+function getPlatformIcon(name: string, subject: string): { name: string; color: string } {
+	try {
+		const nameLower = name.toLowerCase();
 		
-		// Check for platform-specific color
-		for (const [platform, color] of Object.entries(platformColors)) {
-			if (nameLower.includes(platform.toLowerCase())) {
-				return { name: icon.name, color };
+		// Use custom icon if provided and valid
+		if (customIcon?.name && customIcon?.color) {
+			// Validate that the icon name follows phosphor pattern
+			if (!customIcon.name.startsWith('ph:') || !customIcon.name.endsWith('-fill')) {
+				console.warn(`Platform "${name}" has invalid custom icon name "${customIcon.name}". Using fallback.`);
+				throw new Error('Invalid custom icon');
 			}
+			return customIcon;
+		}
+		
+		// Special case for animals
+		if (nameLower.includes('dyr')) {
+			return { name: 'ph:paw-print-fill', color: 'text-amber-500' };
 		}
 
-		// Use subject icon with slightly different shade
-		if (icon.color.includes('500')) {
-			return { name: icon.name, color: icon.color.replace('500', '400') };
-		} else if (icon.color.includes('400')) {
-			return { name: icon.name, color: icon.color.replace('400', '500') };
+		// Get subject data and icon
+		const subjectData = subjectMap.get(subject);
+		if (subjectData?.icon) {
+			const icon = subjectData.icon;
+			
+			// Check for platform-specific color
+			for (const [platform, color] of Object.entries(platformColors)) {
+				if (nameLower.includes(platform.toLowerCase())) {
+					return { name: icon.name, color };
+				}
+			}
+
+			// Use subject icon with slightly different shade
+			if (icon.color.includes('500')) {
+				return { name: icon.name, color: icon.color.replace('500', '400') };
+			} else if (icon.color.includes('400')) {
+				return { name: icon.name, color: icon.color.replace('400', '500') };
+			}
+			return icon;
 		}
-		return icon;
+
+		throw new Error('No valid icon found');
+	} catch (error: unknown) {
+		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+		console.warn(`Failed to get icon for platform "${name}": ${errorMessage}`);
+		// Default fallback
+		return { name: 'ph:app-window-fill', color: 'text-gray-500' };
 	}
-
-	// Default
-	return { name: 'ph:app-window-fill', color: 'text-gray-500' };
 }
 
-const platformIcon = getPlatformIcon(name);
+const platformIcon = getPlatformIcon(name, subject);
 const publisherIcon = publisherIcons[publisher as Publisher];
 const hasPublisherIcon = publisherIcon && publisherIcon.src !== '';
 

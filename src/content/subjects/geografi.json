@@ -1,6 +1,10 @@
 {
 	"name": "geografi",
 	"displayName": "Geografi",
-	"order": 7,
-	"isActive": true
+	"order": 6,
+	"isActive": true,
+	"icon": {
+		"name": "ph:globe-hemisphere-west-fill",
+		"color": "text-indigo-500"
+	}
 }

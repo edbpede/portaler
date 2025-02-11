@@ -1,6 +1,10 @@
 {
 	"name": "handvaerk-design",
 	"displayName": "Håndværk og design",
-	"order": 12,
-	"isActive": true
+	"order": 7,
+	"isActive": true,
+	"icon": {
+		"name": "ph:hammer-fill",
+		"color": "text-orange-500"
+	}
 }

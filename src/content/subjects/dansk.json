@@ -2,5 +2,9 @@
 	"name": "dansk",
 	"displayName": "Dansk",
 	"order": 1,
-	"isActive": true
+	"isActive": true,
+	"icon": {
+		"name": "ph:book-bookmark-fill",
+		"color": "text-rose-300"
+	}
 }

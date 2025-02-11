@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import PlatformCard from './PlatformCard.astro';
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
 
 interface Props {
 	subject: string;
@@ -16,26 +17,27 @@ const platforms = [...unsortedPlatforms].sort((a, b) =>
 	a.data.name.localeCompare(b.data.name, 'da')
 );
 
-const subjectIcons: Record<string, { name: string; color: string }> = {
-	'Billedkunst': { name: 'ph:paint-brush-fill', color: 'text-pink-500' },
-	'Biologi': { name: 'ph:dna-fill', color: 'text-teal-500' },
-	'Dansk': { name: 'ph:book-bookmark-fill', color: 'text-rose-600' },
-	'Engelsk': { name: 'ph:flag-banner-fill', color: 'text-red-500' },
-	'Fysik/kemi': { name: 'ph:atom-fill', color: 'text-violet-500' },
-	'Geografi': { name: 'ph:globe-hemisphere-west-fill', color: 'text-indigo-500' },
-	'Håndværk og design': { name: 'ph:hammer-fill', color: 'text-orange-500' },
-	'Historie': { name: 'ph:scroll-fill', color: 'text-amber-500' },
-	'Kristendomskundskab': { name: 'ph:cross-fill', color: 'text-sky-500' },
-	'Madkundskab': { name: 'ph:cooking-pot-fill', color: 'text-rose-500' },
-	'Matematik': { name: 'ph:calculator-fill', color: 'text-purple-500' },
-	'Natur/teknologi': { name: 'ph:leaf-fill', color: 'text-emerald-500' },
-	'Religion': { name: 'ph:cross-fill', color: 'text-sky-500' },
-	'Samfundsfag': { name: 'ph:buildings-fill', color: 'text-cyan-500' },
-	'Tysk': { name: 'ph:flag-banner-fill', color: 'text-yellow-600' },
-	'Andre': { name: 'ph:squares-four-fill', color: 'text-gray-500' }
-};
+// Get subject data for icon lookup
+const subjects = await getCollection('subjects');
+const subjectData = subjects.find(s => s.data.displayName === subject)?.data;
 
-const icon = subjectIcons[subject] || { name: 'ph:folder-fill', color: 'text-gray-500' };
+// Validate icon format if present
+let icon = { name: 'ph:folder-fill', color: 'text-gray-500' };
+if (subjectData?.icon) {
+	const { name, color } = subjectData.icon;
+	// Validate icon name format
+	if (!name.startsWith('ph:') || !name.endsWith('-fill')) {
+		console.warn(`Subject "${subject}" has invalid icon name "${name}". Using fallback.`);
+	} 
+	// Validate color format
+	else if (!color.startsWith('text-') || !color.includes('-')) {
+		console.warn(`Subject "${subject}" has invalid color format "${color}". Using fallback.`);
+	}
+	else {
+		icon = { name, color };
+	}
+}
+
 ---
 
 <div class="bg-white rounded-lg shadow-sm p-6 subject-group animate-fade-in">

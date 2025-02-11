@@ -2,5 +2,9 @@
 	"name": "matematik",
 	"displayName": "Matematik",
 	"order": 2,
-	"isActive": true
+	"isActive": true,
+	"icon": {
+		"name": "ph:calculator-fill",
+		"color": "text-purple-500"
+	}
 }

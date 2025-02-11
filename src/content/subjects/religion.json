@@ -1,6 +1,10 @@
 {
 	"name": "religion",
-	"displayName": "Religion",
-	"order": 8,
-	"isActive": true
+	"displayName": "Kristendomskundskab",
+	"order": 11,
+	"isActive": true,
+	"icon": {
+		"name": "ph:cross-fill",
+		"color": "text-sky-500"
+	}
 }

@@ -1,6 +1,10 @@
 {
 	"name": "billedkunst",
 	"displayName": "Billedkunst",
-	"order": 13,
-	"isActive": true
+	"order": 14,
+	"isActive": true,
+	"icon": {
+		"name": "ph:paint-brush-fill",
+		"color": "text-pink-500"
+	}
 }
