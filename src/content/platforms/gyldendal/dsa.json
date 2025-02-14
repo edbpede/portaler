@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læringsplatform til dansk som andetsprog med fokus på at bygge bro til almenundervisningen.",
-  "longDescription": "Digital læringsportal til dansk som andetsprog med fokus på at bygge bro til almenundervisningen. Tilbyder webressourcer og differentierede materialer der understøtter elevernes sproglige udvikling på tværs af alle fag."
+  "longDescription": "Digital læringsportal til dansk som andetsprog med fokus på at bygge bro til almenundervisningen. Tilbyder webressourcer og differentierede materialer der understøtter elevernes sproglige udvikling på tværs af alle fag.",
+  "iconOverwrite": true,
+  "icon": {
+    "name": "ph:book-bookmark-fill",
+    "color": "text-violet-400"
+  }
 }

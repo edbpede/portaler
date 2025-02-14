@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Dansk læringsplatform for alle klassetrin",
-  "longDescription": "Dansk læringsplatform for alle klassetrin"
+  "longDescription": "Dansk læringsplatform for alle klassetrin",
+  "iconOverwrite": true,
+  "icon": {
+    "name": "ph:book-bookmark-fill",
+    "color": "text-rose-300"
+  }
 }

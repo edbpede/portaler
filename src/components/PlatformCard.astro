@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { platform, currentGrade } = Astro.props;
-const { name, publisher, grades, url, description, longDescription, subject, customIcon } = platform.data;
+const { name, publisher, grades, url, description, longDescription, subject } = platform.data;
 
 // Get all subjects for icon lookup
 const subjects = await getCollection('subjects');
@@ -45,66 +45,30 @@ const publisherIcons: Record<Publisher, { src: string; height: number }> = {
 	'Andre': { src: '', height: 0 }
 };
 
-// Platform-specific color variants
-const platformColors: Record<string, string> = {
-	'Mayeriet': 'text-rose-300',
-	'Fandango': 'text-rose-300',
-	'DSA': 'text-violet-400',
-	'Boost': 'text-red-400',
-	'Multi': 'text-purple-400',
-	'Kontext': 'text-purple-600'
-};
-
-function getPlatformIcon(name: string, subject: string): { name: string; color: string } {
+function getPlatformIcon(platform: Platform, subject: string): { name: string; color: string } {
 	try {
-		const nameLower = name.toLowerCase();
-		
-		// Use custom icon if provided and valid
-		if (customIcon?.name && customIcon?.color) {
-			// Validate that the icon name follows phosphor pattern
-			if (!customIcon.name.startsWith('ph:') || !customIcon.name.endsWith('-fill')) {
-				console.warn(`Platform "${name}" has invalid custom icon name "${customIcon.name}". Using fallback.`);
-				throw new Error('Invalid custom icon');
-			}
-			return customIcon;
+		// Check for platform icon override first
+		if (platform.data.iconOverwrite && platform.data.icon?.name && platform.data.icon?.color) {
+			return platform.data.icon;
 		}
 		
-		// Special case for animals
-		if (nameLower.includes('dyr')) {
-			return { name: 'ph:paw-print-fill', color: 'text-amber-500' };
-		}
-
 		// Get subject data and icon
 		const subjectData = subjectMap.get(subject);
 		if (subjectData?.icon) {
-			const icon = subjectData.icon;
-			
-			// Check for platform-specific color
-			for (const [platform, color] of Object.entries(platformColors)) {
-				if (nameLower.includes(platform.toLowerCase())) {
-					return { name: icon.name, color };
-				}
-			}
-
-			// Use subject icon with slightly different shade
-			if (icon.color.includes('500')) {
-				return { name: icon.name, color: icon.color.replace('500', '400') };
-			} else if (icon.color.includes('400')) {
-				return { name: icon.name, color: icon.color.replace('400', '500') };
-			}
-			return icon;
+			return subjectData.icon;
 		}
 
 		throw new Error('No valid icon found');
 	} catch (error: unknown) {
 		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-		console.warn(`Failed to get icon for platform "${name}": ${errorMessage}`);
+		console.warn(`Failed to get icon for platform "${platform.data.name}": ${errorMessage}`);
 		// Default fallback
 		return { name: 'ph:app-window-fill', color: 'text-gray-500' };
 	}
 }
 
-const platformIcon = getPlatformIcon(name, subject);
+const platformIcon = getPlatformIcon(platform, subject);
+
 const publisherIcon = publisherIcons[publisher as Publisher];
 const hasPublisherIcon = publisherIcon && publisherIcon.src !== '';
 

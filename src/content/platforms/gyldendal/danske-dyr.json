@@ -6,5 +6,10 @@
   "subject": "natur-teknologi",
   "isActive": true,
   "description": "Digital læringsportal med fokus på danske dyrearter og deres levesteder.",
-  "longDescription": "Digital læringsportal med fokus på danske dyrearter og deres levesteder. Indeholder undervisningsforløb der kombinerer naturfaglig viden med praktiske aktiviteter og observationer af dyr i den danske natur."
+  "longDescription": "Digital læringsportal med fokus på danske dyrearter og deres levesteder. Indeholder undervisningsforløb der kombinerer naturfaglig viden med praktiske aktiviteter og observationer af dyr i den danske natur.",
+  "iconOverwrite": true,
+  "icon": {
+    "name": "ph:paw-print-fill",
+    "color": "text-amber-500"
+  }
 }

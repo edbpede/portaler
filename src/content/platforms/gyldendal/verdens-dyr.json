@@ -6,5 +6,10 @@
   "subject": "natur-teknologi",
   "isActive": true,
   "description": "Digital portal om dyreliv og natur til indskoling og mellemtrin med fokus på arter, levesteder og dyreadfærd.",
-  "longDescription": "Digital portal om dyreliv og natur til indskoling og mellemtrin med fokus på arter, levesteder og dyreadfærd. Indeholder interaktive forløb med videoer, billeder og aktiviteter der udvikler elevernes naturfaglige forståelse."
+  "longDescription": "Digital portal om dyreliv og natur til indskoling og mellemtrin med fokus på arter, levesteder og dyreadfærd. Indeholder interaktive forløb med videoer, billeder og aktiviteter der udvikler elevernes naturfaglige forståelse.",
+  "iconOverwrite": true,
+  "icon": {
+    "name": "ph:paw-print-fill",
+    "color": "text-amber-500"
+  }
 }

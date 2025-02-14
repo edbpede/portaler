@@ -1,10 +1,11 @@
 {
   "name": "Multi 9 (ibog)",
   "publisher": "Gyldendal",
-  "grades": [7, 8, 9],
+  "grades": [9],
   "url": "https://i-bog.gyldendal.dk/multi9",
   "subject": "matematik",
   "isActive": true,
   "description": "Digital matematikbog til 9. klasse.",
   "longDescription": "Digital matematikbog til 9. klasse med supplerende digitale ressourcer som videoklip, Excel- og GeoGebrafiler. Systemet kombinerer grundbog med interaktive elementer og kan bruges på PC, tablet og interaktive whiteboards."
 }
+

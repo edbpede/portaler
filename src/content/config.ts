@@ -29,7 +29,8 @@ const platformCollection = defineCollection({
 		isActive: z.boolean().default(true),
 		description: z.string(),
 		longDescription: z.string(),
-		customIcon: z
+		iconOverwrite: z.boolean().optional().default(false).describe("Whether to use custom icon instead of subject icon"),
+		icon: z
 			.object({
 				name: z.string().describe("Icon name from the phosphor-icons set"),
 				color: z.string().describe("Tailwind CSS color class"),
