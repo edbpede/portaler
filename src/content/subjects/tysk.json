@@ -1,10 +1,10 @@
 {
-	"name": "tysk",
-	"displayName": "Tysk",
-	"order": 13,
-	"isActive": true,
-	"icon": {
-		"name": "ph:flag-banner-fill",
-		"color": "text-yellow-600"
-	}
+  "name": "tysk",
+  "displayName": "Tysk",
+  "order": 13,
+  "isActive": true,
+  "icon": {
+    "name": "ph:flag-banner-fill",
+    "color": "text-yellow-600"
+  }
 }

@@ -1,10 +1,10 @@
 {
-	"name": "samfundsfag",
-	"displayName": "Samfundsfag",
-	"order": 12,
-	"isActive": true,
-	"icon": {
-		"name": "ph:buildings-fill",
-		"color": "text-cyan-500"
-	}
+  "name": "samfundsfag",
+  "displayName": "Samfundsfag",
+  "order": 12,
+  "isActive": true,
+  "icon": {
+    "name": "ph:buildings-fill",
+    "color": "text-cyan-500"
+  }
 }

@@ -1,10 +1,10 @@
 {
-	"name": "natur-teknologi",
-	"displayName": "Natur/teknologi",
-	"order": 10,
-	"isActive": true,
-	"icon": {
-		"name": "ph:leaf-fill",
-		"color": "text-emerald-500"
-	}
+  "name": "natur-teknologi",
+  "displayName": "Natur/teknologi",
+  "order": 10,
+  "isActive": true,
+  "icon": {
+    "name": "ph:leaf-fill",
+    "color": "text-emerald-500"
+  }
 }

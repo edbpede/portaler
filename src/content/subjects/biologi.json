@@ -1,10 +1,10 @@
 {
-	"name": "biologi",
-	"displayName": "Biologi",
-	"order": 4,
-	"isActive": true,
-	"icon": {
-		"name": "ph:dna-fill",
-		"color": "text-teal-500"
-	}
+  "name": "biologi",
+  "displayName": "Biologi",
+  "order": 4,
+  "isActive": true,
+  "icon": {
+    "name": "ph:dna-fill",
+    "color": "text-teal-500"
+  }
 }

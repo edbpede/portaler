@@ -1,10 +1,10 @@
 {
-	"name": "historie",
-	"displayName": "Historie",
-	"order": 8,
-	"isActive": true,
-	"icon": {
-		"name": "ph:scroll-fill",
-		"color": "text-amber-500"
-	}
+  "name": "historie",
+  "displayName": "Historie",
+  "order": 8,
+  "isActive": true,
+  "icon": {
+    "name": "ph:scroll-fill",
+    "color": "text-amber-500"
+  }
 }

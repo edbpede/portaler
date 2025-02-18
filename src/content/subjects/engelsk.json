@@ -1,10 +1,10 @@
 {
-	"name": "engelsk",
-	"displayName": "Engelsk",
-	"order": 3,
-	"isActive": true,
-	"icon": {
-		"name": "ph:flag-banner-fill",
-		"color": "text-red-500"
-	}
+  "name": "engelsk",
+  "displayName": "Engelsk",
+  "order": 3,
+  "isActive": true,
+  "icon": {
+    "name": "ph:flag-banner-fill",
+    "color": "text-red-500"
+  }
 }

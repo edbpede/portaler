@@ -1,10 +1,10 @@
 {
-	"name": "handvaerk-design",
-	"displayName": "Håndværk og design",
-	"order": 7,
-	"isActive": true,
-	"icon": {
-		"name": "ph:hammer-fill",
-		"color": "text-orange-500"
-	}
+  "name": "handvaerk-design",
+  "displayName": "Håndværk og design",
+  "order": 7,
+  "isActive": true,
+  "icon": {
+    "name": "ph:hammer-fill",
+    "color": "text-orange-500"
+  }
 }

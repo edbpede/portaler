@@ -1,10 +1,10 @@
 {
-	"name": "madkundskab",
-	"displayName": "Madkundskab",
-	"order": 9,
-	"isActive": true,
-	"icon": {
-		"name": "ph:cooking-pot-fill",
-		"color": "text-rose-500"
-	}
+  "name": "madkundskab",
+  "displayName": "Madkundskab",
+  "order": 9,
+  "isActive": true,
+  "icon": {
+    "name": "ph:cooking-pot-fill",
+    "color": "text-rose-500"
+  }
 }
