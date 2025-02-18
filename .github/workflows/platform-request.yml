@@ -28,12 +28,12 @@ jobs:
           script: |
             const isPlatformRequest = context.payload.issue.labels.some(label => label.name === 'platform-request');
             const isCorrectUser = context.payload.issue.user.login === 'edbpede';
-            
+
             if (!isPlatformRequest) {
               console.log('Not a platform request, skipping checks');
               return;
             }
-            
+
             if (!isCorrectUser) {
               console.log('Incorrect user detected');
               const errorBody = [
@@ -96,9 +96,9 @@ jobs:
             console.log('Starting to parse issue form...');
             const body = context.payload.issue.body;
             console.log('Issue body:', body);
-            
+
             const lines = body.split('\n');
-            
+
             const getData = (field) => {
               console.log(`Looking for field: ${field}`);
               const line = lines.find(l => l.includes(`### ${field}`));
@@ -122,7 +122,7 @@ jobs:
               console.log(`Found value for ${field}:`, value);
               return value;
             };
-            
+
             const getGrades = () => {
               console.log('Parsing grades section...');
               
@@ -162,7 +162,7 @@ jobs:
               console.log('Final grades array:', grades);
               return grades;
             };
-            
+
             console.log('Building platform data object...');
             const platformData = {
               name: getData('Platformnavn'),
@@ -172,27 +172,32 @@ jobs:
               description: getData('Kort beskrivelse'),
               longDescription: getData('Detaljeret beskrivelse'),
               grades: getGrades(),
-              isActive: true
+              isActive: true,
+              iconOverwrite: false,
+              icon: {
+                name: '',
+                color: ''
+              }
             };
-            
+
             console.log('Platform data:', platformData);
-            
+
             // Sanitize publisher name for directory
             const publisherDir = platformData.publisher
               .toLowerCase()
               .replace(/[^a-z0-9]/g, '-')
               .replace(/-+/g, '-')
               .replace(/^-|-$/g, '');
-            
+
             console.log('Sanitized publisher directory:', publisherDir);
-            
+
             // Create JSON content
             const jsonContent = JSON.stringify(platformData, null, 2);
-            
+
             core.setOutput('publisher-dir', publisherDir);
             core.setOutput('platform-data', jsonContent);
             core.setOutput('platform-name', platformData.name);
-            
+
             console.log('Successfully set all outputs');
 
       - name: Debug Platform Data
@@ -211,7 +216,7 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-            
+
             // Parse the platform data safely
             let platformData;
             try {
@@ -220,10 +225,10 @@ jobs:
               core.setFailed(`Failed to parse platform data: ${error.message}`);
               return false;
             }
-            
+
             const newName = platformData.name.toLowerCase();
             const newUrl = platformData.url.toLowerCase();
-            
+
             // Function to recursively get all JSON files
             function getAllJsonFiles(dir) {
               let results = [];
@@ -242,7 +247,7 @@ jobs:
               
               return results;
             }
-            
+
             // Check all platform JSON files
             const platformsDir = 'src/content/platforms';
             const jsonFiles = getAllJsonFiles(platformsDir);
@@ -326,7 +331,7 @@ jobs:
               
               return false;
             }
-            
+
             return true;
 
       - name: Verify publisher directory
@@ -334,7 +339,7 @@ jobs:
         if: success()
         run: |
           PUBLISHER_DIR="src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}"
-          
+
           if [ ! -d "$PUBLISHER_DIR" ]; then
             echo "Publisher directory does not exist. Creating: $PUBLISHER_DIR"
             mkdir -p "$PUBLISHER_DIR"
@@ -352,7 +357,7 @@ jobs:
 
           # Convert platform name to kebab-case for filename
           PLATFORM_NAME=$(echo "${{ fromJson(steps.parse-issue.outputs.platform-data).name }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//')
-          
+
           echo "Writing platform data to file..."
           echo '${{ steps.parse-issue.outputs.platform-data }}' > src/content/platforms/${{ steps.parse-issue.outputs.publisher-dir }}/${PLATFORM_NAME}.json
 
@@ -425,7 +430,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Tak for din indsendelse af en ny platform! 🎉
-            
+
             Jeg har oprettet en pull request for at tilføje denne platform. Du kan gennemgå den her: ${{ steps.create-pr.outputs.pull-request-url }}
-            
+
             Denne issue vil automatisk blive lukket, når PR'en er merged.

@@ -10,10 +10,10 @@ body:
     attributes:
       value: |
         # 🎉 Tak for din interesse i at tilføje en ny platform!
-        
+
         Vi vil gerne gøre det så nemt som muligt at tilføje nye platforme til Portaler. 
         Udfyld venligst nedenstående information så detaljeret som muligt.
-        
+
         ---
 
   - type: input
@@ -72,36 +72,58 @@ body:
   - type: markdown
     attributes:
       value: |
+        ### 🎨 Ikon Indstillinger
+        Du kan tilpasse ikonet for denne platform. Hvis du ikke angiver et ikon, vil der blive brugt standardikonet for faget.
+
+  - type: checkboxes
+    id: icon-overwrite
+    attributes:
+      label: "🖌️ Brug brugerdefineret ikon?"
+      description: "Marker dette, hvis du vil bruge et andet ikon end standardikonet for faget"
+      options:
+        - label: "Brug brugerdefineret ikon"
+          required: false
+
+  - type: input
+    id: icon-name
+    attributes:
+      label: "🖼️ Ikon navn"
+      description: "Navnet på ikonet fra Phosphor Icons (f.eks. 'ph:book-bookmark-fill')"
+      placeholder: "ph:book-bookmark-fill"
+    validations:
+      required: false
+
+  - type: input
+    id: icon-color
+    attributes:
+      label: "🎨 Ikon farve"
+      description: "Tailwind CSS farveklasse (f.eks. 'text-blue-500')"
+      placeholder: "text-blue-500"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
         ### 📚 Klassetrin
         Vælg de klassetrin som platformen er relevant for:
 
   - type: checkboxes
     id: grades
     attributes:
-      label: "Vælg klassetrin"
+      label: "🎓 Klassetrin"
+      description: "Vælg de klassetrin som platformen er relevant for"
       options:
         - label: "🎓 0. klasse"
-          required: false
         - label: "🎓 1. klasse"
-          required: false
         - label: "🎓 2. klasse"
-          required: false
         - label: "🎓 3. klasse"
-          required: false
         - label: "🎓 4. klasse"
-          required: false
         - label: "🎓 5. klasse"
-          required: false
         - label: "🎓 6. klasse"
-          required: false
         - label: "🎓 7. klasse"
-          required: false
         - label: "🎓 8. klasse"
-          required: false
         - label: "🎓 9. klasse"
-          required: false
-        - label: "🎓 10. klasse"
-          required: false
 
   - type: textarea
     id: description
