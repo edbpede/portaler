@@ -1,10 +1,10 @@
 {
-	"name": "dansk",
-	"displayName": "Dansk",
-	"order": 1,
-	"isActive": true,
-	"icon": {
-		"name": "ph:book-bookmark-fill",
-		"color": "text-rose-300"
-	}
+  "name": "dansk",
+  "displayName": "Dansk",
+  "order": 1,
+  "isActive": true,
+  "icon": {
+    "name": "ph:book-bookmark-fill",
+    "color": "text-rose-500"
+  }
 }

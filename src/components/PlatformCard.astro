@@ -46,25 +46,22 @@ const publisherIcons: Record<Publisher, { src: string; height: number }> = {
 };
 
 function getPlatformIcon(platform: Platform, subject: string): { name: string; color: string } {
-	try {
-		// Check for platform icon override first
-		if (platform.data.iconOverwrite && platform.data.icon?.name && platform.data.icon?.color) {
-			return platform.data.icon;
-		}
-		
-		// Get subject data and icon
-		const subjectData = subjectMap.get(subject);
-		if (subjectData?.icon) {
-			return subjectData.icon;
-		}
-
-		throw new Error('No valid icon found');
-	} catch (error: unknown) {
-		const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-		console.warn(`Failed to get icon for platform "${platform.data.name}": ${errorMessage}`);
-		// Default fallback
-		return { name: 'ph:app-window-fill', color: 'text-gray-500' };
+	// If platform has icon overwrite enabled and valid icon data, use it
+	if (platform.data.iconOverwrite && platform.data.icon?.name && platform.data.icon?.color) {
+		return platform.data.icon;
 	}
+	
+	// Get subject data and icon
+	const subjectData = subjectMap.get(subject);
+	if (subjectData?.icon) {
+		return {
+			name: subjectData.icon.name,
+			color: subjectData.icon.color
+		};
+	}
+
+	// Default fallback
+	return { name: 'ph:app-window-fill', color: 'text-gray-500' };
 }
 
 const platformIcon = getPlatformIcon(platform, subject);
