@@ -7,7 +7,7 @@
   "isActive": true,
   "description": "Dansk læringsplatform for alle klassetrin",
   "longDescription": "Dansk læringsplatform for alle klassetrin",
-  "iconOverwrite": false,
+  "iconOverwrite": true,
   "icon": {
     "name": "ph:book-fill",
     "color": "text-blue-500"

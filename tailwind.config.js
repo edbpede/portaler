@@ -43,6 +43,6 @@ export default {
     "text-sky-500",
     "text-teal-500",
     "text-violet-500",
-    "text-yellow-600",
+    "text-yellow-500",
   ],
 };

@@ -5,6 +5,6 @@
   "isActive": true,
   "icon": {
     "name": "ph:flag-banner-fill",
-    "color": "text-yellow-600"
+    "color": "text-yellow-500"
   }
 }
