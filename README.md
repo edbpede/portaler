@@ -55,7 +55,12 @@ src/
   "subject": "subject-name",
   "isActive": true,
   "description": "Brief platform description",
-  "longDescription": "Detailed description of the platform, including features, use cases, and other relevant information"
+  "longDescription": "Detailed description of the platform",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "ph:book-bookmark-fill",
+    "color": "text-blue-500"
+  }
 }
 ```
 
@@ -91,8 +96,12 @@ The project uses Astro's Content Collections for type-safe content management:
   - url: string URL (required)
   - subject: string (required)
   - isActive: boolean (defaults to true)
-  - description: string (optional)
-  - longDescription: string (optional)
+  - description: string (required)
+  - longDescription: string (required)
+  - iconOverwrite: boolean (optional, defaults to false)
+  - icon: object (optional)
+    - name: string (Phosphor Icons name)
+    - color: string (Tailwind CSS color class)
 
 ### Subjects Collection
 
@@ -122,4 +131,3 @@ This project is licensed under the AGPLv3 License - see the [LICENSE](LICENSE) f
 		<img src="public/agplv3_icon.png" alt="GNU AGPLv3">
 	</a>
 </div>
- 
