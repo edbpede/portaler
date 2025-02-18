@@ -6,5 +6,10 @@
   "subject": "matematik",
   "isActive": true,
   "description": "Digital matematiksystem til 7. klasse.",
-  "longDescription": "Digital matematiksystem til 7. klasse med fokus på blandt andet tal, forhold, figurer og sammenhænge. Indeholder interaktive opgaver, videoer og ressourcer der understøtter læring af matematiske begreber og metoder."
+  "longDescription": "Digital matematiksystem til 7. klasse med fokus på blandt andet tal, forhold, figurer og sammenhænge. Indeholder interaktive opgaver, videoer og ressourcer der understøtter læring af matematiske begreber og metoder.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

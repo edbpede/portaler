@@ -6,5 +6,10 @@
   "subject": "tysk",
   "isActive": true,
   "description": "Digital læringsplatform til tysk for 7.-9. klasse.",
-  "longDescription": "Digital træningsportal til tysk for 7.-9. klasse med fokus på sproglige færdigheder, lytning og læsning. Tilbyder et fagligt og motiverende læringsmiljø med systematiske øvelser inden for centrale sproglige områder."
+  "longDescription": "Digital træningsportal til tysk for 7.-9. klasse med fokus på sproglige færdigheder, lytning og læsning. Tilbyder et fagligt og motiverende læringsmiljø med systematiske øvelser inden for centrale sproglige områder.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

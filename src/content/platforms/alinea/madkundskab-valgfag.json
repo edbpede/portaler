@@ -6,5 +6,10 @@
   "subject": "madkundskab",
   "isActive": true,
   "description": "Digital læringsplatform til valgfaget madkundskab med fokus på prøveforberedelse og fællesskab omkring mad.",
-  "longDescription": "Digital læringsportal til valgfaget madkundskab med fokus på prøveforberedelse og fællesskab omkring mad. Indeholder forløb om prøveforberedelse, fællesspisning og madkultur med praktiske øvelser."
+  "longDescription": "Digital læringsportal til valgfaget madkundskab med fokus på prøveforberedelse og fællesskab omkring mad. Indeholder forløb om prøveforberedelse, fællesspisning og madkultur med praktiske øvelser.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

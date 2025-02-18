@@ -6,6 +6,11 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital tekstbog til engelsk i 5. klasse.",
-  "longDescription": "Digital tekstbog til engelsk i 5. klasse der fortsætter Boost-systemets progression. Tilbyder et bredt udvalg af tekster og aktiviteter der styrker elevernes engelskfærdigheder på et mere avanceret niveau."
+  "longDescription": "Digital tekstbog til engelsk i 5. klasse der fortsætter Boost-systemets progression. Tilbyder et bredt udvalg af tekster og aktiviteter der styrker elevernes engelskfærdigheder på et mere avanceret niveau.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }
 

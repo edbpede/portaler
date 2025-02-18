@@ -6,5 +6,10 @@
   "subject": "biologi",
   "isActive": true,
   "description": "Biologi øvelser og tests for udskoling",
-  "longDescription": "Biologi øvelser og tests for udskoling"
+  "longDescription": "Biologi øvelser og tests for udskoling",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

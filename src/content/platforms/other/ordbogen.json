@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Online ordbog og sprogværktøj",
-  "longDescription": "Online ordbog og sprogværktøj"
+  "longDescription": "Online ordbog og sprogværktøj",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

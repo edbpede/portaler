@@ -6,5 +6,10 @@
   "subject": "religion",
   "isActive": true,
   "description": "Digital læringsplatform til kristendomskundskab og religion for 7.-10. klasse.",
-  "longDescription": "Digital læringsportal til kristendomskundskab og religion for 7.-10. klasse med fokus på religionsforståelse og kulturmøder. Indeholder interaktive forløb om verdensreligioner, etik og filosofi med kildekritiske øvelser og prøveforberedende materiale."
+  "longDescription": "Digital læringsportal til kristendomskundskab og religion for 7.-10. klasse med fokus på religionsforståelse og kulturmøder. Indeholder interaktive forløb om verdensreligioner, etik og filosofi med kildekritiske øvelser og prøveforberedende materiale.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

@@ -6,5 +6,10 @@
   "subject": "fysik-kemi",
   "isActive": true,
   "description": "Digital læringsplatform til fysik/kemi for 7.-9. klasse.",
-  "longDescription": "Digital læringsportal til fysik/kemi for 7.-9. klasse baseret på grundsystemet Naturens univers. Tilbyder differentierede undervisningsforløb og ressourcer med fokus på at udfordre eleverne i alle fagets områder."
+  "longDescription": "Digital læringsportal til fysik/kemi for 7.-9. klasse baseret på grundsystemet Naturens univers. Tilbyder differentierede undervisningsforløb og ressourcer med fokus på at udfordre eleverne i alle fagets områder.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

@@ -6,5 +6,10 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital læringsplatform til 2. klasse.",
-  "longDescription": "Digital engelsksystem til 2. klasse der bygger videre på First Boost A. Indeholder interaktive ressourcer til tavleundervisning med flashcards, indtalte dialoger og lytteopgaver der understøtter elevernes sproglige progression."
+  "longDescription": "Digital engelsksystem til 2. klasse der bygger videre på First Boost A. Indeholder interaktive ressourcer til tavleundervisning med flashcards, indtalte dialoger og lytteopgaver der understøtter elevernes sproglige progression.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

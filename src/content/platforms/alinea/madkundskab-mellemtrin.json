@@ -6,5 +6,10 @@
   "subject": "madkundskab",
   "isActive": true,
   "description": "Digital læringsplatform til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft.",
-  "longDescription": "Digital læringsportal til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft. Indeholder differentierede forløb og aktiviteter der udvikler elevernes praktiske færdigheder og madforståelse."
+  "longDescription": "Digital læringsportal til madkundskab for mellemtrinnet med fokus på madlavningsglæde og sund dømmekraft. Indeholder differentierede forløb og aktiviteter der udvikler elevernes praktiske færdigheder og madforståelse.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

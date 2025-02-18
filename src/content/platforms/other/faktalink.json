@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Online opslagsværk med faktuelle artikler",
-  "longDescription": "Online opslagsværk med faktuelle artikler"
+  "longDescription": "Online opslagsværk med faktuelle artikler",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

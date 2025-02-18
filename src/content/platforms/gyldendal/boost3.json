@@ -6,6 +6,11 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital tekstbog til engelsk i 3. klasse.",
-  "longDescription": "Digital tekstbog til engelsk i 3. klasse med fokus på mundtlig kommunikation og kulturforståelse. Indeholder indtalte tekster af native speakers og bygger videre på ordforrådet fra First Boost."
+  "longDescription": "Digital tekstbog til engelsk i 3. klasse med fokus på mundtlig kommunikation og kulturforståelse. Indeholder indtalte tekster af native speakers og bygger videre på ordforrådet fra First Boost.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }
 

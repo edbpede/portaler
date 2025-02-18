@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læringsplatform til dansk i udskolingen med fokus på litteratur, medier, sprog, mundtlighed, skriftlighed og læsning.",
-  "longDescription": "Digital fagportal til dansk i udskolingen med fokus på litteratur, medier, sprog, mundtlighed, skriftlighed og læsning. Indeholder nyskabende undervisningsforløb med direkte elevformidling og lærervejledninger."
+  "longDescription": "Digital fagportal til dansk i udskolingen med fokus på litteratur, medier, sprog, mundtlighed, skriftlighed og læsning. Indeholder nyskabende undervisningsforløb med direkte elevformidling og lærervejledninger.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

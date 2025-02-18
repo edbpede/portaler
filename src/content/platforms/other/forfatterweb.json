@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Online forfatterbiografier og litteraturanalyser",
-  "longDescription": "Online forfatterbiografier og litteraturanalyser"
+  "longDescription": "Online forfatterbiografier og litteraturanalyser",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

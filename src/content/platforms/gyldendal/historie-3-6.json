@@ -6,5 +6,10 @@
   "subject": "historie",
   "isActive": true,
   "description": "Digital historieportal til mellemtrinnet med fokus på historisk metode og kildekritik.",
-  "longDescription": "Digital historieportal til mellemtrinnet med fokus på historisk metode og kildekritik. Tilbyder færdige undervisningsforløb med baggrundstekster, kildemateriale, billedmateriale og selvkontrollerende opgaver."
+  "longDescription": "Digital historieportal til mellemtrinnet med fokus på historisk metode og kildekritik. Tilbyder færdige undervisningsforløb med baggrundstekster, kildemateriale, billedmateriale og selvkontrollerende opgaver.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

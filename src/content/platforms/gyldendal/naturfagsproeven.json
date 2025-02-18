@@ -6,5 +6,10 @@
   "subject": "natur-teknologi",
   "isActive": true,
   "description": "Digital portal til naturfagsprøven med fællesfaglige fokusområder, øvelser og selvrettende prøver i biologi, fysik/kemi og geografi.",
-  "longDescription": "Digital portal til naturfagsprøven med fællesfaglige fokusområder, øvelser og selvrettende prøver i biologi, fysik/kemi og geografi. Indeholder guides til problemstillinger, arbejdsspørgsmål og tjek-opgaver til forløbene."
+  "longDescription": "Digital portal til naturfagsprøven med fællesfaglige fokusområder, øvelser og selvrettende prøver i biologi, fysik/kemi og geografi. Indeholder guides til problemstillinger, arbejdsspørgsmål og tjek-opgaver til forløbene.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

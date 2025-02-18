@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Læringsplatform med spil til undervisning",
-  "longDescription": "Læringsplatform med spil til undervisning"
+  "longDescription": "Læringsplatform med spil til undervisning",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

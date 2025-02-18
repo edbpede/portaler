@@ -6,5 +6,10 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital læringsplatform til engelsk for 7.-9. klasse.",
-  "longDescription": "Digital læringsportal til engelsk for 7.-9. klasse med fokus på prøveforberedelse. Tilbyder inspirerende forløb, aktiviteter og tekster der forbereder eleverne til de afsluttende prøver med differentierede opgaver."
+  "longDescription": "Digital læringsportal til engelsk for 7.-9. klasse med fokus på prøveforberedelse. Tilbyder inspirerende forløb, aktiviteter og tekster der forbereder eleverne til de afsluttende prøver med differentierede opgaver.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

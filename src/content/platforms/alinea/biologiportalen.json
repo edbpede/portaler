@@ -6,5 +6,10 @@
   "subject": "biologi",
   "isActive": true,
   "description": "Digital læringsplatform til biologiundervisning i 7.-9. klasse.",
-  "longDescription": "Digital fagportal til biologiundervisning i 7.-9. klasse med differentierede forløb og aktiviteter. Indeholder årsplaner med tydelig progression og dækker alle fagets områder med fokus på elevmotivation og naturfaglig udvikling."
+  "longDescription": "Digital fagportal til biologiundervisning i 7.-9. klasse med differentierede forløb og aktiviteter. Indeholder årsplaner med tydelig progression og dækker alle fagets områder med fokus på elevmotivation og naturfaglig udvikling.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

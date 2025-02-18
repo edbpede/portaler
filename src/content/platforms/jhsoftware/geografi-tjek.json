@@ -6,5 +6,10 @@
   "subject": "geografi",
   "isActive": true,
   "description": "Geografi øvelser og tests for udskoling",
-  "longDescription": "Geografi øvelser og tests for udskoling"
+  "longDescription": "Geografi øvelser og tests for udskoling",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

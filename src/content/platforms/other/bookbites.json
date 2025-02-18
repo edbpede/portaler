@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læsning og lydbøger",
-  "longDescription": "Digital læsning og lydbøger"
+  "longDescription": "Digital læsning og lydbøger",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

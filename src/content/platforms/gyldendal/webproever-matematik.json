@@ -6,5 +6,10 @@
   "subject": "matematik",
   "isActive": true,
   "description": "Digital prøveplatform med selvrettende opgaver der træner eleverne i matematiske færdigheder og problemløsning.",
-  "longDescription": "Digital prøveplatform med selvrettende opgaver der træner eleverne i matematiske færdigheder og problemløsning. Indeholder prøvelignende opgaver der forbereder eleverne til de digitale afgangsprøver i matematik."
+  "longDescription": "Digital prøveplatform med selvrettende opgaver der træner eleverne i matematiske færdigheder og problemløsning. Indeholder prøvelignende opgaver der forbereder eleverne til de digitale afgangsprøver i matematik.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

@@ -6,5 +6,10 @@
   "subject": "natur-teknologi",
   "isActive": true,
   "description": "Digital læringsplatform til natur/teknologi for indskolingen med fokus på undersøgende og motiverende læring.",
-  "longDescription": "Digital læringsportal til natur/teknologi for indskolingen med fokus på undersøgende og motiverende læring. Indeholder forløb der udvikler elevernes naturfaglige kompetencer gennem praktiske aktiviteter og naturobservationer."
+  "longDescription": "Digital læringsportal til natur/teknologi for indskolingen med fokus på undersøgende og motiverende læring. Indeholder forløb der udvikler elevernes naturfaglige kompetencer gennem praktiske aktiviteter og naturobservationer.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

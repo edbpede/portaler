@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital prøveportal til dansk for 3.-6. klasse.",
-  "longDescription": "Digital prøveportal til dansk for 3.-6. klasse med fokus på læsning og sprogbrug. Tilbyder selvrettende øvelser der forbereder eleverne til afgangsprøven og hjælper dem med at identificere styrker og svagheder."
+  "longDescription": "Digital prøveportal til dansk for 3.-6. klasse med fokus på læsning og sprogbrug. Tilbyder selvrettende øvelser der forbereder eleverne til afgangsprøven og hjælper dem med at identificere styrker og svagheder.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

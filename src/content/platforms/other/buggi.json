@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læringsplatform",
-  "longDescription": "Digital læringsplatform"
+  "longDescription": "Digital læringsplatform",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

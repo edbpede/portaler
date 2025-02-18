@@ -6,5 +6,10 @@
   "subject": "natur-teknologi",
   "isActive": true,
   "description": "Platform for jordskælv og seismologi",
-  "longDescription": "Platform for jordskælv og seismologi"
+  "longDescription": "Platform for jordskælv og seismologi",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

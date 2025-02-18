@@ -6,5 +6,10 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital læringsplatform til 0.-1. klasse.",
-  "longDescription": "Digital engelsksystem til 0.-1. klasse baseret på spiralprincippet og Total Physical Response metoden. Fokuserer på mundtlig sprogindlæring gennem bevægelse, dans, leg og sang med interaktive elementer til tavleundervisning."
+  "longDescription": "Digital engelsksystem til 0.-1. klasse baseret på spiralprincippet og Total Physical Response metoden. Fokuserer på mundtlig sprogindlæring gennem bevægelse, dans, leg og sang med interaktive elementer til tavleundervisning.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

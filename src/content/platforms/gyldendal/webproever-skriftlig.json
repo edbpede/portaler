@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Online prøver i skriftlig fremstilling for udskoling",
-  "longDescription": "Online prøver i skriftlig fremstilling for udskoling"
+  "longDescription": "Online prøver i skriftlig fremstilling for udskoling",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

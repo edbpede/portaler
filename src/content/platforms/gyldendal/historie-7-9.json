@@ -6,5 +6,10 @@
   "subject": "historie",
   "isActive": true,
   "description": "Digital historieportal til udskolingen med komplette undervisningsforløb, kildekursus og prøveforberedende materiale.",
-  "longDescription": "Digital historieportal til udskolingen med komplette undervisningsforløb, kildekursus og prøveforberedende materiale. Indeholder kanonpunkter, tidslinjer og interaktive aktiviteter der forbereder eleverne til afgangsprøven."
+  "longDescription": "Digital historieportal til udskolingen med komplette undervisningsforløb, kildekursus og prøveforberedende materiale. Indeholder kanonpunkter, tidslinjer og interaktive aktiviteter der forbereder eleverne til afgangsprøven.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

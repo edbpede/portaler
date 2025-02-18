@@ -6,6 +6,11 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital arbejdsbog til engelsk i 4. klasse.",
-  "longDescription": "Digital arbejdsbog til engelsk i 4. klasse der understøtter elevernes sproglige udvikling. Indeholder interaktive øvelser og opgaver der styrker elevernes engelskkundskaber gennem praktisk anvendelse."
+  "longDescription": "Digital arbejdsbog til engelsk i 4. klasse der understøtter elevernes sproglige udvikling. Indeholder interaktive øvelser og opgaver der styrker elevernes engelskkundskaber gennem praktisk anvendelse.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }
 

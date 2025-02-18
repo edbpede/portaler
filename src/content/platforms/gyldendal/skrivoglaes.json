@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læringsplatform til indskolingen med fokus på den første læse- og skriveudvikling.",
-  "longDescription": "Digital læringsportal til indskolingen med fokus på den første læse- og skriveudvikling. Tilbyder strukturerede forløb med differentierede aktiviteter der understøtter elevernes begyndende literacy gennem leg og læring."
+  "longDescription": "Digital læringsportal til indskolingen med fokus på den første læse- og skriveudvikling. Tilbyder strukturerede forløb med differentierede aktiviteter der understøtter elevernes begyndende literacy gennem leg og læring.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

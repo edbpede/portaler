@@ -6,5 +6,10 @@
   "subject": "geografi",
   "isActive": true,
   "description": "Digital læringsplatform til geografi for 7.-9. klasse.",
-  "longDescription": "Digital læringsportal til geografi for 7.-9. klasse med fokus på differentieret undervisning. Tilbyder motiverende forløb og opgavetyper der dækker alle fagets områder, herunder temaer som vand, grundvand og miljø."
+  "longDescription": "Digital læringsportal til geografi for 7.-9. klasse med fokus på differentieret undervisning. Tilbyder motiverende forløb og opgavetyper der dækker alle fagets områder, herunder temaer som vand, grundvand og miljø.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

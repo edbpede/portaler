@@ -6,6 +6,11 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital danskportal til børnehaveklassen baseret på Fælles Mål 2014. klasse.",
-  "longDescription": "Digital danskportal til børnehaveklassen baseret på Fælles Mål 2014. Fokuserer på fiktionskompetence, sprogforståelse og afkodning gennem strukturerede forløb med bogstavlyde og læsning af lydrette ord."
+  "longDescription": "Digital danskportal til børnehaveklassen baseret på Fælles Mål 2014. Fokuserer på fiktionskompetence, sprogforståelse og afkodning gennem strukturerede forløb med bogstavlyde og læsning af lydrette ord.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }
 

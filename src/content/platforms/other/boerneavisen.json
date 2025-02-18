@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Fysisk avis for børn",
-  "longDescription": "Fysisk avis for børn"
+  "longDescription": "Fysisk avis for børn",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

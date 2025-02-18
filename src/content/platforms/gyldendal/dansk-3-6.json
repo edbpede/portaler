@@ -6,5 +6,10 @@
   "subject": "dansk",
   "isActive": true,
   "description": "Digital læringsplatform til dansk på mellemtrinnet med over 75 undervisningsforløb.",
-  "longDescription": "Digital fagportal til dansk på mellemtrinnet med over 75 undervisningsforløb. Fokuserer på fagets kernekompetencer gennem varierede aktiviteter, herunder digital dannelse og medieforståelse."
+  "longDescription": "Digital fagportal til dansk på mellemtrinnet med over 75 undervisningsforløb. Fokuserer på fagets kernekompetencer gennem varierede aktiviteter, herunder digital dannelse og medieforståelse.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }

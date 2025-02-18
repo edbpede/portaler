@@ -6,5 +6,10 @@
   "subject": "engelsk",
   "isActive": true,
   "description": "Digital læringsplatform til engelsk for 7.-9. klasse.",
-  "longDescription": "Digital træningsportal til engelsk for 7.-9. klasse med fokus på sproglig opmærksomhed, lytning, læsning og grammatik. Tilbyder et motiverende læringsmiljø med systematisk træning af engelskfærdigheder."
+  "longDescription": "Digital træningsportal til engelsk for 7.-9. klasse med fokus på sproglig opmærksomhed, lytning, læsning og grammatik. Tilbyder et motiverende læringsmiljø med systematisk træning af engelskfærdigheder.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
 }
