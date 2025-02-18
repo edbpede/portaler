@@ -31,5 +31,6 @@ pnpm-debug.log*
 # IDE Stuff
 .aiderules
 .clinerules
+.cursorrules
 .windsurfrules
 
