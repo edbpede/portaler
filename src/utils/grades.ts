@@ -10,7 +10,7 @@ export type GradeRange = keyof typeof GRADE_RANGES;
 
 export function getGradeRange(grade: number): GradeRange | undefined {
 	for (const [range, grades] of Object.entries(GRADE_RANGES)) {
-		if (grades.includes(grade)) {
+		if ((grades as readonly number[]).includes(grade)) {
 			return range as GradeRange;
 		}
 	}
