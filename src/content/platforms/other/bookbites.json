@@ -5,8 +5,8 @@
   "url": "https://bookbites.com",
   "subject": "dansk",
   "isActive": true,
-  "description": "Digital læsning og lydbøger",
-  "longDescription": "Digital læsning og lydbøger",
+  "description": "Digitalt læsefællesskab og skolebibliotek",
+  "longDescription": "Papirbøger eller e-bøger. Gys eller fantasy. Lix 10 eller 22. BookBites er et digitalt læsefællesskab og skolebibliotek for alle slags læsetyper. Også dem der synes, det kan være lidt svært.",
   "iconOverwrite": false,
   "icon": {
     "name": "",

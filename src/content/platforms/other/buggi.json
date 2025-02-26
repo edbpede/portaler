@@ -5,8 +5,8 @@
   "url": "https://buggi.dk",
   "subject": "dansk",
   "isActive": true,
-  "description": "Digital læringsplatform",
-  "longDescription": "Digital læringsplatform",
+  "description": "Digital søgeplatform for skolens bibliotekssystem",
+  "longDescription": "Buggi er udviklet til brug på landets skoler. Buggi viser de bøger og titler som den enkelte skole har i sin samling, og guider barnet helt ud på hylden, hvor bogen står.",
   "iconOverwrite": false,
   "icon": {
     "name": "",
