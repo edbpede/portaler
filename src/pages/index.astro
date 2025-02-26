@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import strLuftfoto from '../assets/str_luftfoto.jpg';
 
 const grades = [
 	{ id: 0, name: '0. årgang', icon: 'ph:student-fill' },
@@ -19,11 +20,10 @@ const grades = [
 <Layout title="Digitale Læremidler - Oversigt">
 	<div class="w-full mb-12 rounded-xl overflow-hidden shadow-lg">
 		<img 
-			src="/str_luftfoto.jpg" 
+			src={strLuftfoto.src} 
 			alt="Luftfoto af skolen"
 			class="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover object-center"
 			fetchpriority="high"
-			loading="eager"
 		/>
 	</div>
 

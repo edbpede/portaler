@@ -4,6 +4,8 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import Tooltip from './Tooltip.astro';
 import { getCollection } from 'astro:content';
+import gyldendal_icon from '../assets/gyldendal_icon.svg';
+import alinea_icon from '../assets/alinea_icon.svg';
 
 type Platform = CollectionEntry<'platforms'>;
 type Publisher = 'Gyldendal' | 'Alinea' | 'Dansk LF' | 'JH Software' | 'Andre';
@@ -37,9 +39,9 @@ const publisherColors: Record<Publisher | 'default', string> = {
 
 const publisherColor = publisherColors[publisher as Publisher] || publisherColors.default;
 
-const publisherIcons: Record<Publisher, { src: string; height: number }> = {
-	'Gyldendal': { src: '/gyldendal_icon.svg', height: 16 },
-	'Alinea': { src: '/alinea_icon.svg', height: 6 },
+const publisherIcons: Record<Publisher, { src: any; height: number }> = {
+	'Gyldendal': { src: gyldendal_icon, height: 16 },
+	'Alinea': { src: alinea_icon, height: 6 },
 	'Dansk LF': { src: '', height: 0 },
 	'JH Software': { src: '', height: 0 },
 	'Andre': { src: '', height: 0 }

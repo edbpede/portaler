@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import '../styles/animations.css';
 import Footer from '../components/Footer.astro';
+import str_logo_icon from '../assets/str_logo_icon.svg';
+import edbpede from '../assets/edbpede.svg';
 
 interface Props {
 	title: string;
@@ -15,8 +17,8 @@ const {
 
 // Critical resources to preload
 const criticalResources = [
-	{ path: '/str_logo_icon.svg', type: 'image/svg+xml' },
-	{ path: '/edbpede.svg', type: 'image/svg+xml' }
+	{ path: str_logo_icon.src, type: 'image/svg+xml' },
+	{ path: edbpede.src, type: 'image/svg+xml' }
 ];
 
 ---
@@ -27,7 +29,7 @@ const criticalResources = [
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/str_logo_icon.svg" />
+		<link rel="icon" type="image/svg+xml" href={str_logo_icon.src} />
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Performance optimizations -->
@@ -69,7 +71,7 @@ const criticalResources = [
 				<div class="flex items-center gap-3">
 					<a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
 						<img 
-							src="/str_logo_icon.svg" 
+							src={str_logo_icon.src} 
 							alt="STR Logo" 
 							class="w-8 h-8"
 							width="32"

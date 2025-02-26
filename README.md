@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="public/str_logo_icon.svg" alt="Portaler Logo" width="120" height="120">
+	<img src="src/assets/str_logo_icon.svg" alt="Portaler Logo" width="120" height="120">
 	<h1>Portaler</h1>
 	<p><strong>Digital Learning Platform Directory</strong></p>
 	<p>A comprehensive directory of digital learning platforms for Danish schools</p>
@@ -128,6 +128,6 @@ This project is licensed under the AGPLv3 License - see the [LICENSE](LICENSE) f
 
 <div align="center">
 	<a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
-		<img src="public/agplv3_icon.png" alt="GNU AGPLv3">
+		<img src="src/assets/agplv3_icon.png" alt="GNU AGPLv3">
 	</a>
 </div>
