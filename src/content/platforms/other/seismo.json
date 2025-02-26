@@ -3,10 +3,10 @@
   "publisher": "Andre",
   "grades": [],
   "url": "https://seismo.dk",
-  "subject": "natur-teknologi",
+  "subject": "samfundsfag",
   "isActive": true,
-  "description": "Platform for jordskælv og seismologi",
-  "longDescription": "Platform for jordskælv og seismologi",
+  "description": "Seismo er et nyhedsmedie til unge, som formidler dagsaktuelle nyheder kort, præcist og letlæseligt.",
+  "longDescription": "Seismo er et nyhedsmedie til unge, som formidler dagsaktuelle nyheder kort, præcist og letlæseligt. Seismo skriver dagsaktuelle nyheder på alle hverdage året rundt (undtagen skoleferier). Seismo udvælger og producerer de historier i nyhedsstrømmen, som er relevante og interessante for de unge.",
   "iconOverwrite": false,
   "icon": {
     "name": "",

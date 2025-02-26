@@ -1,7 +1,7 @@
 {
   "name": "Læsefidusen",
   "publisher": "Dansk LF",
-  "grades": [1, 2],
+  "grades": [0, 1, 2],
   "url": "https://dansklf.dk/serie-og-systemer/laesefidusen",
   "subject": "dansk",
   "isActive": true,
