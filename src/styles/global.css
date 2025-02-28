@@ -3,59 +3,45 @@
 @tailwind utilities;
 
 @layer components {
-	.platform-card {
-		@apply bg-neutral-lightest p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-neutral;
-	}
-	
-	.platform-title {
-		@apply text-xl font-semibold text-primary;
-	}
-	
-	.platform-publisher {
-		@apply mt-2 text-secondary text-sm;
-	}
+  .fade-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 
-	.fade-enter {
-		opacity: 0;
-		transform: translateY(10px);
-	}
+  .fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+  }
 
-	.fade-enter-active {
-		opacity: 1;
-		transform: translateY(0);
-		transition: opacity 300ms ease-in-out, transform 300ms ease-out;
-	}
+  /* Remove platform-card class references in favor of data attribute selectors */
 
-	.platform-card {
-		transition: all 300ms ease-in-out;
-	}
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
 
-	.platform-card:hover {
-		transform: translateY(-2px);
-		@apply bg-accent-light border-accent;
-	}
+  .loading-skeleton {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--tw-colors-neutral-light) / 1) 25%,
+      rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%,
+      rgb(var(--tw-colors-neutral-light) / 1) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
 
-	@keyframes shimmer {
-		0% { background-position: -200% 0; }
-		100% { background-position: 200% 0; }
-	}
+  [data-platform-card] {
+    transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+  }
 
-	.loading-skeleton {
-		background: linear-gradient(90deg, 
-			rgb(var(--tw-colors-neutral-light) / 1) 25%, 
-			rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%, 
-			rgb(var(--tw-colors-neutral-light) / 1) 75%
-		);
-		background-size: 200% 100%;
-		animation: shimmer 1.5s infinite;
-	}
-
-	[data-platform-card] {
-		transition: opacity 300ms ease-in-out, transform 300ms ease-out;
-	}
-
-	[data-platform-card].hidden {
-		opacity: 0;
-		transform: scale(0.95);
-	}
+  [data-platform-card].hidden {
+    opacity: 0;
+    transform: scale(0.95);
+  }
 }
