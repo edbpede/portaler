@@ -1,20 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config '../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@utility fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease-in-out,
+    transform 300ms ease-out;
+}
+
+@utility loading-skeleton {
+  /* Remove platform-card class references in favor of data attribute selectors */
+  background: linear-gradient(
+    90deg,
+    rgb(var(--tw-colors-neutral-light) / 1) 25%,
+    rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%,
+    rgb(var(--tw-colors-neutral-light) / 1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@utility hidden {
+  &[data-platform-card] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
 
 @layer components {
-  .fade-enter {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  .fade-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 300ms ease-in-out, transform 300ms ease-out;
-  }
-
-  /* Remove platform-card class references in favor of data attribute selectors */
 
   @keyframes shimmer {
     0% {
@@ -25,23 +62,7 @@
     }
   }
 
-  .loading-skeleton {
-    background: linear-gradient(
-      90deg,
-      rgb(var(--tw-colors-neutral-light) / 1) 25%,
-      rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%,
-      rgb(var(--tw-colors-neutral-light) / 1) 75%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-  }
-
   [data-platform-card] {
     transition: opacity 300ms ease-in-out, transform 300ms ease-out;
-  }
-
-  [data-platform-card].hidden {
-    opacity: 0;
-    transform: scale(0.95);
   }
 }

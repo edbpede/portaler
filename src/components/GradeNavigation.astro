@@ -8,7 +8,7 @@ const { currentGrade } = Astro.props;
 const grades = Array.from({ length: 10 }, (_, i) => i);
 ---
 
-<nav class="bg-white/80 backdrop-blur-sm rounded-lg p-4 mb-6 border border-neutral">
+<nav class="bg-white/80 backdrop-blur-xs rounded-lg p-4 mb-6 border border-neutral">
 	<div class="flex flex-wrap gap-2">
 		{grades.map((grade) => (
 			<a

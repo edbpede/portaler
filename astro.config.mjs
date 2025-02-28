@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config';
 import icon from 'astro-icon';
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-    integrations: [icon()],
+    integrations: [icon(), tailwindcss()],
     site: 'https://portaler.edbpede.net',
     output: 'static',
     build: {
@@ -15,14 +14,6 @@ export default defineConfig({
         format: 'file'
     },
     vite: {
-        css: {
-            postcss: {
-                plugins: [
-                    tailwindcss,
-                    autoprefixer,
-                ],
-            },
-        },
         build: {
             cssCodeSplit: true,
             rollupOptions: {

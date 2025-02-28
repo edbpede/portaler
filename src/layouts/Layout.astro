@@ -65,8 +65,8 @@ const criticalResources = [
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 	</head>
-	<body class="min-h-screen bg-gradient-to-br from-neutral-lightest via-accent-light to-neutral-light flex flex-col">
-		<header class="bg-white/80 backdrop-blur-sm shadow-sm border-b border-neutral">
+	<body class="min-h-screen bg-linear-to-br from-neutral-lightest via-accent-light to-neutral-light flex flex-col">
+		<header class="bg-white/80 backdrop-blur-xs shadow-xs border-b border-neutral">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
 				<div class="flex items-center gap-3">
 					<a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -82,7 +82,7 @@ const criticalResources = [
 				</div>
 			</div>
 		</header>
-		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grow">
 			<slot />
 		</main>
 		<Footer />
