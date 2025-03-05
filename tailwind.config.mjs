@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import scrollbarPlugin from 'tailwind-scrollbar';
+
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: "class",
@@ -29,7 +31,7 @@ export default {
       },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
+  plugins: [scrollbarPlugin],
   safelist: [
     "text-amber-500",
     "text-cyan-500",
