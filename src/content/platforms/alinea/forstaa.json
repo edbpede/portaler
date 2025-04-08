@@ -1,0 +1,15 @@
+{
+  "name": "Forstå.dk",
+  "publisher": "Alinea",
+  "grades": [],
+  "url": "https://www.xn--forst-qra.dk/",
+  "subject": "andre",
+  "isActive": true,
+  "description": "Engagerende og virkelighedsnære forløb og indhold til dig, der underviser i grundskolen. Alt tilbydes i samarbejde med partnere med noget på hjerte.",
+  "longDescription": "Vores digitale undervisningsforløb er gratis og tilgængelige for alle lærere og elever i Danmark og kan bruges som en ekstra ressource til at supplere undervisningen.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
+} 

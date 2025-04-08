@@ -1,0 +1,10 @@
+{
+  "name": "andre",
+  "displayName": "Andre",
+  "order": 15,
+  "isActive": true,
+  "icon": {
+    "name": "ph:dots-three-outline-fill",
+    "color": "text-gray-500"
+  }
+} 

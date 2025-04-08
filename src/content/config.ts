@@ -2,6 +2,7 @@ import { defineCollection, z } from "astro:content";
 
 // Define valid subject names based on our subject files
 const validSubjects = [
+  "andre",
   "billedkunst",
   "biologi",
   "dansk",
