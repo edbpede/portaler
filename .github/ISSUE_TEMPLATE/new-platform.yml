@@ -49,6 +49,7 @@ body:
       label: "📖 Fag"
       description: "Hvilket fag hører platformen til?"
       options:
+        - andre
         - billedkunst
         - biologi
         - dansk
