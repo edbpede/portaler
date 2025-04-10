@@ -1,0 +1,15 @@
+{
+  "name": "Testing Platform",
+  "publisher": "Alinea",
+  "url": "https://testing.alinea.dk",
+  "subject": "andre",
+  "description": "Test af platform",
+  "longDescription": "Testing platform",
+  "grades": [],
+  "isActive": true,
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
+}
