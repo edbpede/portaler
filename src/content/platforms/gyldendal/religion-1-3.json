@@ -1,0 +1,15 @@
+{
+  "name": "Religion (1-3)",
+  "publisher": "Gyldendal",
+  "grades": [1, 2, 3],
+  "url": "https://religion1-3.gyldendal.dk",
+  "subject": "religion",
+  "isActive": true,
+  "description": "Digital undervisningsmiddel til kristendomskundskab for 1.-3. klasse med komplette forløb, lydfortællinger og animationer.",
+  "longDescription": "Dynamisk undervisningsmiddel til kristendomskundskab i 1.-3. klasse med komplette forløb bestående af tekster, billeder, lydfortællinger, film og animationer. Dækker alle kompetenceområder: Livsfilosofi og etik, Bibelske fortællinger, Kristendom, samt Ikke-kristne religioner og andre livsopfattelser. Giver læreren faglige og pædagogiske muligheder for at inddrage religioner som jødedom og islam i undervisningen.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
+} 

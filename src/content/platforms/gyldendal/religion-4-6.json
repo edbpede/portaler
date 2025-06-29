@@ -1,0 +1,15 @@
+{
+  "name": "Religion (4-6)",
+  "publisher": "Gyldendal",
+  "grades": [4, 5, 6],
+  "url": "https://religion4-6.gyldendal.dk",
+  "subject": "religion",
+  "isActive": true,
+  "description": "Digital undervisningsmiddel til kristendomskundskab for 4.-6. klasse med komplette forløb og indsigt i verdensreligionerne.",
+  "longDescription": "Dynamisk undervisningsmiddel til kristendomskundskab i 4.-6. klasse med komplette forløb, indsigt i verdensreligionerne, film, animationer og faglige 'Hvad er...?'-tekster. Udbygger elevernes faglige begrebskendskab og viden om historiske forudsætninger for religionernes udbredelse. Dækker alle kompetenceområder: Livsfilosofi og etik, Bibelske fortællinger, Kristendom, samt Ikke-kristne religioner og andre livsopfattelser. Danner grundlag for den problemorienterede tilgang i udskolingen.",
+  "iconOverwrite": false,
+  "icon": {
+    "name": "",
+    "color": ""
+  }
+} 
