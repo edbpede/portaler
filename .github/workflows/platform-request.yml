@@ -372,7 +372,7 @@ jobs:
 
       - name: Create Pull Request
         id: create-pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "feat(platform): tilføj ${{ fromJson(steps.parse-issue.outputs.platform-data).name }}"
