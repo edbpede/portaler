@@ -1,0 +1,37 @@
+---
+import { getCatalog } from "../lib/catalog";
+import GlobalSearch from "./GlobalSearch.tsx";
+import logoIcon from "../assets/str_logo_icon.svg";
+
+const { platforms } = await getCatalog();
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md"
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+  >
+    <a
+      href="/"
+      class="u-focus group flex items-center gap-2.5 rounded-lg"
+      aria-label="Til forsiden"
+    >
+      <img
+        src={logoIcon.src}
+        alt=""
+        width="32"
+        height="32"
+        class="size-8 transition-transform duration-300 group-hover:rotate-45"
+      />
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-base font-bold tracking-tight text-ink"
+          >Digitale Læremidler</span
+        >
+        <span class="text-xs text-ink-faint">STR · læringsportaler</span>
+      </span>
+    </a>
+
+    <GlobalSearch client:idle platforms={platforms} />
+  </div>
+</header>

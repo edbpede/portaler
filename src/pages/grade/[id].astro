@@ -1,44 +1,75 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SearchFilter from '../../components/SearchFilter.astro';
-import PlatformList from '../../components/PlatformList.astro';
-import GradeNavigation from '../../components/GradeNavigation.astro';
-import { getAllGrades, isValidGrade } from '../../utils/grades';
-import { getPlatformsForGrade } from '../../utils/platforms';
+import Layout from "../../layouts/Layout.astro";
+import GradeRail from "../../components/GradeRail.astro";
+import PlatformBrowser from "../../components/PlatformBrowser.svelte";
+import {
+  STAGES,
+  getAllGrades,
+  getStage,
+  gradeLabel,
+  isValidGrade,
+} from "../../lib/grades";
+import {
+  distinctPublishers,
+  getCatalog,
+  getPlatformsForGrade,
+} from "../../lib/catalog";
 
-export async function getStaticPaths() {
-	const grades = getAllGrades();
-	return grades.map(grade => ({
-		params: { id: grade.toString() }
-	}));
+export function getStaticPaths() {
+  return getAllGrades().map((grade) => ({ params: { id: grade.toString() } }));
 }
 
 const { id } = Astro.params;
-const grade = parseInt(id);
+const grade = Number.parseInt(id ?? "", 10);
 
 if (!isValidGrade(grade)) {
-	return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 
 const platforms = await getPlatformsForGrade(grade);
-const publishers = [...new Set(platforms.map(p => p.data.publisher))].filter(Boolean);
+const { subjects } = await getCatalog();
+const publishers = distinctPublishers(platforms);
+const stageLabel = STAGES.find((stage) => stage.key === getStage(grade))?.label;
+const count = platforms.length;
 ---
 
-<Layout title={`${grade}. årgang - Digitale Læremidler`}>
-	<div class="mb-6">
-		<a href="/" class="text-primary hover:underline">&larr; Tilbage til oversigt</a>
-	</div>
-	
-	<h2 class="text-2xl font-bold text-gray-900 mb-6">{grade}. årgang - Tilgængelige Platforme</h2>
-	
-	<GradeNavigation currentGrade={grade} />
-	
-	<div class="mb-8">
-		<SearchFilter publishers={publishers} />
-	</div>
+<Layout title={`${gradeLabel(grade)} – Digitale Læremidler`}>
+  <div class="flex flex-col gap-6">
+    <a
+      href="/"
+      class="u-focus inline-flex w-fit items-center gap-1.5 rounded-md text-sm text-ink-soft transition-colors hover:text-green-deep"
+    >
+      <span class="i-ph-arrow-left text-sm" aria-hidden="true"></span>
+      Forside
+    </a>
 
-	<div id="platforms-container">
-		<PlatformList platforms={platforms} currentGrade={grade} />
-	</div>
+    <div class="flex flex-col gap-1">
+      {stageLabel && (
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-green-deep">
+          {stageLabel}
+        </p>
+      )}
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h1 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          {gradeLabel(grade)}
+        </h1>
+        <span class="text-sm text-ink-soft">
+          {count === 1 ? "1 platform" : `${count} platforme`}
+        </span>
+      </div>
+    </div>
+
+    <GradeRail currentGrade={grade} />
+  </div>
+
+  <div class="mt-8">
+    <PlatformBrowser
+      client:visible
+      platforms={platforms}
+      subjects={subjects}
+      publishers={publishers}
+      currentGrade={grade}
+      emptyHint="Der er ingen platforme, der matcher her. Prøv en anden årgang eller nulstil."
+    />
+  </div>
 </Layout>
-

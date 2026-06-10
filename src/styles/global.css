@@ -1,68 +1,72 @@
-@import "tailwindcss";
-@config '../../tailwind.config.mjs';
+/* Self-hosted variable fonts — no external requests (performance + GDPR for a
+   Danish school). Bricolage Grotesque carries display personality; Inter is the
+   workhorse UI face. */
+@import "@fontsource-variable/bricolage-grotesque/wght.css";
+@import "@fontsource-variable/inter/wght.css";
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+:root {
+  color-scheme: light;
 }
 
-@utility fade-enter {
-  opacity: 0;
-  transform: translateY(10px);
+html {
+  background-color: #f6f8f4;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-gutter: stable;
 }
 
-@utility fade-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 300ms ease-in-out,
-    transform 300ms ease-out;
+body {
+  font-family: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-@utility loading-skeleton {
-  /* Remove platform-card class references in favor of data attribute selectors */
-  background: linear-gradient(
-    90deg,
-    rgb(var(--tw-colors-neutral-light) / 1) 25%,
-    rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%,
-    rgb(var(--tw-colors-neutral-light) / 1) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+::selection {
+  background-color: #5cc031;
+  color: #ffffff;
 }
 
-@utility hidden {
-  &[data-platform-card] {
+/* Thin scrollbar for inner scroll regions (replaces the tailwind-scrollbar
+   plugin). Applied via the .u-scroll-thin utility. */
+.u-scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #c6d4bc transparent;
+}
+.u-scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.u-scroll-thin::-webkit-scrollbar-thumb {
+  background: #c6d4bc;
+  border-radius: 9999px;
+}
+.u-scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Entrance animation for server-rendered groups. Pair with inline
+   animation-delay for a gentle stagger. */
+@keyframes u-rise {
+  from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+.u-rise {
+  animation: u-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-@layer components {
-
-  @keyframes shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
-  }
-
-  [data-platform-card] {
-    transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

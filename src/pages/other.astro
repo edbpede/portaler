@@ -1,15 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PlatformList from '../components/PlatformList.astro';
-import { getAllPlatforms, filterActivePlatforms } from '../utils/platforms';
+import Layout from "../layouts/Layout.astro";
+import PlatformBrowser from "../components/PlatformBrowser.svelte";
+import {
+  distinctPublishers,
+  getCatalog,
+  getOtherPlatforms,
+} from "../lib/catalog";
 
-const platforms = await getAllPlatforms();
-const otherPlatforms = filterActivePlatforms(platforms).filter(platform => !platform.data.grades?.length);
+const platforms = await getOtherPlatforms();
+const { subjects } = await getCatalog();
+const publishers = distinctPublishers(platforms);
+const count = platforms.length;
 ---
 
-<Layout title="Andre Platforme">
-	<main class="container mx-auto px-4 py-8">
-		<h1 class="text-3xl font-bold text-gray-900 mb-8">Andre Platforme</h1>
-		<PlatformList platforms={otherPlatforms} currentGrade={-1} />
-	</main>
+<Layout
+  title="Andre Platforme – Digitale Læremidler"
+  description="Øvrige digitale ressourcer og platforme på tværs af fag og årgange"
+>
+  <div class="flex flex-col gap-6">
+    <a
+      href="/"
+      class="u-focus inline-flex w-fit items-center gap-1.5 rounded-md text-sm text-ink-soft transition-colors hover:text-green-deep"
+    >
+      <span class="i-ph-arrow-left text-sm" aria-hidden="true"></span>
+      Forside
+    </a>
+
+    <div class="flex flex-col gap-2">
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h1 class="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          Andre platforme
+        </h1>
+        <span class="text-sm text-ink-soft">
+          {count === 1 ? "1 platform" : `${count} platforme`}
+        </span>
+      </div>
+      <p class="max-w-xl text-base leading-relaxed text-ink-soft">
+        Øvrige digitale ressourcer, der ikke er bundet til en bestemt årgang.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <PlatformBrowser
+      client:visible
+      platforms={platforms}
+      subjects={subjects}
+      publishers={publishers}
+      emptyTitle="Ingen andre platforme"
+      emptyHint="Der er ingen platforme, der matcher din søgning."
+    />
+  </div>
 </Layout>

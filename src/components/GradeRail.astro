@@ -1,0 +1,43 @@
+---
+import { STAGES } from "../lib/grades";
+
+interface Props {
+  currentGrade?: number;
+}
+
+const { currentGrade } = Astro.props;
+---
+
+<nav aria-label="Vælg årgang" class="u-card p-2">
+  <ul class="flex items-stretch gap-1 overflow-x-auto u-scroll-thin">
+    {
+      STAGES.map((stage, stageIndex) => (
+        <>
+          {stageIndex > 0 && (
+            <li
+              aria-hidden="true"
+              class="mx-1 my-1.5 w-px shrink-0 self-stretch bg-line"
+            />
+          )}
+          {stage.grades.map((grade) => (
+            <li class="shrink-0">
+              <a
+                href={`/grade/${grade}`}
+                aria-current={currentGrade === grade ? "page" : undefined}
+                title={`${grade}. årgang · ${stage.label}`}
+                class:list={[
+                  "u-focus grid size-10 place-items-center rounded-lg font-display text-base font-semibold transition-colors",
+                  currentGrade === grade
+                    ? "bg-green text-white shadow-sm"
+                    : "text-ink-soft hover:bg-green-wash hover:text-green-dark",
+                ]}
+              >
+                {grade}
+              </a>
+            </li>
+          ))}
+        </>
+      ))
+    }
+  </ul>
+</nav>
