@@ -32,6 +32,11 @@ function enrich(
 ): PlatformItem {
   const meta = subjectMeta(entry.data.subject);
   const subject = subjects.get(entry.data.subject);
+  if (!subject) {
+    console.warn(
+      `[platforms] "${entry.data.name}" references subject "${entry.data.subject}" which has no entry in the subjects collection — it will be labelled "Andre".`,
+    );
+  }
   return {
     id: entry.id,
     ...entry.data,
@@ -42,12 +47,20 @@ function enrich(
   };
 }
 
-/** All active platforms, enriched and ready to hand to the Solid island. */
-export async function getActivePlatforms(): Promise<PlatformItem[]> {
+// Cached at module scope: Astro reuses the module across the static build, so
+// the collection is scanned + enriched once rather than per page.
+let activePlatformsCache: Promise<PlatformItem[]> | undefined;
+
+async function loadActivePlatforms(): Promise<PlatformItem[]> {
   const [entries, subjects] = await Promise.all([getCollection("platforms"), subjectLookup()]);
   return entries
     .filter((entry) => entry.data.isActive !== false)
     .map((entry) => enrich(entry, subjects));
+}
+
+/** All active platforms, enriched and ready to hand to the Solid island. */
+export function getActivePlatforms(): Promise<PlatformItem[]> {
+  return (activePlatformsCache ??= loadActivePlatforms());
 }
 
 export async function getPlatformsForGrade(grade: number): Promise<PlatformItem[]> {

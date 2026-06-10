@@ -128,7 +128,7 @@ export default function PlatformExplorer(rawProps: ExplorerProps) {
       <Show
         when={groups().length > 0}
         fallback={
-          <div class="ui-card flex flex-col items-center gap-3 px-6 py-16 text-center">
+          <div role="status" class="ui-card flex flex-col items-center gap-3 px-6 py-16 text-center">
             <span class="i-lucide-search-x text-3xl text-muted-foreground" aria-hidden="true" />
             <p class="text-foreground">Ingen platforme matcher din søgning.</p>
             <button

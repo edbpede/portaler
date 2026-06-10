@@ -24,10 +24,13 @@ const tileFull: Record<PhaseId, string> = {
     "bg-udskoling/8 text-udskoling ring-1 ring-udskoling/20 hover:bg-udskoling/16 hover:ring-udskoling/40",
 };
 
+// Active = strong tint + solid ring + bold. Phase-coloured text on a tint of
+// itself keeps AA contrast in both light and dark themes (white-on-bright-hue
+// would fail AA for the lighter phases in dark mode).
 const tileActive: Record<PhaseId, string> = {
-  indskoling: "bg-indskoling text-white ring-2 ring-indskoling",
-  mellemtrin: "bg-mellemtrin text-white ring-2 ring-mellemtrin",
-  udskoling: "bg-udskoling text-white ring-2 ring-udskoling",
+  indskoling: "bg-indskoling/15 text-indskoling font-bold ring-2 ring-indskoling",
+  mellemtrin: "bg-mellemtrin/15 text-mellemtrin font-bold ring-2 ring-mellemtrin",
+  udskoling: "bg-udskoling/15 text-udskoling font-bold ring-2 ring-udskoling",
 };
 
 const compactTile: Record<PhaseId, string> = {

@@ -12,6 +12,9 @@ export default defineConfig({
   build: {
     assets: "assets",
     inlineStylesheets: "auto",
+    // format:"file" emits /grade/0.html etc. Bare anchors (/grade/0, /other,
+    // /fag/dansk) resolve on GitHub Pages (custom domain). Keep this paired with
+    // the default no-trailing-slash anchors — changing one breaks live URLs.
     format: "file",
   },
 });
