@@ -1,15 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PlatformList from '../components/PlatformList.astro';
-import { getAllPlatforms, filterActivePlatforms } from '../utils/platforms';
+import Layout from "../layouts/Layout.astro";
+import PlatformExplorer from "../components/PlatformExplorer.tsx";
+import { getOtherPlatforms } from "../lib/platforms";
 
-const platforms = await getAllPlatforms();
-const otherPlatforms = filterActivePlatforms(platforms).filter(platform => !platform.data.grades?.length);
+const platforms = await getOtherPlatforms();
 ---
 
-<Layout title="Andre Platforme">
-	<main class="container mx-auto px-4 py-8">
-		<h1 class="text-3xl font-bold text-gray-900 mb-8">Andre Platforme</h1>
-		<PlatformList platforms={otherPlatforms} currentGrade={-1} />
-	</main>
+<Layout title="Andre platforme — Digitale læremidler">
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <a
+      href="/"
+      class="ui-focus mb-6 inline-flex items-center gap-1.5 rounded text-sm text-muted-foreground hover:text-foreground"
+    >
+      <span class="i-lucide-arrow-left" aria-hidden="true"></span>
+      Forsiden
+    </a>
+
+    <header class="mb-8">
+      <h1 class="font-display text-3xl font-bold text-foreground sm:text-4xl">Andre platforme</h1>
+      <p class="mt-2 text-muted-foreground">
+        Øvrige ressourcer og opslagsværker, der ikke er bundet til et bestemt klassetrin.
+      </p>
+    </header>
+
+    <PlatformExplorer platforms={platforms} searchLabel="Søg i andre platforme" client:idle />
+  </div>
 </Layout>

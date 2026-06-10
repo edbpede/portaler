@@ -1,90 +1,66 @@
 ---
-import '../styles/global.css';
-import '../styles/animations.css';
-import Footer from '../components/Footer.astro';
-import str_logo_icon from '../assets/str_logo_icon.svg';
-import edbpede from '../assets/edbpede.svg';
+import "@fontsource-variable/inter";
+import "@fontsource-variable/bricolage-grotesque";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import logo from "../assets/str_logo_icon.svg";
 
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
 }
 
-const { 
-	title,
-	description = "Oversigt over digitale læremidler og platforme til folkeskolen"
+const {
+  title,
+  description = "En samlet, gennemskuelig oversigt over skolens digitale læremidler og platforme — sorteret efter klassetrin og fag.",
 } = Astro.props;
 
-// Critical resources to preload
-const criticalResources = [
-	{ path: str_logo_icon.src, type: 'image/svg+xml' },
-	{ path: edbpede.src, type: 'image/svg+xml' }
-];
-
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="da">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={str_logo_icon.src} />
-		<meta name="generator" content={Astro.generator} />
-		
-		<!-- Performance optimizations -->
-		{criticalResources.map(resource => (
-			<link rel="preload" href={resource.path} as="image" type={resource.type} fetchpriority="high" />
-		))}
-		
-		<!-- Optimized font loading -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
-			rel="stylesheet" 
-			media="print" 
-			onload="this.media='all'" 
-		/>
-		
-		<!-- SEO Tags -->
-		<title>{title}</title>
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url.href} />
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		
-		<!-- Additional meta tags -->
-		<meta name="theme-color" content="#4A90E2" />
-		<meta name="robots" content="index, follow" />
-		<link rel="canonical" href={Astro.url.href} />
-		
-		<!-- DNS Prefetch -->
-		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-	</head>
-	<body class="min-h-screen bg-linear-to-br from-neutral-lightest via-accent-light to-neutral-light flex flex-col">
-		<header class="bg-white/80 backdrop-blur-xs shadow-xs border-b border-neutral">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-				<div class="flex items-center gap-3">
-					<a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-						<img 
-							src={str_logo_icon.src} 
-							alt="STR Logo" 
-							class="w-8 h-8"
-							width="32"
-							height="32"
-						/>
-						<h1 class="text-2xl font-bold text-primary">Digitale Læremidler</h1>
-					</a>
-				</div>
-			</div>
-		</header>
-		<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grow">
-			<slot />
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={logo.src} />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Apply the theme before first paint to avoid a flash. */}
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="da_DK" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#171717" />
+    <meta name="robots" content="index, follow" />
+  </head>
+  <body class="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

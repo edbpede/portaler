@@ -1,23 +1,29 @@
 {
-  "name": "",
-  "type": "module",
+  "name": "portaler",
   "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/solid-js": "^6.0.1",
+    "@astrojs/svelte": "^8.1.2",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.10",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@unocss/astro": "^66.7.0",
+    "astro": "^6",
+    "solid-js": "^1.9.13",
+    "svelte": "^5.56.3",
+    "unocss": "^66.7.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
+    "sync": "astro sync",
     "astro": "astro"
   },
-  "dependencies": {
-    "astro": "^5.14.3",
-    "astro-icon": "^1.1.5",
-    "tippy.js": "^6.3.7"
-  },
+  "type": "module",
   "devDependencies": {
-    "@iconify-json/ph": "^1.2.2",
-    "@tailwindcss/postcss": "^4.0.9",
-    "@tailwindcss/vite": "^4.0.9",
-    "tailwind-scrollbar": "^4.0.1",
-    "tailwindcss": "^4.0.9"
+    "@astrojs/check": "^0.9.9",
+    "@iconify-json/lucide": "^1.2.111",
+    "typescript": "^6.0.3"
   }
 }

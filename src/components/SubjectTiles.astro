@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import { getActivePlatforms } from "../lib/platforms";
+import { subjectMeta } from "../lib/subjects";
+
+const [subjectEntries, platforms] = await Promise.all([
+  getCollection("subjects"),
+  getActivePlatforms(),
+]);
+
+const counts = new Map<string, number>();
+for (const p of platforms) {
+  counts.set(p.subject, (counts.get(p.subject) ?? 0) + 1);
+}
+
+const subjects = subjectEntries
+  .filter((s) => s.data.isActive !== false && (counts.get(s.data.name) ?? 0) > 0)
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((s) => ({
+    slug: s.data.name,
+    label: s.data.displayName,
+    count: counts.get(s.data.name) ?? 0,
+    ...subjectMeta(s.data.name),
+  }));
+---
+
+<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+  {
+    subjects.map((subject) => (
+      <li>
+        <a
+          href={`/fag/${subject.slug}`}
+          style={`--sa: ${subject.accent}`}
+          class="ui-card ui-focus group flex h-full items-center gap-3 p-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--sa)]/40"
+        >
+          <span
+            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--sa)]/12 text-[var(--sa)]"
+            aria-hidden="true"
+          >
+            <span class={`${subject.icon} text-xl`} />
+          </span>
+          <span class="min-w-0">
+            <span class="block truncate font-medium text-card-foreground">{subject.label}</span>
+            <span class="block text-xs text-muted-foreground">
+              {subject.count} {subject.count === 1 ? "platform" : "platforme"}
+            </span>
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

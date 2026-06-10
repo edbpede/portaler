@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/str_logo_icon.svg";
+import ThemeToggle from "./ThemeToggle.svelte";
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+    <a
+      href="/"
+      class="ui-focus group flex items-center gap-3 rounded-lg"
+      aria-label="Til forsiden"
+    >
+      <Image
+        src={logo}
+        alt=""
+        width={36}
+        height={36}
+        class="h-9 w-9 shrink-0"
+      />
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-lg font-semibold tracking-tight text-foreground"
+          >Digitale læremidler</span
+        >
+        <span class="text-xs text-muted-foreground">STR · skolens platforme</span>
+      </span>
+    </a>
+
+    <ThemeToggle client:load />
+  </div>
+</header>
