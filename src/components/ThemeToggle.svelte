@@ -11,6 +11,10 @@
   function toggle() {
     dark = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", dark);
+    // Keep the browser-chrome colour in sync with the active theme.
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", dark ? "#171717" : "#ffffff");
     try {
       localStorage.setItem("theme", dark ? "dark" : "light");
     } catch {
