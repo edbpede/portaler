@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro:schema";
+import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 // Subject slugs are the canonical key shared by platforms (data) and the
