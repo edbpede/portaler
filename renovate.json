@@ -1,9 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    ":configMigration"
-  ],
+  "extends": ["config:recommended", ":configMigration"],
   "automerge": true,
   "automergeType": "branch",
   "platformAutomerge": true,
