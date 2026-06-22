@@ -1,44 +1,57 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SearchFilter from '../../components/SearchFilter.astro';
-import PlatformList from '../../components/PlatformList.astro';
-import GradeNavigation from '../../components/GradeNavigation.astro';
-import { getAllGrades, isValidGrade } from '../../utils/grades';
-import { getPlatformsForGrade } from '../../utils/platforms';
+import Layout from "../../layouts/Layout.astro";
+import GradeRail from "../../components/GradeRail.astro";
+import PlatformExplorer from "../../components/PlatformExplorer.tsx";
+import { GRADES, gradeLabel, phaseOf, type PhaseId } from "../../lib/grades";
+import { getPlatformsForGrade } from "../../lib/platforms";
 
-export async function getStaticPaths() {
-	const grades = getAllGrades();
-	return grades.map(grade => ({
-		params: { id: grade.toString() }
-	}));
+export function getStaticPaths() {
+  return GRADES.map((grade) => ({ params: { id: String(grade) } }));
 }
 
-const { id } = Astro.params;
-const grade = parseInt(id);
-
-if (!isValidGrade(grade)) {
-	return Astro.redirect('/404');
-}
-
+const grade = Number(Astro.params.id);
 const platforms = await getPlatformsForGrade(grade);
-const publishers = [...new Set(platforms.map(p => p.data.publisher))].filter(Boolean);
+const phase = phaseOf(grade);
+
+const phaseText: Record<PhaseId, string> = {
+  indskoling: "text-indskoling",
+  mellemtrin: "text-mellemtrin",
+  udskoling: "text-udskoling",
+};
 ---
 
-<Layout title={`${grade}. årgang - Digitale Læremidler`}>
-	<div class="mb-6">
-		<a href="/" class="text-primary hover:underline">&larr; Tilbage til oversigt</a>
-	</div>
-	
-	<h2 class="text-2xl font-bold text-gray-900 mb-6">{grade}. årgang - Tilgængelige Platforme</h2>
-	
-	<GradeNavigation currentGrade={grade} />
-	
-	<div class="mb-8">
-		<SearchFilter publishers={publishers} />
-	</div>
+<Layout title={`${gradeLabel(grade)} — Digitale læremidler`}>
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <a
+      href="/"
+      class="ui-focus mb-6 inline-flex items-center gap-1.5 rounded text-sm text-muted-foreground hover:text-foreground"
+    >
+      <span class="i-lucide-arrow-left" aria-hidden="true"></span>
+      Forsiden
+    </a>
 
-	<div id="platforms-container">
-		<PlatformList platforms={platforms} currentGrade={grade} />
-	</div>
+    <header class="mb-6">
+      {
+        phase && (
+          <p class={`mb-1 text-sm font-semibold tracking-wide uppercase ${phaseText[phase.id]}`}>
+            {phase.label}
+          </p>
+        )
+      }
+      <h1 class="font-display text-3xl font-bold text-foreground sm:text-4xl">
+        {gradeLabel(grade)}
+      </h1>
+    </header>
+
+    <div class="mb-8">
+      <GradeRail variant="compact" current={grade} />
+    </div>
+
+    <PlatformExplorer
+      platforms={platforms}
+      currentGrade={grade}
+      searchLabel={`Søg i ${gradeLabel(grade)}`}
+      client:idle
+    />
+  </div>
 </Layout>
-

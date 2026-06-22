@@ -1,68 +1,100 @@
-@import "tailwindcss";
-@config '../../tailwind.config.mjs';
+/* Design tokens — Modern Minimal palette (light/dark) + the Skoleår phase
+   spectrum. Consumed as semantic utilities (bg-background, text-foreground,
+   bg-primary, text-indskoling, …) wired up in uno.config.ts. */
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.3211 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.3211 0 0);
+  --muted: oklch(0.9846 0.0017 247.84);
+  --muted-foreground: oklch(0.551 0.0234 264.36);
+  --primary: oklch(0.6231 0.188 259.81);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.967 0.0029 264.54);
+  --secondary-foreground: oklch(0.4461 0.0263 256.8);
+  --accent: oklch(0.9514 0.025 236.82);
+  --accent-foreground: oklch(0.3791 0.1378 265.52);
+  --border: oklch(0.9276 0.0058 264.53);
+  --ring: oklch(0.6231 0.188 259.81);
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+  /* School journey: a continuous hue ramp across the three phases. */
+  --phase-indskoling: oklch(0.66 0.12 182);
+  --phase-mellemtrin: oklch(0.6231 0.188 259.81);
+  --phase-udskoling: oklch(0.54 0.16 288);
+
+  --radius: 0.875rem;
+  color-scheme: light;
 }
 
-@utility fade-enter {
-  opacity: 0;
-  transform: translateY(10px);
+.dark {
+  --background: oklch(0.2046 0 0);
+  --foreground: oklch(0.9219 0 0);
+  --card: oklch(0.2686 0 0);
+  --card-foreground: oklch(0.9219 0 0);
+  --muted: oklch(0.2393 0 0);
+  --muted-foreground: oklch(0.7155 0 0);
+  --primary: oklch(0.6231 0.188 259.81);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.2686 0 0);
+  --secondary-foreground: oklch(0.9219 0 0);
+  --accent: oklch(0.3791 0.1378 265.52);
+  --accent-foreground: oklch(0.8823 0.0571 254.13);
+  --border: oklch(0.3715 0 0);
+  --ring: oklch(0.6231 0.188 259.81);
+
+  --phase-indskoling: oklch(0.74 0.12 182);
+  --phase-mellemtrin: oklch(0.7 0.17 259.81);
+  --phase-udskoling: oklch(0.68 0.15 288);
+
+  color-scheme: dark;
 }
 
-@utility fade-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 300ms ease-in-out,
-    transform 300ms ease-out;
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@utility loading-skeleton {
-  /* Remove platform-card class references in favor of data attribute selectors */
-  background: linear-gradient(
-    90deg,
-    rgb(var(--tw-colors-neutral-light) / 1) 25%,
-    rgb(var(--tw-colors-neutral-DEFAULT) / 1) 50%,
-    rgb(var(--tw-colors-neutral-light) / 1) 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family:
+    "Inter Variable", Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@utility hidden {
-  &[data-platform-card] {
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Subtle, single entrance for grouped content. One accessory only. */
+@keyframes rise {
+  from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@layer components {
+.rise {
+  animation: rise 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  @keyframes shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-
-  [data-platform-card] {
-    transition: opacity 300ms ease-in-out, transform 300ms ease-out;
+  .rise {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,69 +1,122 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
-import strLuftfoto from '../assets/str_luftfoto.jpg';
-
-const grades = [
-	{ id: 0, name: '0. årgang', icon: 'ph:student-fill' },
-	{ id: 1, name: '1. årgang', icon: 'ph:pencil-circle-fill' },
-	{ id: 2, name: '2. årgang', icon: 'ph:books-fill' },
-	{ id: 3, name: '3. årgang', icon: 'ph:notebook-fill' },
-	{ id: 4, name: '4. årgang', icon: 'ph:calculator-fill' },
-	{ id: 5, name: '5. årgang', icon: 'ph:graph-fill' },
-	{ id: 6, name: '6. årgang', icon: 'ph:atom-fill' },
-	{ id: 7, name: '7. årgang', icon: 'ph:infinity-fill' },
-	{ id: 8, name: '8. årgang', icon: 'ph:graduation-cap-fill' },
-	{ id: 9, name: '9. årgang', icon: 'ph:student-fill' }
-];
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import GradeRail from "../components/GradeRail.astro";
+import SubjectTiles from "../components/SubjectTiles.astro";
+import aerial from "../assets/str_luftfoto.jpg";
 ---
 
-<Layout title="Digitale Læremidler - Oversigt">
-	<div class="w-full mb-12 rounded-xl overflow-hidden shadow-lg">
-		<img 
-			src={strLuftfoto.src} 
-			alt="Luftfoto af skolen"
-			class="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover object-center"
-			fetchpriority="high"
-		/>
-	</div>
+<Layout title="Digitale læremidler — Strandgårdskolen">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    {/* Hero — the school, and the one thing this page is for. */}
+    <section class="relative mt-6 overflow-hidden rounded-3xl">
+      <Image
+        src={aerial}
+        alt="Luftfoto af skolen"
+        widths={[640, 960, 1280, 1600]}
+        sizes="(min-width: 1152px) 1100px, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-[280px] w-full object-cover object-center sm:h-[360px]"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-t from-black/75 via-black/35 to-black/10"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10">
+        <p class="mb-2 text-sm font-medium tracking-wide text-white/80 uppercase">
+          Strandgårdskolen · Læringsportaler
+        </p>
+        <h1 class="font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
+          Find skolens digitale læremidler
+        </h1>
+        <p class="mt-3 max-w-xl text-base text-white/85 sm:text-lg">
+          Alle vores platforme, e-bøger og portaler — samlet ét sted og sorteret
+          efter klassetrin og fag.
+        </p>
+      </div>
+    </section>
 
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-		{
-			grades.map((grade) => (
-				<a
-					href={`/grade/${grade.id}`}
-					class="block p-6 bg-white rounded-lg shadow-xs hover:shadow-md transition-shadow duration-200 group"
-				>
-					<div class="flex items-center space-x-4">
-						<Icon 
-							name={grade.icon} 
-							class="w-8 h-8 text-blue-500 group-hover:text-blue-600 transition-colors duration-200" 
-						/>
-						<div>
-							<h2 class="text-xl font-semibold text-gray-900">{grade.name}</h2>
-							<p class="mt-2 text-gray-600">Se alle tilgængelige digitale læremidler</p>
-						</div>
-					</div>
-				</a>
-			))
-		}
-	</div>
-	<div class="mt-12">
-		<h2 class="text-xl font-semibold text-gray-900 mb-6">Andre Platforme</h2>
-		<a
-			href="/other"
-			class="block p-6 bg-white rounded-lg shadow-xs hover:shadow-md transition-shadow duration-200 group"
-		>
-			<div class="flex items-center space-x-4">
-				<Icon 
-					name="ph:squares-four-fill" 
-					class="w-8 h-8 text-purple-500 group-hover:text-purple-600 transition-colors duration-200" 
-				/>
-				<div>
-					<h3 class="text-lg font-semibold text-gray-900">Andre relevante platforme og læremidler</h3>
-					<p class="mt-2 text-gray-600">Se øvrige digitale ressourcer</p>
-				</div>
-			</div>
-		</a>
-	</div>
+    {/* Primary navigation: the school journey, 0.–9. klasse. */}
+    <section class="py-12 sm:py-16">
+      <h2 class="mb-1 font-display text-2xl font-semibold text-foreground">Vælg klassetrin</h2>
+      <p class="mb-8 text-muted-foreground">
+        Klik på et klassetrin for at se alle tilgængelige læremidler.
+      </p>
+      <GradeRail variant="full" />
+    </section>
+
+    {/* Secondary navigation: by subject. Collapsed by default — grade is the
+        primary path; subject is the "or instead" route you open on purpose. */}
+    <section class="pb-6 sm:pb-8">
+      <details class="subject-disclosure group">
+        <summary
+          class="ui-card ui-focus flex cursor-pointer items-center justify-between gap-4 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40"
+        >
+          <div class="flex items-center gap-4">
+            <span
+              class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"
+              aria-hidden="true"
+            >
+              <span class="i-lucide-shapes text-xl"></span>
+            </span>
+            <div>
+              <h2 class="font-display text-lg font-semibold text-card-foreground">
+                Eller find efter fag
+              </h2>
+              <p class="text-sm text-muted-foreground">
+                Se læremidler samlet for et helt fag på tværs af klassetrin.
+              </p>
+            </div>
+          </div>
+          <span
+            class="chevron i-lucide-chevron-down shrink-0 text-xl text-muted-foreground transition-transform duration-200"
+            aria-hidden="true"></span>
+        </summary>
+        <div class="pt-6">
+          <SubjectTiles />
+        </div>
+      </details>
+    </section>
+
+    {/* Everything not tied to a specific grade. */}
+    <section class="pb-20">
+      <a
+        href="/other"
+        class="ui-card ui-focus group flex items-center justify-between gap-4 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40"
+      >
+        <div class="flex items-center gap-4">
+          <span
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary"
+            aria-hidden="true"
+          >
+            <span class="i-lucide-layout-grid text-xl"></span>
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-semibold text-card-foreground">Andre platforme</h3>
+            <p class="text-sm text-muted-foreground">
+              Øvrige ressourcer og opslagsværker uden bestemt klassetrin.
+            </p>
+          </div>
+        </div>
+        <span
+          class="i-lucide-arrow-right text-xl text-muted-foreground transition-transform group-hover:translate-x-1"
+          aria-hidden="true"></span>
+      </a>
+    </section>
+  </div>
 </Layout>
+
+<style>
+  /* Native disclosure: drop the default marker, rotate our own chevron. */
+  .subject-disclosure summary {
+    list-style: none;
+  }
+  .subject-disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+  .subject-disclosure[open] .chevron {
+    transform: rotate(180deg);
+  }
+</style>

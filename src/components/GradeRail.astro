@@ -1,0 +1,120 @@
+---
+import { PHASES, gradeLabel, type PhaseId } from "../lib/grades";
+
+interface Props {
+  current?: number;
+  variant?: "full" | "compact";
+}
+
+const { current, variant = "full" } = Astro.props;
+
+// Literal class maps per phase so UnoCSS can statically extract them.
+const phaseText: Record<PhaseId, string> = {
+  indskoling: "text-indskoling",
+  mellemtrin: "text-mellemtrin",
+  udskoling: "text-udskoling",
+};
+
+const tileFull: Record<PhaseId, string> = {
+  indskoling:
+    "bg-indskoling/8 text-indskoling ring-1 ring-indskoling/20 hover:bg-indskoling/16 hover:ring-indskoling/40",
+  mellemtrin:
+    "bg-mellemtrin/8 text-mellemtrin ring-1 ring-mellemtrin/20 hover:bg-mellemtrin/16 hover:ring-mellemtrin/40",
+  udskoling:
+    "bg-udskoling/8 text-udskoling ring-1 ring-udskoling/20 hover:bg-udskoling/16 hover:ring-udskoling/40",
+};
+
+// Active = strong tint + solid ring + bold. Phase-coloured text on a tint of
+// itself keeps AA contrast in both light and dark themes (white-on-bright-hue
+// would fail AA for the lighter phases in dark mode).
+const tileActive: Record<PhaseId, string> = {
+  indskoling: "bg-indskoling/15 text-indskoling font-bold ring-2 ring-indskoling",
+  mellemtrin: "bg-mellemtrin/15 text-mellemtrin font-bold ring-2 ring-mellemtrin",
+  udskoling: "bg-udskoling/15 text-udskoling font-bold ring-2 ring-udskoling",
+};
+
+const compactTile: Record<PhaseId, string> = {
+  indskoling: "text-indskoling hover:bg-indskoling/12",
+  mellemtrin: "text-mellemtrin hover:bg-mellemtrin/12",
+  udskoling: "text-udskoling hover:bg-udskoling/12",
+};
+
+// Solid phase accent bar — the Skoleår spectrum, now read top-to-bottom across
+// the three stacked phase bands instead of as one decorative line.
+const phaseBar: Record<PhaseId, string> = {
+  indskoling: "bg-indskoling",
+  mellemtrin: "bg-mellemtrin",
+  udskoling: "bg-udskoling",
+};
+---
+
+{
+  variant === "full" ? (
+    <section aria-label="Vælg klassetrin" class="rise space-y-4">
+      {/* One band per school phase. Pick your phase, then the grade — the way
+          teachers actually navigate the folkeskole. */}
+      {PHASES.map((phase) => (
+        <div class="ui-card overflow-hidden">
+          <div class="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:gap-6">
+            <div class="flex items-center gap-3 sm:w-44 sm:shrink-0">
+              <span
+                class={`h-11 w-1.5 shrink-0 rounded-full ${phaseBar[phase.id]}`}
+                aria-hidden="true"
+              />
+              <div>
+                <h3 class={`font-display text-base font-bold tracking-wide uppercase ${phaseText[phase.id]}`}>
+                  {phase.label}
+                </h3>
+                <p class="text-xs text-muted-foreground">
+                  {phase.grades[0]}.–{phase.grades[phase.grades.length - 1]}. klasse
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-1 flex-wrap gap-2.5">
+              {phase.grades.map((grade) => (
+                <a
+                  href={`/grade/${grade}`}
+                  aria-label={gradeLabel(grade)}
+                  aria-current={current === grade ? "page" : undefined}
+                  class={`ui-focus flex h-20 min-w-20 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl text-2xl font-bold transition-all duration-200 hover:-translate-y-0.5 ${
+                    current === grade ? tileActive[phase.id] : tileFull[phase.id]
+                  }`}
+                >
+                  <span>{grade}</span>
+                  <span class="text-[0.625rem] font-medium tracking-wide uppercase opacity-70">
+                    klasse
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
+  ) : (
+    <nav aria-label="Skift klassetrin" class="ui-card p-3">
+      <div class="flex flex-wrap items-center gap-1.5">
+        {PHASES.map((phase) => (
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class={`px-1.5 text-xs font-semibold tracking-wide uppercase ${phaseText[phase.id]}`}>
+              {phase.label}
+            </span>
+            {phase.grades.map((grade) => (
+              <a
+                href={`/grade/${grade}`}
+                aria-current={current === grade ? "page" : undefined}
+                class={`ui-focus inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-sm font-semibold transition-colors ${
+                  current === grade
+                    ? tileActive[phase.id]
+                    : compactTile[phase.id]
+                }`}
+              >
+                {grade}
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </nav>
+  )
+}

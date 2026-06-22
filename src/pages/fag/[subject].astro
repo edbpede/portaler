@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import PlatformExplorer from "../../components/PlatformExplorer.tsx";
+import { getPlatformsForSubject } from "../../lib/platforms";
+import { subjectMeta } from "../../lib/subjects";
+
+export async function getStaticPaths() {
+  const subjects = await getCollection("subjects");
+  return subjects
+    .filter((s) => s.data.isActive !== false)
+    .map((s) => ({
+      params: { subject: s.data.name },
+      props: { label: s.data.displayName },
+    }));
+}
+
+const { subject } = Astro.params;
+const { label } = Astro.props;
+const platforms = await getPlatformsForSubject(subject);
+const meta = subjectMeta(subject);
+---
+
+<Layout title={`${label} — Digitale læremidler`}>
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <a
+      href="/"
+      class="ui-focus mb-6 inline-flex items-center gap-1.5 rounded text-sm text-muted-foreground hover:text-foreground"
+    >
+      <span class="i-lucide-arrow-left" aria-hidden="true"></span>
+      Forsiden
+    </a>
+
+    <header class="mb-8 flex items-center gap-4" style={`--sa: ${meta.accent}`}>
+      <span
+        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--sa)]/12 text-[var(--sa)]"
+        aria-hidden="true"
+      >
+        <span class={`${meta.icon} text-2xl`}></span>
+      </span>
+      <div>
+        <p class="text-sm font-medium text-muted-foreground">Fag</p>
+        <h1 class="font-display text-3xl font-bold text-foreground sm:text-4xl">{label}</h1>
+      </div>
+    </header>
+
+    <PlatformExplorer platforms={platforms} searchLabel={`Søg i ${label}`} client:idle />
+  </div>
+</Layout>
