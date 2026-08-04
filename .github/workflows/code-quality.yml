@@ -113,8 +113,10 @@ jobs:
       # The repository's own prek hooks, rather than a reimplementation of them.
       # `no-commit-to-branch` is a local-commit guard and is meaningless in CI,
       # where the checked-out ref legitimately is main.
+      # Pinned to an exact tag: j178/prek-action publishes no floating major tag,
+      # so `@v3` is unresolvable. Renovate keeps this current.
       - name: Run prek hooks
-        uses: j178/prek-action@v3
+        uses: j178/prek-action@v3.0.0
         with:
           extra-args: --all-files --hook-stage manual
         env:
