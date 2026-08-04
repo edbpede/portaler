@@ -1,4 +1,4 @@
-import { mergeProps, Show, For } from "solid-js";
+import { For, mergeProps, Show } from "solid-js";
 import type { PlatformItem } from "../lib/platforms";
 import { PUBLISHER_LOGOS } from "../lib/publishers";
 
@@ -28,13 +28,19 @@ export default function PlatformCard(rawProps: PlatformCardProps) {
       class="ui-card ui-focus relative flex h-full flex-col gap-3 p-4 pl-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--sa)]/40 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.18)]"
     >
       {/* Subject accent spine */}
-      <span class="absolute left-0 top-4 bottom-4 w-1 rounded-full bg-[var(--sa)]" aria-hidden="true" />
+      <span
+        class="absolute left-0 top-4 bottom-4 w-1 rounded-full bg-[var(--sa)]"
+        aria-hidden="true"
+      />
 
       <div class="flex items-start justify-between gap-2">
         <h3 class="min-w-0 font-display text-base font-semibold leading-snug text-card-foreground">
           {props.item.name}
         </h3>
-        <span class="i-lucide-arrow-up-right shrink-0 text-base text-muted-foreground" aria-hidden="true" />
+        <span
+          class="i-lucide-arrow-up-right shrink-0 text-base text-muted-foreground"
+          aria-hidden="true"
+        />
       </div>
 
       <div class="flex items-center gap-2">

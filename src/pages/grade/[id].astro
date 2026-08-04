@@ -1,8 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import GradeRail from "../../components/GradeRail.astro";
 import PlatformExplorer from "../../components/PlatformExplorer.tsx";
-import { GRADES, gradeLabel, phaseOf, type PhaseId } from "../../lib/grades";
+import Layout from "../../layouts/Layout.astro";
+import { GRADES, gradeLabel, type PhaseId, phaseOf } from "../../lib/grades";
 import { getPlatformsForGrade } from "../../lib/platforms";
 
 export function getStaticPaths() {

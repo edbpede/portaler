@@ -46,14 +46,14 @@ jobs:
                 '1. Kontakt venligst administratoren, hvis du mener dette er en fejl',
                 '2. Denne sag vil nu blive lukket'
               ].join('\n');
-              
+
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
                 body: errorBody
               });
-              
+
               await github.rest.issues.update({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -61,7 +61,7 @@ jobs:
                 state: 'closed',
                 state_reason: 'completed'
               });
-              
+
               core.setFailed('Invalid user attempted to create platform request');
             }
 
@@ -104,11 +104,11 @@ jobs:
               const line = lines.find(l => l.includes(`### ${field}`));
               if (!line) {
                 // Try finding by emoji label if header not found
-                const emojiLine = lines.find(l => l.includes(`📚 ${field}`) || 
-                                                 l.includes(`🏢 ${field}`) || 
-                                                 l.includes(`🔗 ${field}`) || 
-                                                 l.includes(`📖 ${field}`) || 
-                                                 l.includes(`📝 ${field}`) || 
+                const emojiLine = lines.find(l => l.includes(`📚 ${field}`) ||
+                                                 l.includes(`🏢 ${field}`) ||
+                                                 l.includes(`🔗 ${field}`) ||
+                                                 l.includes(`📖 ${field}`) ||
+                                                 l.includes(`📝 ${field}`) ||
                                                  l.includes(`📋 ${field}`));
                 if (!emojiLine) {
                   console.log(`Field not found: ${field}`);
@@ -125,11 +125,11 @@ jobs:
 
             const getGrades = () => {
               console.log('Parsing grades section...');
-              
+
               // Find the grades section
               let gradeSection = '';
               let inGradeSection = false;
-              
+
               for (let i = 0; i < lines.length; i++) {
                 const line = lines[i];
                 if (line.includes('### Vælg klassetrin')) {
@@ -143,9 +143,9 @@ jobs:
                   gradeSection += line + '\n';
                 }
               }
-              
+
               console.log('Grade section:', gradeSection);
-              
+
               const grades = [];
               gradeSection.split('\n').forEach(line => {
                 if (line.includes('[x]')) {
@@ -158,7 +158,7 @@ jobs:
                   }
                 }
               });
-              
+
               console.log('Final grades array:', grades);
               return grades;
             };
@@ -233,18 +233,18 @@ jobs:
             function getAllJsonFiles(dir) {
               let results = [];
               const items = fs.readdirSync(dir);
-              
+
               for (const item of items) {
                 const fullPath = path.join(dir, item);
                 const stat = fs.statSync(fullPath);
-                
+
                 if (stat.isDirectory()) {
                   results = results.concat(getAllJsonFiles(fullPath));
                 } else if (item.endsWith('.json')) {
                   results.push(fullPath);
                 }
               }
-              
+
               return results;
             }
 
@@ -265,7 +265,7 @@ jobs:
                 console.warn(`Failed to parse ${file}: ${error.message}`);
                 continue;
               }
-              
+
               if (platform.name && platform.name.toLowerCase() === newName) {
                 duplicateFound = true;
                 errorMessage = `Platform med navnet "${platformData.name}" findes allerede i ${file}`;
@@ -273,7 +273,7 @@ jobs:
                 duplicatePlatform = platform;
                 break;
               }
-              
+
               if (platform.url && platform.url.toLowerCase() === newUrl) {
                 duplicateFound = true;
                 errorMessage = `Platform med URL'en "${platformData.url}" findes allerede i ${file}`;
@@ -285,12 +285,12 @@ jobs:
 
             if (duplicateFound) {
               core.setFailed(errorMessage);
-              
+
               // Get the relative path for better readability
               const relativePath = duplicateFile.replace('src/content/platforms/', '');
               const repoUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}`;
               const fileUrl = `${repoUrl}/blob/main/src/content/platforms/${relativePath}`;
-              
+
               const errorBody = [
                 '## ❌ Duplikeret Platform Opdaget',
                 '',
@@ -312,14 +312,14 @@ jobs:
                 '',
                 'Hvis du mener, dette er en fejl, bedes du oprette en ny sag med din anmodning.'
               ].join('\n');
-              
+
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
                 body: errorBody
               });
-              
+
               // Close the issue
               await github.rest.issues.update({
                 owner: context.repo.owner,
@@ -328,7 +328,7 @@ jobs:
                 state: 'closed',
                 state_reason: 'completed'
               });
-              
+
               return false;
             }
 

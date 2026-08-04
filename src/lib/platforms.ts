@@ -27,7 +27,10 @@ async function subjectLookup(): Promise<Map<string, { label: string; order: numb
 }
 
 function enrich(
-  entry: { id: string; data: Omit<PlatformItem, "id" | "subjectLabel" | "subjectOrder" | "accent" | "icon"> },
+  entry: {
+    id: string;
+    data: Omit<PlatformItem, "id" | "subjectLabel" | "subjectOrder" | "accent" | "icon">;
+  },
   subjects: Map<string, { label: string; order: number }>,
 ): PlatformItem {
   const meta = subjectMeta(entry.data.subject);
@@ -60,7 +63,8 @@ async function loadActivePlatforms(): Promise<PlatformItem[]> {
 
 /** All active platforms, enriched and ready to hand to the Solid island. */
 export function getActivePlatforms(): Promise<PlatformItem[]> {
-  return (activePlatformsCache ??= loadActivePlatforms());
+  activePlatformsCache ??= loadActivePlatforms();
+  return activePlatformsCache;
 }
 
 export async function getPlatformsForGrade(grade: number): Promise<PlatformItem[]> {

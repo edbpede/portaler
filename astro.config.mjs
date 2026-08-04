@@ -1,7 +1,7 @@
+import solid from "@astrojs/solid-js";
+import svelte from "@astrojs/svelte";
 import { defineConfig } from "astro/config";
 import UnoCSS from "unocss/astro";
-import svelte from "@astrojs/svelte";
-import solid from "@astrojs/solid-js";
 
 // https://astro.build/config
 export default defineConfig({

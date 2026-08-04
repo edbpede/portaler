@@ -1,6 +1,6 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro/zod";
 import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 // Subject slugs are the canonical key shared by platforms (data) and the
 // accent palette (src/lib/subjects.ts). Keep these in sync with that file.
