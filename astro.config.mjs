@@ -1,4 +1,3 @@
-import solid from "@astrojs/solid-js";
 import svelte from "@astrojs/svelte";
 import { defineConfig } from "astro/config";
 import UnoCSS from "unocss/astro";
@@ -8,7 +7,7 @@ export default defineConfig({
   site: "https://portaler.edbpede.net",
   output: "static",
   // presetWind4 supplies its own reset (uno.config.ts), so we do not inject one here.
-  integrations: [UnoCSS(), svelte(), solid()],
+  integrations: [UnoCSS(), svelte()],
   build: {
     assets: "assets",
     inlineStylesheets: "auto",
