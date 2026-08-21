@@ -2,7 +2,7 @@ import { getCollection } from "astro:content";
 import { subjectMeta } from "./subjects";
 
 // A plain, serializable shape for platforms. Enriched at build time with the
-// subject's display label/order/accent/icon so the Solid island stays
+// subject's display label/order/accent/icon so the Svelte island stays
 // self-contained (no astro:content access on the client).
 export interface PlatformItem {
   id: string;
@@ -61,7 +61,7 @@ async function loadActivePlatforms(): Promise<PlatformItem[]> {
     .map((entry) => enrich(entry, subjects));
 }
 
-/** All active platforms, enriched and ready to hand to the Solid island. */
+/** All active platforms, enriched and ready to hand to the Svelte island. */
 export function getActivePlatforms(): Promise<PlatformItem[]> {
   activePlatformsCache ??= loadActivePlatforms();
   return activePlatformsCache;
