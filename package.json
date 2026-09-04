@@ -21,7 +21,7 @@
     "lint:fix": "biome check --write ."
   },
   "type": "module",
-  "packageManager": "bun@1.4.0",
+  "packageManager": "bun@1.4.1",
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@biomejs/biome": "2.5.10",
